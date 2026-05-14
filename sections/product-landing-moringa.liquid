@@ -1,0 +1,442 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign product_price = current_variant.price | money -%}
+{%- assign compare_price = current_variant.compare_at_price | money -%}
+{%- assign hero_image = product.featured_image | default: product.images.first -%}
+
+<style>
+/* === MASQUAGE NUCLÉAIRE === */
+.site-header,#shopify-section-header,.section-header,header.header,.header-wrapper,
+.announcement-bar,#shopify-section-announcement-bar,.announcement-bar-section,
+[class*="header-wrapper"],[class*="site-header"],[id*="shopify-section-header"],
+.site-footer,#shopify-section-footer,.section-footer,footer.footer,.footer-wrapper,
+[class*="footer-wrapper"],[class*="site-footer"],[id*="shopify-section-footer"],
+#shopify-section-sections--header,#shopify-section-sections--footer,
+.shopify-section-group-header-group,.shopify-section-group-footer-group,
+[class*="trust-badge"],[class*="reassurance"],[id*="shopify-section-sections--footer"],
+[class*="footer__"],[class*="footer-block"],[class*="footer-menu"],[class*="footer-col"],
+.shopify-section:not(#shopify-section-product-landing-moringa):not([id*="product-landing-moringa"]){
+  display:none!important;height:0!important;overflow:hidden!important;
+  visibility:hidden!important;max-height:0!important;padding:0!important;
+  margin:0!important;border:none!important
+}
+body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important}
+
+/* === DESIGN MORINGA (Emerald + Gold) === */
+.mo{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#0d1f15;color:#fff;min-height:100vh}
+.mo *{box-sizing:border-box}
+.mo-w{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.mo-ann{background:linear-gradient(90deg,#d4af37 0%,#f0d678 50%,#d4af37 100%);color:#0d1f15!important;text-align:center;padding:9px 12px;font-size:13px;font-weight:700;letter-spacing:.3px}
+.mo-ann span{display:inline-block;margin:0 6px}
+
+.mo-hd{position:sticky;top:0;z-index:50;background:rgba(13,31,21,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,175,55,.25);padding:10px 0}
+.mo-hd-w{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 20px}
+.mo-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#d4af37!important;cursor:default}
+.mo-logo b{color:#fff!important}
+.mo-hd-cta{background:#22c55e;color:#fff!important;border:none;padding:9px 16px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase}
+
+.mo-hero{padding:24px 0 40px}
+.mo-hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.mo-img-wrap{position:relative;text-align:center;padding:20px 0}
+.mo-img-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(34,197,94,.25) 0%,transparent 60%);z-index:0}
+.mo-img{position:relative;z-index:1;max-width:280px;margin:0 auto;width:100%;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.mo-thumbs{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.mo-thumb{width:54px;height:54px;border:2px solid rgba(212,175,55,.3);border-radius:8px;overflow:hidden;cursor:pointer;background:#fff;padding:2px}
+.mo-thumb.active{border-color:#d4af37}
+.mo-thumb img{width:100%;height:100%;object-fit:contain}
+
+.mo-rating{display:flex;align-items:center;gap:6px;justify-content:center;color:#ffd961!important;font-size:14px;margin:8px 0 12px;font-weight:600}
+.mo-rating b{color:#fff!important;margin-left:6px}
+.mo-h1{font-size:26px;line-height:1.2;font-weight:900;text-align:center;margin:6px 0 10px;color:#fff!important}
+.mo-h1 .mo-acc{color:#d4af37!important;-webkit-text-fill-color:#d4af37!important}
+.mo-sub{text-align:center;color:#b8d6c1!important;font-size:15px;margin:0 0 16px;line-height:1.45}
+
+.mo-price{text-align:center;margin:16px 0}
+.mo-price-old{color:#7a9587!important;text-decoration:line-through;font-size:18px;margin-right:8px}
+.mo-price-new{color:#d4af37!important;font-size:34px;font-weight:900;letter-spacing:-.5px}
+.mo-price-badge{display:inline-block;background:#ff3b3b;color:#fff!important;font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;margin-left:8px;vertical-align:middle}
+
+.mo-checks{margin:14px 0 18px;padding:0;list-style:none}
+.mo-checks li{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:14px;color:#dde6d8!important}
+.mo-checks li::before{content:"";flex-shrink:0;width:20px;height:20px;background:#22c55e;border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6l3 3 5-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;margin-top:1px}
+
+.mo-form-wrap{background:#08160e;border:1px solid #1d3a26;border-radius:14px;padding:16px;margin:18px -4px 0}
+.mo-form-title{text-align:center;color:#d4af37!important;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+.mo-cta{display:block;width:100%;background:linear-gradient(135deg,#22c55e 0%,#16a34a 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 8px 24px rgba(34,197,94,.35);transition:transform .15s}
+.mo-cta:hover{transform:translateY(-1px)}
+.mo-pay{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:#8aa394!important;font-size:12px;flex-wrap:wrap}
+
+.mo-trust{background:#08160e;border-top:1px solid #1d3a26;border-bottom:1px solid #1d3a26;padding:18px 0}
+.mo-trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:center}
+.mo-trust-it{padding:6px}
+.mo-trust-ic{font-size:22px;margin-bottom:4px}
+.mo-trust-tx{font-size:12px;color:#dde6d8!important;font-weight:600;line-height:1.3}
+
+.mo-ps{padding:36px 0}
+.mo-h2{font-size:24px;font-weight:900;text-align:center;margin:0 0 20px;color:#fff!important;line-height:1.25}
+.mo-h2 .mo-acc{color:#d4af37!important}
+.mo-card{background:#08160e;border:1px solid #1d3a26;border-radius:14px;padding:20px;margin-bottom:14px}
+.mo-card-h{font-size:18px;font-weight:800;color:#d4af37!important;margin:0 0 10px}
+.mo-card-p{color:#b8d6c1!important;font-size:14px;line-height:1.6;margin:0}
+
+.mo-ben{padding:36px 0}
+.mo-ben-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.mo-ben-it{background:#08160e;border:1px solid #1d3a26;border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.mo-ben-ic{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff!important;font-weight:900}
+.mo-ben-tx h3{font-size:15px;color:#fff!important;margin:0 0 4px;font-weight:800}
+.mo-ben-tx p{font-size:13px;color:#b8d6c1!important;margin:0;line-height:1.5}
+
+.mo-cmp{padding:30px 0}
+.mo-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mo-cmp-col{border-radius:12px;padding:16px;font-size:13px}
+.mo-cmp-bad{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.25)}
+.mo-cmp-good{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.4)}
+.mo-cmp-col h4{margin:0 0 12px;font-size:14px;font-weight:800}
+.mo-cmp-bad h4{color:#ff6b6b!important}
+.mo-cmp-good h4{color:#22c55e!important}
+.mo-cmp-col ul{margin:0;padding:0;list-style:none}
+.mo-cmp-col li{padding:5px 0;color:#dde6d8!important;font-size:12.5px;line-height:1.4}
+
+.mo-stats{padding:30px 0}
+.mo-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.mo-stat{background:#08160e;border:1px solid #1d3a26;border-radius:12px;padding:16px 8px}
+.mo-stat-n{font-size:26px;font-weight:900;color:#d4af37!important;display:block;line-height:1}
+.mo-stat-t{font-size:11px;color:#b8d6c1!important;text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-weight:600}
+
+.mo-tst{padding:36px 0}
+.mo-tst-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.mo-tst-c{background:#08160e;border:1px solid #1d3a26;border-radius:14px;padding:18px}
+.mo-tst-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mo-tst-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;color:#fff!important;font-weight:900;font-size:15px;flex-shrink:0}
+.mo-tst-nm{font-size:14px;font-weight:800;color:#fff!important;margin:0}
+.mo-tst-lo{font-size:12px;color:#8aa394!important;margin:2px 0 0}
+.mo-tst-st{color:#ffd961!important;font-size:12px;margin-bottom:8px}
+.mo-tst-q{font-size:14px;color:#dde6d8!important;line-height:1.55;margin:0;font-style:italic}
+
+.mo-grt{padding:30px 0}
+.mo-grt-c{background:linear-gradient(135deg,#08160e 0%,#11291b 100%);border:2px solid #d4af37;border-radius:16px;padding:24px;text-align:center}
+.mo-grt-bd{display:inline-block;background:#d4af37;color:#0d1f15!important;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.mo-grt-h{font-size:20px;font-weight:900;color:#fff!important;margin:0 0 8px}
+.mo-grt-p{font-size:14px;color:#b8d6c1!important;margin:0;line-height:1.5}
+
+.mo-how{padding:36px 0}
+.mo-how-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.mo-how-st{background:#08160e;border:1px solid #1d3a26;border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.mo-how-n{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#d4af37;color:#0d1f15!important;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center}
+.mo-how-tx h4{margin:0 0 4px;color:#d4af37!important;font-size:15px;font-weight:800}
+.mo-how-tx p{margin:0;color:#b8d6c1!important;font-size:13px;line-height:1.5}
+
+.mo-faq{padding:36px 0}
+.mo-faq-it{background:#08160e;border:1px solid #1d3a26;border-radius:10px;margin-bottom:8px;overflow:hidden}
+.mo-faq-q{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:700;color:#fff!important;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.mo-faq-q::after{content:"+";font-size:20px;color:#d4af37!important;font-weight:300;transition:transform .2s}
+.mo-faq-it.open .mo-faq-q::after{transform:rotate(45deg)}
+.mo-faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 16px}
+.mo-faq-it.open .mo-faq-a{max-height:300px;padding:0 16px 14px}
+.mo-faq-a p{margin:0;color:#b8d6c1!important;font-size:13px;line-height:1.55}
+
+.mo-cta-fin{padding:36px 0;text-align:center}
+.mo-cta-fin .mo-h2{margin-bottom:18px}
+.mo-cta-fin .mo-cta{max-width:380px;margin:0 auto}
+.mo-urg{display:inline-block;background:rgba(255,59,59,.15);border:1px solid #ff3b3b;color:#ff6b6b!important;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px}
+
+.mo-ft{background:#08160e;border-top:1px solid #1d3a26;padding:24px 0;text-align:center;color:#7a9587!important;font-size:12px}
+.mo-ft a{color:#d4af37!important;text-decoration:none}
+
+.mo-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(13,31,21,.98);backdrop-filter:blur(10px);border-top:2px solid #22c55e;padding:10px 16px;display:none;justify-content:space-between;align-items:center;z-index:100;gap:12px}
+.mo-sticky.show{display:flex}
+.mo-sticky-px{flex:1;min-width:0}
+.mo-sticky-px b{color:#d4af37!important;font-size:18px;font-weight:900;display:block;line-height:1}
+.mo-sticky-px small{color:#8aa394!important;font-size:11px;text-decoration:line-through}
+.mo-sticky-btn{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff!important;border:none;padding:12px 18px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap}
+
+@media(min-width:768px){
+  .mo-hero-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .mo-img{max-width:380px}
+  .mo-h1{font-size:36px;text-align:left}
+  .mo-sub{text-align:left}
+  .mo-rating{justify-content:flex-start}
+  .mo-price{text-align:left}
+  .mo-trust-grid{grid-template-columns:repeat(4,1fr)}
+  .mo-ben-grid{grid-template-columns:repeat(2,1fr)}
+  .mo-tst-grid{grid-template-columns:repeat(3,1fr)}
+  .mo-how-grid{grid-template-columns:repeat(3,1fr)}
+  .mo-h2{font-size:30px}
+  .mo-form-wrap{margin:18px 0 0}
+  .mo-sticky{display:none!important}
+}
+@media(max-width:400px){
+  .mo-h1{font-size:23px}
+  .mo-price-new{font-size:30px}
+  .mo-img{max-width:240px}
+}
+</style>
+
+<div class="mo" id="vitalux-mo">
+
+  <div class="mo-ann">
+    <span>🌿 100% NATUREL</span> · <span>💰 PAIEMENT À LA LIVRAISON</span> · <span>⏰ -45% AUJOURD'HUI</span>
+  </div>
+
+  <header class="mo-hd">
+    <div class="mo-hd-w">
+      <span class="mo-logo">VITA<b>LUX</b></span>
+      <button class="mo-hd-cta" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Commander</button>
+    </div>
+  </header>
+
+  <section class="mo-hero">
+    <div class="mo-w">
+      <div class="mo-hero-grid">
+
+        <div class="mo-img-wrap">
+          {%- if hero_image -%}
+            <img class="mo-img" id="mo-main-img" src="{{ hero_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="700" height="700" loading="eager" fetchpriority="high">
+          {%- else -%}
+            <img class="mo-img" src="{{ 'placeholder' | placeholder_svg_tag }}" alt="Moringa Vitalux" width="700" height="700">
+          {%- endif -%}
+          {%- if product.images.size > 1 -%}
+            <div class="mo-thumbs">
+              {%- for img in product.images limit: 4 -%}
+                <div class="mo-thumb {% if forloop.first %}active{% endif %}" onclick="moSwap(this,'{{ img | image_url: width: 700 }}')">
+                  <img src="{{ img | image_url: width: 120 }}" alt="" width="120" height="120" loading="lazy">
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div>
+          <div class="mo-rating">★★★★★ <b>4.9/5</b> · 3 156 avis vérifiés</div>
+          <h1 class="mo-h1">Moringa <span class="mo-acc">Bio Premium</span> — Énergie, Immunité, Vitalité</h1>
+          <p class="mo-sub">L'arbre de vie en gélules : 92 nutriments essentiels pour booster ton énergie naturellement, renforcer ton immunité et retrouver une vraie vitalité.</p>
+
+          <div class="mo-price">
+            {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
+              <span class="mo-price-old">{{ compare_price }}</span>
+            {%- endif -%}
+            <span class="mo-price-new">{{ product_price }}</span>
+            <span class="mo-price-badge">-45%</span>
+          </div>
+
+          <ul class="mo-checks">
+            <li>+250% d'énergie naturelle dès la 1ère semaine</li>
+            <li>Renforce le système immunitaire et la résistance</li>
+            <li>92 nutriments : vitamines, minéraux, 18 acides aminés</li>
+            <li>100% bio · Récolte artisanale · Sans pesticide</li>
+          </ul>
+
+          <div class="mo-form-wrap" id="mo-form">
+            <div class="mo-form-title">🌿 Commande à la livraison · Espèces</div>
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" name="add" class="mo-cta">Je commande maintenant ›</button>
+            {% endform %}
+            <div class="mo-pay">
+              <span>💵 Espèces</span>
+              <span>📱 Mobile Money</span>
+              <span>🔒 Sans engagement</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-trust">
+    <div class="mo-w">
+      <div class="mo-trust-grid">
+        <div class="mo-trust-it"><div class="mo-trust-ic">🚚</div><div class="mo-trust-tx">Livraison gratuite 48h</div></div>
+        <div class="mo-trust-it"><div class="mo-trust-ic">💵</div><div class="mo-trust-tx">Paiement à la livraison</div></div>
+        <div class="mo-trust-it"><div class="mo-trust-ic">🌱</div><div class="mo-trust-tx">Bio certifié</div></div>
+        <div class="mo-trust-it"><div class="mo-trust-ic">↩️</div><div class="mo-trust-tx">Garantie 30 jours</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-ps">
+    <div class="mo-w">
+      <h2 class="mo-h2">Tu te sens <span class="mo-acc">épuisé(e)</span> en permanence ?</h2>
+      <div class="mo-card">
+        <h3 class="mo-card-h">❌ Le vrai problème : carences multiples</h3>
+        <p class="mo-card-p">L'alimentation moderne est pauvre en micronutriments. Légumes appauvris, fruits récoltés trop tôt, sols épuisés… résultat : fatigue chronique, immunité fragile, peau terne, difficultés de concentration. Les vitamines de synthèse ne valent pas l'original.</p>
+      </div>
+      <div class="mo-card" style="border-color:#22c55e">
+        <h3 class="mo-card-h">✅ La solution : Moringa Vitalux Bio</h3>
+        <p class="mo-card-p">Surnommé "l'arbre de vie" : le moringa contient 92 nutriments dans leur forme naturelle — 7× plus de vitamine C que l'orange, 4× plus de calcium que le lait, 25× plus de fer que les épinards. Une seule cuillère couvre l'essentiel. Énergie, immunité, vitalité reviennent en quelques jours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-ben">
+    <div class="mo-w">
+      <h2 class="mo-h2">Pourquoi <span class="mo-acc">Vitalux Moringa</span> ?</h2>
+      <div class="mo-ben-grid">
+        <div class="mo-ben-it"><div class="mo-ben-ic">⚡</div><div class="mo-ben-tx"><h3>Énergie naturelle</h3><p>+250% de vitalité dès la 1ère semaine. Fini la fatigue chronique.</p></div></div>
+        <div class="mo-ben-it"><div class="mo-ben-ic">🛡️</div><div class="mo-ben-tx"><h3>Immunité boostée</h3><p>Riche en antioxydants et vitamine C. Moins de rhumes, infections.</p></div></div>
+        <div class="mo-ben-it"><div class="mo-ben-ic">✨</div><div class="mo-ben-tx"><h3>Peau & cheveux</h3><p>Peau éclatante, cheveux forts, ongles solides en 1 mois.</p></div></div>
+        <div class="mo-ben-it"><div class="mo-ben-ic">🧠</div><div class="mo-ben-tx"><h3>Concentration</h3><p>Clarté mentale, mémoire vive, focus stable toute la journée.</p></div></div>
+        <div class="mo-ben-it"><div class="mo-ben-ic">🩸</div><div class="mo-ben-tx"><h3>Sang & circulation</h3><p>Riche en fer assimilable. Combat l'anémie naturellement.</p></div></div>
+        <div class="mo-ben-it"><div class="mo-ben-ic">⚖️</div><div class="mo-ben-tx"><h3>Détox & poids</h3><p>Élimine les toxines, équilibre la glycémie, soutient le métabolisme.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-cmp">
+    <div class="mo-w">
+      <h2 class="mo-h2">Vitalux vs <span class="mo-acc">Multivitamines</span></h2>
+      <div class="mo-cmp-grid">
+        <div class="mo-cmp-col mo-cmp-bad">
+          <h4>❌ Multivitamines synthèse</h4>
+          <ul>
+            <li>• Vitamines de laboratoire</li>
+            <li>• Mal assimilées</li>
+            <li>• Colorants, arômes ajoutés</li>
+            <li>• Effets limités</li>
+            <li>• 25-30€ pour 1 mois</li>
+            <li>• Sans garantie</li>
+          </ul>
+        </div>
+        <div class="mo-cmp-col mo-cmp-good">
+          <h4>✅ Vitalux Moringa Bio</h4>
+          <ul>
+            <li>• 100% plante naturelle</li>
+            <li>• 92 nutriments biodisponibles</li>
+            <li>• Zéro additif</li>
+            <li>• Effet ressenti dès J7</li>
+            <li>• Prix juste, sans intermédiaire</li>
+            <li>• Garantie 30 jours</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-stats">
+    <div class="mo-w">
+      <div class="mo-stats-grid">
+        <div class="mo-stat"><span class="mo-stat-n">92</span><div class="mo-stat-t">Nutriments</div></div>
+        <div class="mo-stat"><span class="mo-stat-n">+15 000</span><div class="mo-stat-t">Clients heureux</div></div>
+        <div class="mo-stat"><span class="mo-stat-n">98%</span><div class="mo-stat-t">Recommandent</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-tst">
+    <div class="mo-w">
+      <h2 class="mo-h2">Ils ont retrouvé leur <span class="mo-acc">énergie</span></h2>
+      <div class="mo-tst-grid">
+        <div class="mo-tst-c">
+          <div class="mo-tst-hd"><div class="mo-tst-av">NA</div><div><p class="mo-tst-nm">Nadia A.</p><p class="mo-tst-lo">Rabat · Vérifié ✓</p></div></div>
+          <div class="mo-tst-st">★★★★★</div>
+          <p class="mo-tst-q">"J'étais épuisée depuis l'accouchement. En 10 jours de Moringa, je suis redevenue moi-même. Je conseille à toutes les mamans."</p>
+        </div>
+        <div class="mo-tst-c">
+          <div class="mo-tst-hd"><div class="mo-tst-av">KO</div><div><p class="mo-tst-nm">Karim O.</p><p class="mo-tst-lo">Marrakech · Vérifié ✓</p></div></div>
+          <div class="mo-tst-st">★★★★★</div>
+          <p class="mo-tst-q">"Sportif amateur, je sens une vraie différence à l'entraînement. Plus d'endurance, récupération plus rapide. Top produit."</p>
+        </div>
+        <div class="mo-tst-c">
+          <div class="mo-tst-hd"><div class="mo-tst-av">LM</div><div><p class="mo-tst-nm">Leïla M.</p><p class="mo-tst-lo">Oran · Vérifié ✓</p></div></div>
+          <div class="mo-tst-st">★★★★★</div>
+          <p class="mo-tst-q">"Mes cheveux ont arrêté de tomber, ma peau est lumineuse. Et je dors mieux. Le moringa a tout changé en 1 mois."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-grt">
+    <div class="mo-w">
+      <div class="mo-grt-c">
+        <div class="mo-grt-bd">🛡️ Garantie 30 jours</div>
+        <h3 class="mo-grt-h">Satisfait ou intégralement remboursé</h3>
+        <p class="mo-grt-p">Essaye Vitalux Moringa pendant 30 jours. Si tu ne ressens aucune amélioration, on te rembourse sans question. Zéro risque pour toi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-how">
+    <div class="mo-w">
+      <h2 class="mo-h2">Comment <span class="mo-acc">l'utiliser</span> ?</h2>
+      <div class="mo-how-grid">
+        <div class="mo-how-st"><div class="mo-how-n">1</div><div class="mo-how-tx"><h4>2 gélules le matin</h4><p>Au petit-déjeuner, avec un grand verre d'eau ou un smoothie.</p></div></div>
+        <div class="mo-how-st"><div class="mo-how-n">2</div><div class="mo-how-tx"><h4>Cure de 30 jours</h4><p>1 flacon = 1 mois. Renouveler 2-3 mois pour effet durable.</p></div></div>
+        <div class="mo-how-st"><div class="mo-how-n">3</div><div class="mo-how-tx"><h4>Sens la différence</h4><p>Énergie dès J7. Immunité, peau, vitalité globale dès J21.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-faq">
+    <div class="mo-w">
+      <h2 class="mo-h2">Questions <span class="mo-acc">fréquentes</span></h2>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">En combien de temps je vais ressentir les effets ?</div><div class="mo-faq-a"><p>L'énergie revient dès la 1ère semaine pour la majorité de nos clients. L'immunité, la peau, les cheveux s'améliorent entre J14 et J30. Pour un effet profond et durable, une cure de 2 à 3 mois est idéale.</p></div></div>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">D'où vient votre moringa ?</div><div class="mo-faq-a"><p>Notre moringa est issu de cultures bio certifiées, récolté à la main, séché à basse température pour préserver les nutriments. Aucun pesticide, aucun additif, aucun colorant.</p></div></div>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">Y a-t-il des contre-indications ?</div><div class="mo-faq-a"><p>Le moringa est très bien toléré. Cependant, en cas de grossesse, allaitement ou traitement médical (notamment anticoagulants ou antidiabétiques), on recommande de demander l'avis de ton médecin.</p></div></div>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">Comment je paie ?</div><div class="mo-faq-a"><p>Tu paies UNIQUEMENT à la livraison, en espèces, directement au livreur. Aucun paiement à l'avance, aucune carte demandée. 100% sans risque.</p></div></div>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">Combien de temps pour la livraison ?</div><div class="mo-faq-a"><p>24 à 48h dans les grandes villes (Casablanca, Rabat, Marrakech, Alger, Tunis…) et 48 à 72h ailleurs. Tu es prévenu par téléphone avant le passage du livreur.</p></div></div>
+      <div class="mo-faq-it" onclick="this.classList.toggle('open')"><div class="mo-faq-q">Et si ça ne me convient pas ?</div><div class="mo-faq-a"><p>Tu es entièrement remboursé(e) sous 30 jours, sans condition. Notre garantie te protège à 100% — tu n'as rien à perdre.</p></div></div>
+    </div>
+  </section>
+
+  <section class="mo-cta-fin">
+    <div class="mo-w">
+      <div class="mo-urg">⏰ Offre limitée — Stock réduit</div>
+      <h2 class="mo-h2">Recharge ton énergie. <span class="mo-acc">Naturellement.</span></h2>
+      <p style="color:#b8d6c1;font-size:14px;max-width:520px;margin:0 auto 18px;line-height:1.5">Rejoins les 15 000+ personnes qui ont retrouvé leur vitalité avec Vitalux Moringa. Paiement à la livraison · Garantie 30 jours.</p>
+      <button class="mo-cta" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+    </div>
+  </section>
+
+  <footer class="mo-ft">
+    <div class="mo-w">
+      © {{ 'now' | date: '%Y' }} VITALUX — Tous droits réservés ·
+      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a>
+    </div>
+  </footer>
+
+  <div class="mo-sticky" id="mo-sticky">
+    <div class="mo-sticky-px">
+      <b>{{ product_price }}</b>
+      {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
+        <small>{{ compare_price }}</small>
+      {%- endif -%}
+    </div>
+    <button class="mo-sticky-btn" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Commander ›</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var sticky = document.getElementById('mo-sticky');
+  var form = document.getElementById('mo-form');
+  if(sticky && form){
+    window.addEventListener('scroll', function(){
+      var rect = form.getBoundingClientRect();
+      if(window.innerWidth < 768 && rect.bottom < 0){
+        sticky.classList.add('show');
+      } else {
+        sticky.classList.remove('show');
+      }
+    }, {passive:true});
+  }
+  window.moSwap = function(el, src){
+    var main = document.getElementById('mo-main-img');
+    if(main) main.src = src;
+    document.querySelectorAll('.mo-thumb').forEach(function(t){t.classList.remove('active')});
+    el.classList.add('active');
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Landing Moringa",
+  "settings": [],
+  "presets": [
+    { "name": "Landing Moringa" }
+  ]
+}
+{% endschema %}

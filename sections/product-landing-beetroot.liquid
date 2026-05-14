@@ -1,0 +1,442 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign product_price = current_variant.price | money -%}
+{%- assign compare_price = current_variant.compare_at_price | money -%}
+{%- assign hero_image = product.featured_image | default: product.images.first -%}
+
+<style>
+/* === MASQUAGE NUCLÉAIRE === */
+.site-header,#shopify-section-header,.section-header,header.header,.header-wrapper,
+.announcement-bar,#shopify-section-announcement-bar,.announcement-bar-section,
+[class*="header-wrapper"],[class*="site-header"],[id*="shopify-section-header"],
+.site-footer,#shopify-section-footer,.section-footer,footer.footer,.footer-wrapper,
+[class*="footer-wrapper"],[class*="site-footer"],[id*="shopify-section-footer"],
+#shopify-section-sections--header,#shopify-section-sections--footer,
+.shopify-section-group-header-group,.shopify-section-group-footer-group,
+[class*="trust-badge"],[class*="reassurance"],[id*="shopify-section-sections--footer"],
+[class*="footer__"],[class*="footer-block"],[class*="footer-menu"],[class*="footer-col"],
+.shopify-section:not(#shopify-section-product-landing-beetroot):not([id*="product-landing-beetroot"]){
+  display:none!important;height:0!important;overflow:hidden!important;
+  visibility:hidden!important;max-height:0!important;padding:0!important;
+  margin:0!important;border:none!important
+}
+body{padding-top:0!important;margin-top:0!important;background:#1a0612!important}
+
+/* === DESIGN BEETROOT (Burgundy + Gold) === */
+.bt{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#1a0612;color:#fff;min-height:100vh}
+.bt *{box-sizing:border-box}
+.bt-w{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.bt-ann{background:linear-gradient(90deg,#e8b34a 0%,#f5d27a 50%,#e8b34a 100%);color:#1a0612!important;text-align:center;padding:9px 12px;font-size:13px;font-weight:700;letter-spacing:.3px}
+.bt-ann span{display:inline-block;margin:0 6px}
+
+.bt-hd{position:sticky;top:0;z-index:50;background:rgba(26,6,18,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(232,179,74,.25);padding:10px 0}
+.bt-hd-w{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 20px}
+.bt-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#e8b34a!important;cursor:default}
+.bt-logo b{color:#fff!important}
+.bt-hd-cta{background:#dc2655;color:#fff!important;border:none;padding:9px 16px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase}
+
+.bt-hero{padding:24px 0 40px}
+.bt-hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
+.bt-img-wrap{position:relative;text-align:center;padding:20px 0}
+.bt-img-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(220,38,85,.3) 0%,transparent 60%);z-index:0}
+.bt-img{position:relative;z-index:1;max-width:280px;margin:0 auto;width:100%;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.bt-thumbs{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.bt-thumb{width:54px;height:54px;border:2px solid rgba(232,179,74,.3);border-radius:8px;overflow:hidden;cursor:pointer;background:#fff;padding:2px}
+.bt-thumb.active{border-color:#e8b34a}
+.bt-thumb img{width:100%;height:100%;object-fit:contain}
+
+.bt-rating{display:flex;align-items:center;gap:6px;justify-content:center;color:#ffd961!important;font-size:14px;margin:8px 0 12px;font-weight:600}
+.bt-rating b{color:#fff!important;margin-left:6px}
+.bt-h1{font-size:26px;line-height:1.2;font-weight:900;text-align:center;margin:6px 0 10px;color:#fff!important}
+.bt-h1 .bt-acc{color:#e8b34a!important;-webkit-text-fill-color:#e8b34a!important}
+.bt-sub{text-align:center;color:#d6b8c1!important;font-size:15px;margin:0 0 16px;line-height:1.45}
+
+.bt-price{text-align:center;margin:16px 0}
+.bt-price-old{color:#957a87!important;text-decoration:line-through;font-size:18px;margin-right:8px}
+.bt-price-new{color:#e8b34a!important;font-size:34px;font-weight:900;letter-spacing:-.5px}
+.bt-price-badge{display:inline-block;background:#dc2655;color:#fff!important;font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;margin-left:8px;vertical-align:middle}
+
+.bt-checks{margin:14px 0 18px;padding:0;list-style:none}
+.bt-checks li{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:14px;color:#e6d8dd!important}
+.bt-checks li::before{content:"";flex-shrink:0;width:20px;height:20px;background:#22c55e;border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6l3 3 5-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;margin-top:1px}
+
+.bt-form-wrap{background:#10040b;border:1px solid #3a1a26;border-radius:14px;padding:16px;margin:18px -4px 0}
+.bt-form-title{text-align:center;color:#e8b34a!important;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 12px}
+.bt-cta{display:block;width:100%;background:linear-gradient(135deg,#dc2655 0%,#a51d44 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 8px 24px rgba(220,38,85,.4);transition:transform .15s}
+.bt-cta:hover{transform:translateY(-1px)}
+.bt-pay{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:#a38a93!important;font-size:12px;flex-wrap:wrap}
+
+.bt-trust{background:#10040b;border-top:1px solid #3a1a26;border-bottom:1px solid #3a1a26;padding:18px 0}
+.bt-trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:center}
+.bt-trust-it{padding:6px}
+.bt-trust-ic{font-size:22px;margin-bottom:4px}
+.bt-trust-tx{font-size:12px;color:#e6d8dd!important;font-weight:600;line-height:1.3}
+
+.bt-ps{padding:36px 0}
+.bt-h2{font-size:24px;font-weight:900;text-align:center;margin:0 0 20px;color:#fff!important;line-height:1.25}
+.bt-h2 .bt-acc{color:#e8b34a!important}
+.bt-card{background:#10040b;border:1px solid #3a1a26;border-radius:14px;padding:20px;margin-bottom:14px}
+.bt-card-h{font-size:18px;font-weight:800;color:#e8b34a!important;margin:0 0 10px}
+.bt-card-p{color:#d6b8c1!important;font-size:14px;line-height:1.6;margin:0}
+
+.bt-ben{padding:36px 0}
+.bt-ben-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.bt-ben-it{background:#10040b;border:1px solid #3a1a26;border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.bt-ben-ic{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#dc2655,#a51d44);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff!important;font-weight:900}
+.bt-ben-tx h3{font-size:15px;color:#fff!important;margin:0 0 4px;font-weight:800}
+.bt-ben-tx p{font-size:13px;color:#d6b8c1!important;margin:0;line-height:1.5}
+
+.bt-cmp{padding:30px 0}
+.bt-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bt-cmp-col{border-radius:12px;padding:16px;font-size:13px}
+.bt-cmp-bad{background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.25)}
+.bt-cmp-good{background:rgba(232,179,74,.1);border:1px solid rgba(232,179,74,.4)}
+.bt-cmp-col h4{margin:0 0 12px;font-size:14px;font-weight:800}
+.bt-cmp-bad h4{color:#ff6b6b!important}
+.bt-cmp-good h4{color:#e8b34a!important}
+.bt-cmp-col ul{margin:0;padding:0;list-style:none}
+.bt-cmp-col li{padding:5px 0;color:#e6d8dd!important;font-size:12.5px;line-height:1.4}
+
+.bt-stats{padding:30px 0}
+.bt-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.bt-stat{background:#10040b;border:1px solid #3a1a26;border-radius:12px;padding:16px 8px}
+.bt-stat-n{font-size:26px;font-weight:900;color:#e8b34a!important;display:block;line-height:1}
+.bt-stat-t{font-size:11px;color:#d6b8c1!important;text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-weight:600}
+
+.bt-tst{padding:36px 0}
+.bt-tst-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.bt-tst-c{background:#10040b;border:1px solid #3a1a26;border-radius:14px;padding:18px}
+.bt-tst-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bt-tst-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#dc2655,#a51d44);display:flex;align-items:center;justify-content:center;color:#fff!important;font-weight:900;font-size:15px;flex-shrink:0}
+.bt-tst-nm{font-size:14px;font-weight:800;color:#fff!important;margin:0}
+.bt-tst-lo{font-size:12px;color:#a38a93!important;margin:2px 0 0}
+.bt-tst-st{color:#ffd961!important;font-size:12px;margin-bottom:8px}
+.bt-tst-q{font-size:14px;color:#e6d8dd!important;line-height:1.55;margin:0;font-style:italic}
+
+.bt-grt{padding:30px 0}
+.bt-grt-c{background:linear-gradient(135deg,#10040b 0%,#270a18 100%);border:2px solid #e8b34a;border-radius:16px;padding:24px;text-align:center}
+.bt-grt-bd{display:inline-block;background:#e8b34a;color:#1a0612!important;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.bt-grt-h{font-size:20px;font-weight:900;color:#fff!important;margin:0 0 8px}
+.bt-grt-p{font-size:14px;color:#d6b8c1!important;margin:0;line-height:1.5}
+
+.bt-how{padding:36px 0}
+.bt-how-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.bt-how-st{background:#10040b;border:1px solid #3a1a26;border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.bt-how-n{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#e8b34a;color:#1a0612!important;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center}
+.bt-how-tx h4{margin:0 0 4px;color:#e8b34a!important;font-size:15px;font-weight:800}
+.bt-how-tx p{margin:0;color:#d6b8c1!important;font-size:13px;line-height:1.5}
+
+.bt-faq{padding:36px 0}
+.bt-faq-it{background:#10040b;border:1px solid #3a1a26;border-radius:10px;margin-bottom:8px;overflow:hidden}
+.bt-faq-q{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:700;color:#fff!important;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.bt-faq-q::after{content:"+";font-size:20px;color:#e8b34a!important;font-weight:300;transition:transform .2s}
+.bt-faq-it.open .bt-faq-q::after{transform:rotate(45deg)}
+.bt-faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 16px}
+.bt-faq-it.open .bt-faq-a{max-height:300px;padding:0 16px 14px}
+.bt-faq-a p{margin:0;color:#d6b8c1!important;font-size:13px;line-height:1.55}
+
+.bt-cta-fin{padding:36px 0;text-align:center}
+.bt-cta-fin .bt-h2{margin-bottom:18px}
+.bt-cta-fin .bt-cta{max-width:380px;margin:0 auto}
+.bt-urg{display:inline-block;background:rgba(255,59,59,.15);border:1px solid #ff3b3b;color:#ff6b6b!important;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px}
+
+.bt-ft{background:#10040b;border-top:1px solid #3a1a26;padding:24px 0;text-align:center;color:#957a87!important;font-size:12px}
+.bt-ft a{color:#e8b34a!important;text-decoration:none}
+
+.bt-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(26,6,18,.98);backdrop-filter:blur(10px);border-top:2px solid #dc2655;padding:10px 16px;display:none;justify-content:space-between;align-items:center;z-index:100;gap:12px}
+.bt-sticky.show{display:flex}
+.bt-sticky-px{flex:1;min-width:0}
+.bt-sticky-px b{color:#e8b34a!important;font-size:18px;font-weight:900;display:block;line-height:1}
+.bt-sticky-px small{color:#a38a93!important;font-size:11px;text-decoration:line-through}
+.bt-sticky-btn{background:linear-gradient(135deg,#dc2655,#a51d44);color:#fff!important;border:none;padding:12px 18px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap}
+
+@media(min-width:768px){
+  .bt-hero-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .bt-img{max-width:380px}
+  .bt-h1{font-size:36px;text-align:left}
+  .bt-sub{text-align:left}
+  .bt-rating{justify-content:flex-start}
+  .bt-price{text-align:left}
+  .bt-trust-grid{grid-template-columns:repeat(4,1fr)}
+  .bt-ben-grid{grid-template-columns:repeat(2,1fr)}
+  .bt-tst-grid{grid-template-columns:repeat(3,1fr)}
+  .bt-how-grid{grid-template-columns:repeat(3,1fr)}
+  .bt-h2{font-size:30px}
+  .bt-form-wrap{margin:18px 0 0}
+  .bt-sticky{display:none!important}
+}
+@media(max-width:400px){
+  .bt-h1{font-size:23px}
+  .bt-price-new{font-size:30px}
+  .bt-img{max-width:240px}
+}
+</style>
+
+<div class="bt" id="vitalux-bt">
+
+  <div class="bt-ann">
+    <span>🔥 PERFORMANCE NATURELLE</span> · <span>💰 PAIEMENT À LA LIVRAISON</span> · <span>⏰ -40%</span>
+  </div>
+
+  <header class="bt-hd">
+    <div class="bt-hd-w">
+      <span class="bt-logo">VITA<b>LUX</b></span>
+      <button class="bt-hd-cta" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Commander</button>
+    </div>
+  </header>
+
+  <section class="bt-hero">
+    <div class="bt-w">
+      <div class="bt-hero-grid">
+
+        <div class="bt-img-wrap">
+          {%- if hero_image -%}
+            <img class="bt-img" id="bt-main-img" src="{{ hero_image | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="700" height="700" loading="eager" fetchpriority="high">
+          {%- else -%}
+            <img class="bt-img" src="{{ 'placeholder' | placeholder_svg_tag }}" alt="Betterave Vitalux" width="700" height="700">
+          {%- endif -%}
+          {%- if product.images.size > 1 -%}
+            <div class="bt-thumbs">
+              {%- for img in product.images limit: 4 -%}
+                <div class="bt-thumb {% if forloop.first %}active{% endif %}" onclick="btSwap(this,'{{ img | image_url: width: 700 }}')">
+                  <img src="{{ img | image_url: width: 120 }}" alt="" width="120" height="120" loading="lazy">
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div>
+          <div class="bt-rating">★★★★★ <b>4.8/5</b> · 1 924 avis vérifiés</div>
+          <h1 class="bt-h1">Betterave <span class="bt-acc">Concentrée</span> — Endurance, Tension, Performance</h1>
+          <p class="bt-sub">L'extrait de betterave riche en nitrates naturels : booste l'oxygénation, fait chuter la tension, augmente l'endurance et la performance physique.</p>
+
+          <div class="bt-price">
+            {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
+              <span class="bt-price-old">{{ compare_price }}</span>
+            {%- endif -%}
+            <span class="bt-price-new">{{ product_price }}</span>
+            <span class="bt-price-badge">-40%</span>
+          </div>
+
+          <ul class="bt-checks">
+            <li>+20% d'endurance physique dès la 1ère semaine</li>
+            <li>Fait baisser la tension artérielle naturellement</li>
+            <li>Riche en nitrates : oxygène mieux les muscles et le cerveau</li>
+            <li>Extrait concentré x10 · Sans sucre ajouté · 100% naturel</li>
+          </ul>
+
+          <div class="bt-form-wrap" id="bt-form">
+            <div class="bt-form-title">🔥 Commande à la livraison · Espèces</div>
+            {% form 'product', product %}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" name="add" class="bt-cta">Je commande maintenant ›</button>
+            {% endform %}
+            <div class="bt-pay">
+              <span>💵 Espèces</span>
+              <span>📱 Mobile Money</span>
+              <span>🔒 Sans engagement</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-trust">
+    <div class="bt-w">
+      <div class="bt-trust-grid">
+        <div class="bt-trust-it"><div class="bt-trust-ic">🚚</div><div class="bt-trust-tx">Livraison gratuite 48h</div></div>
+        <div class="bt-trust-it"><div class="bt-trust-ic">💵</div><div class="bt-trust-tx">Paiement à la livraison</div></div>
+        <div class="bt-trust-it"><div class="bt-trust-ic">🌿</div><div class="bt-trust-tx">100% naturel</div></div>
+        <div class="bt-trust-it"><div class="bt-trust-ic">↩️</div><div class="bt-trust-tx">Garantie 30 jours</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-ps">
+    <div class="bt-w">
+      <h2 class="bt-h2">Tension trop haute ? <span class="bt-acc">Souffle court</span> ?</h2>
+      <div class="bt-card">
+        <h3 class="bt-card-h">❌ Le vrai problème : circulation paresseuse</h3>
+        <p class="bt-card-p">Avec l'âge et le stress, les vaisseaux sanguins se rigidifient. Résultat : tension qui grimpe, fatigue à l'effort, essoufflement, jambes lourdes, moins d'endurance. Les médicaments classiques masquent mais ne traitent pas la cause.</p>
+      </div>
+      <div class="bt-card" style="border-color:#e8b34a">
+        <h3 class="bt-card-h">✅ La solution : Betterave Concentrée Vitalux</h3>
+        <p class="bt-card-p">La betterave contient naturellement des nitrates que ton corps transforme en oxyde nitrique — la molécule qui dilate les vaisseaux. Effet prouvé : baisse de tension de 4 à 10 mmHg en 2 semaines, +16% d'endurance à l'effort, oxygénation cérébrale améliorée. Étudiée par + de 200 publications scientifiques.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-ben">
+    <div class="bt-w">
+      <h2 class="bt-h2">Pourquoi <span class="bt-acc">Vitalux Betterave</span> ?</h2>
+      <div class="bt-ben-grid">
+        <div class="bt-ben-it"><div class="bt-ben-ic">❤️</div><div class="bt-ben-tx"><h3>Tension régulée</h3><p>Baisse la tension artérielle de 4-10 mmHg en 2 semaines, naturellement.</p></div></div>
+        <div class="bt-ben-it"><div class="bt-ben-ic">🏃</div><div class="bt-ben-tx"><h3>+20% endurance</h3><p>Plus de souffle à l'effort, récupération plus rapide après le sport.</p></div></div>
+        <div class="bt-ben-it"><div class="bt-ben-ic">🩸</div><div class="bt-ben-tx"><h3>Circulation</h3><p>Vaisseaux dilatés, jambes plus légères, mains et pieds réchauffés.</p></div></div>
+        <div class="bt-ben-it"><div class="bt-ben-ic">🧠</div><div class="bt-ben-tx"><h3>Cerveau oxygéné</h3><p>Plus de clarté mentale, vigilance accrue, fini la tête lourde.</p></div></div>
+        <div class="bt-ben-it"><div class="bt-ben-ic">💪</div><div class="bt-ben-tx"><h3>Énergie sportive</h3><p>Booste tes performances : musculation, course, vélo, randonnée.</p></div></div>
+        <div class="bt-ben-it"><div class="bt-ben-ic">🍃</div><div class="bt-ben-tx"><h3>Sans effet</h3><p>Pas de palpitations, pas d'excitation comme les pré-workouts chimiques.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-cmp">
+    <div class="bt-w">
+      <h2 class="bt-h2">Vitalux vs <span class="bt-acc">Médicaments tension</span></h2>
+      <div class="bt-cmp-grid">
+        <div class="bt-cmp-col bt-cmp-bad">
+          <h4>❌ Médicaments / pré-workout</h4>
+          <ul>
+            <li>• Effets secondaires (toux, vertiges)</li>
+            <li>• Dépendance progressive</li>
+            <li>• Caféine = palpitations</li>
+            <li>• Sucres et additifs</li>
+            <li>• Cher sur la durée</li>
+            <li>• Sans garantie</li>
+          </ul>
+        </div>
+        <div class="bt-cmp-col bt-cmp-good">
+          <h4>✅ Vitalux Betterave</h4>
+          <ul>
+            <li>• 100% naturel, zéro effet</li>
+            <li>• Pas de dépendance</li>
+            <li>• Sans caféine, sans sucre</li>
+            <li>• Extrait concentré x10</li>
+            <li>• Cure abordable</li>
+            <li>• Garantie 30 jours</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-stats">
+    <div class="bt-w">
+      <div class="bt-stats-grid">
+        <div class="bt-stat"><span class="bt-stat-n">-10 mmHg</span><div class="bt-stat-t">Tension en 2 sem.</div></div>
+        <div class="bt-stat"><span class="bt-stat-n">+20%</span><div class="bt-stat-t">Endurance</div></div>
+        <div class="bt-stat"><span class="bt-stat-n">200+</span><div class="bt-stat-t">Études cliniques</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-tst">
+    <div class="bt-w">
+      <h2 class="bt-h2">Ils ont retrouvé leur <span class="bt-acc">souffle</span></h2>
+      <div class="bt-tst-grid">
+        <div class="bt-tst-c">
+          <div class="bt-tst-hd"><div class="bt-tst-av">AH</div><div><p class="bt-tst-nm">Ahmed H.</p><p class="bt-tst-lo">Fès · Vérifié ✓</p></div></div>
+          <div class="bt-tst-st">★★★★★</div>
+          <p class="bt-tst-q">"À 58 ans, ma tension était à 16/9. Après 1 mois de Vitalux Betterave, mon médecin n'en revenait pas : 13/8. Je continue."</p>
+        </div>
+        <div class="bt-tst-c">
+          <div class="bt-tst-hd"><div class="bt-tst-av">SR</div><div><p class="bt-tst-nm">Sofiane R.</p><p class="bt-tst-lo">Constantine · Vérifié ✓</p></div></div>
+          <div class="bt-tst-st">★★★★★</div>
+          <p class="bt-tst-q">"Coureur amateur, j'ai gagné 2 minutes sur mon 10 km en 3 semaines. Aucun produit dopant — juste de la betterave concentrée. Bluffant."</p>
+        </div>
+        <div class="bt-tst-c">
+          <div class="bt-tst-hd"><div class="bt-tst-av">MK</div><div><p class="bt-tst-nm">Mounia K.</p><p class="bt-tst-lo">Sfax · Vérifié ✓</p></div></div>
+          <div class="bt-tst-st">★★★★★</div>
+          <p class="bt-tst-q">"Fini les jambes lourdes le soir, fini l'essoufflement dans les escaliers. À 52 ans, je me sens plus en forme qu'à 40."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-grt">
+    <div class="bt-w">
+      <div class="bt-grt-c">
+        <div class="bt-grt-bd">🛡️ Garantie 30 jours</div>
+        <h3 class="bt-grt-h">Satisfait ou intégralement remboursé</h3>
+        <p class="bt-grt-p">Teste Vitalux Betterave 30 jours. Si tu ne ressens aucune amélioration (tension, endurance, énergie), on te rembourse intégralement. Zéro risque.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-how">
+    <div class="bt-w">
+      <h2 class="bt-h2">Comment <span class="bt-acc">l'utiliser</span> ?</h2>
+      <div class="bt-how-grid">
+        <div class="bt-how-st"><div class="bt-how-n">1</div><div class="bt-how-tx"><h4>2 gélules le matin</h4><p>Au petit-déjeuner, ou 1h avant l'effort physique pour booster la perf.</p></div></div>
+        <div class="bt-how-st"><div class="bt-how-n">2</div><div class="bt-how-tx"><h4>Cure de 30 jours</h4><p>1 flacon = 1 mois complet. Renouveler 2-3 mois pour effet durable.</p></div></div>
+        <div class="bt-how-st"><div class="bt-how-n">3</div><div class="bt-how-tx"><h4>Mesure les résultats</h4><p>Tension à J14, endurance à J21. Reprends ta tension, tu verras.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bt-faq">
+    <div class="bt-w">
+      <h2 class="bt-h2">Questions <span class="bt-acc">fréquentes</span></h2>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Combien de temps avant de voir l'effet sur la tension ?</div><div class="bt-faq-a"><p>L'effet sur la tension apparaît entre J10 et J14 chez la majorité de nos clients (baisse de 4 à 10 mmHg). L'endurance physique se ressent dès la 1ère semaine. Pour un effet durable, une cure de 2 mois minimum est recommandée.</p></div></div>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Je prends déjà un médicament pour la tension, je peux le combiner ?</div><div class="bt-faq-a"><p>Le complément est compatible mais il PEUT amplifier l'effet hypotenseur. On recommande FORTEMENT d'en parler à ton médecin avant de combiner — il pourra ajuster ton traitement si la tension baisse trop.</p></div></div>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Y a-t-il des effets secondaires ?</div><div class="bt-faq-a"><p>Le seul "effet" connu est inoffensif : les urines et les selles peuvent prendre une teinte rosée (pigments naturels de la betterave). 100% normal. Aucun effet excitant, aucune palpitation, contrairement aux pré-workouts caféinés.</p></div></div>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Comment je paie ?</div><div class="bt-faq-a"><p>UNIQUEMENT à la livraison, en espèces, au livreur. Aucun paiement à l'avance, aucune carte demandée. Sans risque.</p></div></div>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Combien de temps pour la livraison ?</div><div class="bt-faq-a"><p>24 à 48h dans les grandes villes (Casablanca, Rabat, Alger, Tunis…) et 48 à 72h ailleurs. Tu es prévenu par téléphone avant la livraison.</p></div></div>
+      <div class="bt-faq-it" onclick="this.classList.toggle('open')"><div class="bt-faq-q">Et si je suis sportif, ça booste vraiment ?</div><div class="bt-faq-a"><p>Oui. Plus de 200 études prouvent que les nitrates de betterave augmentent l'endurance de 10 à 20% (course, vélo, musculation). Effet maximal 2-3h après la prise — idéal avant un entraînement.</p></div></div>
+    </div>
+  </section>
+
+  <section class="bt-cta-fin">
+    <div class="bt-w">
+      <div class="bt-urg">⏰ Offre limitée — Stock réduit</div>
+      <h2 class="bt-h2">Reprends ta tension. <span class="bt-acc">Reprends ton souffle.</span></h2>
+      <p style="color:#d6b8c1;font-size:14px;max-width:520px;margin:0 auto 18px;line-height:1.5">Rejoins les milliers de personnes qui ont retrouvé endurance et tension saine avec Vitalux. Paiement à la livraison · Garantie 30 jours.</p>
+      <button class="bt-cta" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+    </div>
+  </section>
+
+  <footer class="bt-ft">
+    <div class="bt-w">
+      © {{ 'now' | date: '%Y' }} VITALUX — Tous droits réservés ·
+      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a>
+    </div>
+  </footer>
+
+  <div class="bt-sticky" id="bt-sticky">
+    <div class="bt-sticky-px">
+      <b>{{ product_price }}</b>
+      {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
+        <small>{{ compare_price }}</small>
+      {%- endif -%}
+    </div>
+    <button class="bt-sticky-btn" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Commander ›</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var sticky = document.getElementById('bt-sticky');
+  var form = document.getElementById('bt-form');
+  if(sticky && form){
+    window.addEventListener('scroll', function(){
+      var rect = form.getBoundingClientRect();
+      if(window.innerWidth < 768 && rect.bottom < 0){
+        sticky.classList.add('show');
+      } else {
+        sticky.classList.remove('show');
+      }
+    }, {passive:true});
+  }
+  window.btSwap = function(el, src){
+    var main = document.getElementById('bt-main-img');
+    if(main) main.src = src;
+    document.querySelectorAll('.bt-thumb').forEach(function(t){t.classList.remove('active')});
+    el.classList.add('active');
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Landing Betterave",
+  "settings": [],
+  "presets": [
+    { "name": "Landing Betterave" }
+  ]
+}
+{% endschema %}

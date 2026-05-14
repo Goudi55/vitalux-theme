@@ -1,0 +1,80 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Vitalux",
+    "theme_version": "1.0.0",
+    "theme_author": "Vitalux",
+    "theme_documentation_url": "https://vitalux.com",
+    "theme_support_url": "https://vitalux.com/contact"
+  },
+  {
+    "name": "Identité",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "32x32px, PNG"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Logo Vitalux (PNG transparent recommandé)"
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nom de la marque",
+        "default": "VITALUX"
+      },
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Téléphone (affiché en bas de page)",
+        "default": "+212 6 00 00 00 00"
+      },
+      {
+        "type": "image_picker",
+        "id": "home_hero_image",
+        "label": "Image principale de la page d'accueil",
+        "info": "Image qui regroupe les 3 compléments (idéal : photo studio des 3 flacons ensemble). Si vide, les images individuelles des 3 produits s'affichent automatiquement côte à côte."
+      },
+      {
+        "type": "text",
+        "id": "home_hero_title",
+        "label": "Titre de l'image hero",
+        "default": "La gamme Vitalux"
+      },
+      {
+        "type": "text",
+        "id": "home_hero_subtitle",
+        "label": "Sous-titre",
+        "default": "3 compléments premium · Made in USA · Lab Tested"
+      }
+    ]
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Fond principal",
+        "default": "#fdf9f3"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texte principal",
+        "default": "#1a2233"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (or Vitalux)",
+        "default": "#c9a96e"
+      }
+    ]
+  }
+]

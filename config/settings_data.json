@@ -1,0 +1,18 @@
+{
+  "current": {
+    "brand_name": "VITALUX",
+    "phone": "+212 6 00 00 00 00",
+    "color_bg": "#fdf9f3",
+    "color_text": "#1a2233",
+    "color_accent": "#c9a96e"
+  },
+  "presets": {
+    "Vitalux": {
+      "brand_name": "VITALUX",
+      "phone": "+212 6 00 00 00 00",
+      "color_bg": "#fdf9f3",
+      "color_text": "#1a2233",
+      "color_accent": "#c9a96e"
+    }
+  }
+}

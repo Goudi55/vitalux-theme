@@ -1,0 +1,73 @@
+{%- comment -%}
+  Template produit générique (fallback) — pour les produits sans landing dédiée.
+  Pour Magnésium / Moringa / Betterave, assigne le template product.magnesium / .moringa / .beetroot dans l'admin.
+{%- endcomment -%}
+
+{%- assign v = product.selected_or_first_available_variant -%}
+<style>
+.site-header,#shopify-section-header,.site-footer,#shopify-section-footer,
+[class*="header-wrapper"],[class*="footer-wrapper"],[class*="footer__"]{display:none!important}
+body{background:#ffffff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif!important;color:#0a1f3d!important}
+
+.vx-bar{background:#0a0a0a;border-bottom:3px solid #1e5dc4;padding:14px 20px;text-align:center}
+.vx-bar .vx-logo{font-size:18px;font-weight:900;letter-spacing:2px;color:#fff!important;display:inline-flex;align-items:center;gap:6px}
+.vx-bar .vx-logo::before{content:"▼";color:#1e5dc4!important;font-size:13px}
+.vx-bar .vx-logo b{color:#1e5dc4!important;font-weight:400;font-size:10px;margin-left:6px;text-transform:uppercase;letter-spacing:1px}
+
+.vx{max-width:1000px;margin:0 auto;padding:30px 20px}
+.vx-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}
+.vx-img-wrap{background:linear-gradient(180deg,#fafbfc,#ffffff);border-radius:14px;padding:30px;border:1px solid #d6def0}
+.vx-img{width:100%;max-width:420px;margin:0 auto;display:block;filter:drop-shadow(0 18px 32px rgba(13,59,143,.12))}
+.vx-h1{font-size:28px;font-weight:900;margin:0 0 12px;color:#0a1f3d!important;letter-spacing:-.5px}
+.vx-px{font-size:32px;font-weight:900;color:#0d3b8f!important;margin:10px 0}
+.vx-px del{color:#9ba8bf!important;font-size:18px;font-weight:600;margin-right:8px}
+.vx-px .vx-promo{display:inline-block;background:#e63946;color:#fff!important;font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;margin-left:8px;vertical-align:middle}
+.vx-desc{color:#5a6b85!important;font-size:14px;line-height:1.6;margin:16px 0}
+.vx-desc h3{color:#0d3b8f!important;font-size:16px;margin:16px 0 8px}
+.vx-desc ul{padding-left:20px}
+.vx-cta{display:block;width:100%;max-width:380px;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 10px 28px rgba(13,59,143,.3);margin-top:8px}
+.vx-trust{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.vx-trust span{font-size:11px;color:#5a6b85!important;background:#eaf0fb;border:1px solid #cdd9f0;padding:5px 10px;border-radius:999px;font-weight:700}
+.vx-ft{background:#0a0a0a;text-align:center;color:#888;font-size:11px;padding:18px 20px}
+.vx-ft a{color:#1e5dc4!important;font-weight:600;text-decoration:none}
+@media(min-width:768px){.vx-grid{grid-template-columns:1fr 1fr;gap:50px}.vx-h1{font-size:36px}}
+</style>
+
+<div class="vx-bar"><span class="vx-logo">VITALUX<b>NUTRITION</b></span></div>
+
+<div class="vx">
+  <div class="vx-grid">
+    <div class="vx-img-wrap">
+      {%- if product.featured_image -%}
+        <img class="vx-img" src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title | escape }}" width="800" height="800" loading="eager">
+      {%- endif -%}
+    </div>
+    <div>
+      <h1 class="vx-h1">{{ product.title }}</h1>
+      <div class="vx-px">
+        {%- if v.compare_at_price > v.price -%}<del>{{ v.compare_at_price | money }}</del>{%- endif -%}
+        {{ v.price | money }}
+        {%- if v.compare_at_price > v.price -%}<span class="vx-promo">PROMO</span>{%- endif -%}
+      </div>
+      <div class="vx-desc">{{ product.description }}</div>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ v.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" name="add" class="vx-cta">Commander maintenant ›</button>
+      {% endform %}
+
+      <div class="vx-trust">
+        <span>🇺🇸 Made in USA</span>
+        <span>🔬 Lab Tested</span>
+        <span>🏭 GMP</span>
+        <span>🌱 Non-GMO</span>
+        <span>💰 COD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="vx-ft">
+  © {{ 'now' | date: '%Y' }} VITALUX NUTRITION · <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a>
+</div>
