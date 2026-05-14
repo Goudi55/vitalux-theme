@@ -21,6 +21,18 @@
 }
 body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important}
 
+/* === SECTION 8 NUTRIMENTS === */
+.mo-nuts{padding:48px 0;background:#ffffff!important}
+.mo-nuts .mo-w{max-width:1100px;margin:0 auto;padding:0 20px}
+.mo-nuts-intro{text-align:center;color:#5a7a65!important;font-size:15px;line-height:1.6;max-width:680px;margin:0 auto 30px}
+.mo-nuts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mo-nut-card{background:#ffffff!important;border:2px solid #d4edd9!important;border-radius:14px;padding:18px 14px;text-align:center;transition:border-color .2s,transform .15s,box-shadow .2s;box-shadow:0 2px 8px rgba(34,197,94,.06)}
+.mo-nut-card:hover{border-color:#22c55e!important;transform:translateY(-3px);box-shadow:0 10px 22px rgba(34,197,94,.12)}
+.mo-nut-n{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#16a34a 0%,#22c55e 100%)!important;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;font-weight:900;font-size:20px;margin:0 auto 12px;box-shadow:0 4px 12px rgba(34,197,94,.3);line-height:1}
+.mo-nut-card h4{margin:0 0 6px;font-size:16px;color:#0d1f15!important;-webkit-text-fill-color:#0d1f15!important;font-weight:900;letter-spacing:-.2px;line-height:1.2}
+.mo-nut-card p{margin:0;font-size:12.5px;color:#5a7a65!important;-webkit-text-fill-color:#5a7a65!important;line-height:1.35;font-weight:500}
+@media(min-width:768px){.mo-nuts-grid{grid-template-columns:repeat(4,1fr)}}
+
 /* === DESIGN MORINGA (Emerald + Gold) === */
 .mo{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#0d1f15;color:#fff;min-height:100vh}
 .mo *{box-sizing:border-box}
@@ -252,6 +264,23 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
         <div class="mo-trust-it"><div class="mo-trust-ic">💵</div><div class="mo-trust-tx">Paiement à la livraison</div></div>
         <div class="mo-trust-it"><div class="mo-trust-ic">🌱</div><div class="mo-trust-tx">Bio certifié</div></div>
         <div class="mo-trust-it"><div class="mo-trust-ic">↩️</div><div class="mo-trust-tx">Garantie 30 jours</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mo-nuts">
+    <div class="mo-w">
+      <h2 class="mo-h2">Pourquoi <span class="mo-acc">92 nutriments</span> dans 1 seule plante ?</h2>
+      <p class="mo-nuts-intro">Le moringa est la plante la plus dense en nutriments connue à ce jour. Là où d'autres compléments isolent un seul élément, le moringa les apporte <strong>tous ensemble</strong>, dans leur forme naturelle et biodisponible.</p>
+      <div class="mo-nuts-grid">
+        <div class="mo-nut-card"><span class="mo-nut-n">1</span><h4>Vitamine C</h4><p>7× plus que l'orange · Immunité & collagène</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">2</span><h4>Fer</h4><p>25× plus que les épinards · Anti-anémie</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">3</span><h4>Calcium</h4><p>4× plus que le lait · Os & dents</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">4</span><h4>Vitamine A</h4><p>4× plus que la carotte · Vision & peau</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">5</span><h4>Protéines</h4><p>2× plus que le yaourt · Muscles & énergie</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">6</span><h4>Potassium</h4><p>3× plus que la banane · Cœur & tension</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">7</span><h4>Antioxydants</h4><p>46 types · Anti-âge & protection cellulaire</p></div>
+        <div class="mo-nut-card"><span class="mo-nut-n">8</span><h4>18 Acides aminés</h4><p>Essentiels & non essentiels · Réparation & vitalité</p></div>
       </div>
     </div>
   </section>
