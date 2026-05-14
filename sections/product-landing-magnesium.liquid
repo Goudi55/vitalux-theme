@@ -4,7 +4,6 @@
 {%- assign hero_image = product.featured_image | default: product.images.first -%}
 
 <style>
-/* === MASQUAGE NUCLÉAIRE HEADER/FOOTER === */
 .site-header,#shopify-section-header,.section-header,header.header,.header-wrapper,
 .announcement-bar,#shopify-section-announcement-bar,.announcement-bar-section,
 [class*="header-wrapper"],[class*="site-header"],[id*="shopify-section-header"],
@@ -17,103 +16,114 @@
 .shopify-section:not(#shopify-section-product-landing-magnesium):not([id*="product-landing-magnesium"]){
   display:none!important;height:0!important;overflow:hidden!important;
   visibility:hidden!important;max-height:0!important;padding:0!important;
-  margin:0!important;border:none!important
-}
-body{padding-top:0!important;margin-top:0!important;background:#ffffff!important}
+  margin:0!important;border:none!important}
+body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 
-/* === DESIGN VITALUX (Blanc + Bleu royal + Or) — calé sur le flacon === */
-.mg{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#ffffff;color:#0a1f3d;min-height:100vh}
+.mg{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#0a1f3d;min-height:100vh}
 .mg *{box-sizing:border-box}
 .mg-w{max-width:1100px;margin:0 auto;padding:0 20px}
 
-/* Annonce — bleu royal */
-.mg-ann{background:linear-gradient(90deg,#0d3b8f 0%,#1e5dc4 50%,#0d3b8f 100%);color:#fff!important;text-align:center;padding:9px 12px;font-size:13px;font-weight:700;letter-spacing:.3px}
+.mg-ann{background:linear-gradient(90deg,#0a2d6e 0%,#1565C0 50%,#0a2d6e 100%);color:#fff!important;text-align:center;padding:9px 12px;font-size:13px;font-weight:700;letter-spacing:.3px}
 .mg-ann span{display:inline-block;margin:0 6px}
 
-/* Header — noir comme le top bar du flacon */
-.mg-hd{position:sticky;top:0;z-index:50;background:#0a0a0a;border-bottom:3px solid #1e5dc4;padding:12px 0}
+.mg-hd{position:sticky;top:0;z-index:50;background:#0a0a0a;border-bottom:3px solid #1565C0;padding:12px 0}
 .mg-hd-w{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 20px}
 .mg-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#fff!important;cursor:default;display:flex;align-items:center;gap:6px}
-.mg-logo::before{content:"▼";color:#1e5dc4!important;font-size:14px}
-.mg-logo b{color:#1e5dc4!important;letter-spacing:1px;font-weight:400;font-size:11px;margin-left:6px;text-transform:uppercase}
-.mg-hd-cta{background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;border:none;padding:9px 18px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase;box-shadow:0 4px 12px rgba(30,93,196,.4)}
+.mg-logo::before{content:"▼";color:#1565C0!important;font-size:14px}
+.mg-logo b{color:#1565C0!important;letter-spacing:1px;font-weight:400;font-size:11px;margin-left:6px;text-transform:uppercase}
+.mg-hd-cta{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:9px 18px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase;box-shadow:0 4px 12px rgba(21,101,192,.4);cursor:pointer}
 
-/* Hero */
-.mg-hero{padding:28px 0 50px;background:linear-gradient(180deg,#fafbfc 0%,#ffffff 100%)}
+.mg-cdown{background:#0a2d6e;color:#fff;text-align:center;padding:10px 20px;font-size:13px;font-weight:600}
+.mg-cdown strong{color:#ffd700;font-size:20px;letter-spacing:3px;font-weight:900}
+
+.mg-hero{padding:28px 0 50px;background:linear-gradient(180deg,#fafbfc 0%,#fff 100%)}
 .mg-hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
 .mg-img-wrap{position:relative;text-align:center;padding:20px 0}
-.mg-img-wrap::before{content:"";position:absolute;inset:10% 5%;background:radial-gradient(ellipse at center,rgba(30,93,196,.12) 0%,transparent 70%);z-index:0;border-radius:50%}
-.mg-img{position:relative;z-index:1;max-width:280px;margin:0 auto;width:100%;height:auto;filter:drop-shadow(0 25px 50px rgba(13,59,143,.15))}
+.mg-img-wrap::before{content:"";position:absolute;inset:10% 5%;background:radial-gradient(ellipse at center,rgba(21,101,192,.12) 0%,transparent 70%);z-index:0;border-radius:50%}
+.mg-img{position:relative;z-index:1;max-width:280px;margin:0 auto;width:100%;height:auto;filter:drop-shadow(0 25px 50px rgba(10,45,110,.15))}
 .mg-slider{position:relative;z-index:1;width:100%;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
 .mg-slide{display:none;width:100%;text-align:center;animation:mg-fade .5s ease}
 .mg-slide.active{display:block}
 @keyframes mg-fade{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 .mg-dots{display:flex;gap:8px;justify-content:center;margin-top:14px;position:relative;z-index:2}
 .mg-dot{width:9px;height:9px;border-radius:50%;border:none;background:#cdd9f0;cursor:pointer;padding:0;transition:background .2s,transform .2s}
-.mg-dot.active{background:#1e5dc4;transform:scale(1.3)}
-.mg-dot:hover{background:#0d3b8f}
+.mg-dot.active{background:#1565C0;transform:scale(1.3)}
+.mg-dot:hover{background:#0a2d6e}
 .mg-badge-2000{position:absolute;top:4px;right:10%;z-index:3;background:radial-gradient(circle at 30% 30%,#f0d77a 0%,#d4a347 60%,#a87f23 100%);color:#0a0a0a!important;border-radius:50%;width:72px;height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(168,127,35,.4),inset 0 2px 4px rgba(255,255,255,.5);font-weight:900;line-height:1;border:2px solid #fff}
 .mg-badge-2000 b{font-size:18px}
 .mg-badge-2000 small{font-size:9px;margin-top:2px;letter-spacing:.5px}
 .mg-thumbs{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;position:relative;z-index:2}
 .mg-thumb{width:58px;height:58px;border:2px solid #d6def0;border-radius:8px;overflow:hidden;cursor:pointer;background:#fff;padding:2px;transition:border-color .15s}
-.mg-thumb.active,.mg-thumb:hover{border-color:#1e5dc4}
+.mg-thumb.active,.mg-thumb:hover{border-color:#1565C0}
 .mg-thumb img{width:100%;height:100%;object-fit:contain}
 
 .mg-rating{display:flex;align-items:center;gap:6px;justify-content:center;color:#d4a347!important;font-size:14px;margin:8px 0 12px;font-weight:600}
 .mg-rating b{color:#0a1f3d!important;margin-left:6px}
-.mg-h1{font-size:26px;line-height:1.2;font-weight:900;text-align:center;margin:6px 0 10px;color:#0a1f3d!important;letter-spacing:-.5px}
-.mg-h1 .mg-acc{color:#1e5dc4!important;-webkit-text-fill-color:#1e5dc4!important}
+.mg-h1{font-size:26px;line-height:1.25;font-weight:900;text-align:center;margin:6px 0 10px;color:#0a1f3d!important;letter-spacing:-.5px}
+.mg-h1 .mg-acc{color:#1565C0!important;-webkit-text-fill-color:#1565C0!important}
 .mg-sub{text-align:center;color:#5a6b85!important;font-size:15px;margin:0 0 16px;line-height:1.5}
-
+.mg-sub strong{color:#0a2d6e!important}
 .mg-spec{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 18px}
-.mg-spec span{background:#eaf0fb;border:1px solid #cdd9f0;color:#0d3b8f!important;font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
+.mg-spec span{background:#eaf0fb;border:1px solid #cdd9f0;color:#0a2d6e!important;font-size:11px;font-weight:800;padding:5px 11px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
 
-.mg-price{text-align:center;margin:18px 0}
-.mg-price-old{color:#9ba8bf!important;text-decoration:line-through;font-size:18px;margin-right:8px}
-.mg-price-new{color:#0d3b8f!important;font-size:36px;font-weight:900;letter-spacing:-1px}
-.mg-price-badge{display:inline-block;background:#e63946;color:#fff!important;font-size:12px;font-weight:800;padding:4px 10px;border-radius:6px;margin-left:8px;vertical-align:middle}
+.mg-stock{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:9px 14px;font-size:13px;font-weight:700;color:#856404!important;margin:14px 0;text-align:center}
 
 .mg-checks{margin:14px 0 18px;padding:0;list-style:none}
 .mg-checks li{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:14px;color:#0a1f3d!important;font-weight:500}
 .mg-checks li::before{content:"";flex-shrink:0;width:20px;height:20px;background:#22c55e;border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6l3 3 5-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;margin-top:1px}
 
-.mg-form-wrap{background:#ffffff;border:2px solid #1e5dc4;border-radius:14px;padding:18px;margin:20px -4px 0;box-shadow:0 10px 30px rgba(13,59,143,.08)}
-.mg-form-title{text-align:center;color:#0d3b8f!important;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 14px}
-.mg-cta{display:block;width:100%;background:linear-gradient(135deg,#0d3b8f 0%,#1e5dc4 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 10px 28px rgba(13,59,143,.35);transition:transform .15s,box-shadow .15s}
-.mg-cta:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(13,59,143,.45)}
-.mg-pay{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:#5a6b85!important;font-size:12px;flex-wrap:wrap;font-weight:600}
-
-/* Trust bar — fond bleu pâle */
 .mg-trust{background:#0a0a0a;padding:18px 0}
 .mg-trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;text-align:center}
 .mg-trust-it{padding:6px}
 .mg-trust-ic{font-size:22px;margin-bottom:4px}
 .mg-trust-tx{font-size:12px;color:#fff!important;font-weight:700;line-height:1.3;letter-spacing:.3px}
 
-/* Section 8 formes — design carte propre */
-.mg-forms{padding:48px 0;background:#ffffff!important}
+.mg-video{padding:48px 0;background:#0a0a0a}
+.mg-video-inner{background:#1a1a1a;border:2px solid #2a2a2a;border-radius:16px;padding:40px 20px;text-align:center}
+.mg-video-play{width:72px;height:72px;background:linear-gradient(135deg,#0a2d6e,#1565C0);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;box-shadow:0 8px 24px rgba(21,101,192,.4);cursor:pointer}
+.mg-video-h{font-size:22px;font-weight:900;color:#fff!important;margin:0 0 8px;line-height:1.3}
+.mg-video-h .mg-acc{color:#ffd700!important;-webkit-text-fill-color:#ffd700!important}
+.mg-video-p{font-size:14px;color:#bdbdbd!important;margin:0 0 24px}
+.mg-video-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.mg-video-stat-n{font-size:24px;font-weight:900;color:#d4a347!important;display:block}
+.mg-video-stat-t{font-size:11px;color:#888!important;text-transform:uppercase;letter-spacing:.5px}
+
+.mg-h2{font-size:26px;font-weight:900;text-align:center;margin:0 0 24px;color:#0a1f3d!important;line-height:1.25;letter-spacing:-.5px}
+.mg-h2 .mg-acc{color:#1565C0!important}
+
+.mg-forms{padding:48px 0;background:#fff}
 .mg-forms-intro{text-align:center;color:#5a6b85!important;font-size:15px;line-height:1.6;max-width:680px;margin:0 auto 30px}
 .mg-forms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.mg-form-card{background:#ffffff!important;border:2px solid #d6def0!important;border-radius:14px;padding:18px 14px;text-align:center;transition:border-color .2s,transform .15s,box-shadow .2s;box-shadow:0 2px 8px rgba(13,59,143,.06)}
-.mg-form-card:hover{border-color:#1e5dc4!important;transform:translateY(-3px);box-shadow:0 10px 22px rgba(13,59,143,.12)}
-.mg-form-card .mg-fn{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0d3b8f 0%,#1e5dc4 100%)!important;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;font-weight:900;font-size:20px;margin:0 auto 12px;box-shadow:0 4px 12px rgba(13,59,143,.3);line-height:1}
+.mg-form-card{background:#fff!important;border:2px solid #d6def0!important;border-radius:14px;padding:18px 14px;text-align:center;transition:border-color .2s,transform .15s,box-shadow .2s;box-shadow:0 2px 8px rgba(21,101,192,.06)}
+.mg-form-card:hover{border-color:#1565C0!important;transform:translateY(-3px);box-shadow:0 10px 22px rgba(21,101,192,.12)}
+.mg-form-card .mg-fn{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-weight:900;font-size:20px;margin:0 auto 12px;box-shadow:0 4px 12px rgba(21,101,192,.3);line-height:1}
 .mg-form-card .mg-card-body{display:block;background:transparent!important;padding:0!important}
-.mg-form-card h4{margin:0 0 6px;font-size:16px;color:#0a1f3d!important;-webkit-text-fill-color:#0a1f3d!important;font-weight:900;letter-spacing:-.2px;line-height:1.2;background:transparent!important}
-.mg-form-card p{margin:0;font-size:12.5px;color:#5a6b85!important;-webkit-text-fill-color:#5a6b85!important;line-height:1.35;font-weight:500;background:transparent!important}
+.mg-form-card h4{margin:0 0 4px;font-size:15px;color:#0a1f3d!important;-webkit-text-fill-color:#0a1f3d!important;font-weight:900;line-height:1.2;background:transparent!important}
+.mg-form-card p{margin:0;font-size:12px;color:#5a6b85!important;-webkit-text-fill-color:#5a6b85!important;line-height:1.4;font-weight:500;background:transparent!important}
+
+.mg-avap{padding:48px 0;background:#f5f7fb}
+.mg-avap-wrap{overflow-x:auto}
+.mg-avap-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(21,101,192,.08);min-width:500px}
+.mg-avap-table th{padding:14px 16px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.mg-avap-table th:first-child{background:#fef2f3;color:#c1272d!important;width:33%}
+.mg-avap-table th:nth-child(2){background:#eaf0fb;color:#0a2d6e!important;width:34%;font-size:11px}
+.mg-avap-table th:last-child{background:#eaf8ef;color:#16a34a!important;width:33%}
+.mg-avap-table td{padding:12px 16px;font-size:13px;border-top:1px solid #e5ebf7;vertical-align:top;line-height:1.4}
+.mg-avap-table tr:nth-child(even) td{background:#fafbfc}
+.mg-avap-table td:first-child{color:#c1272d!important;font-weight:600}
+.mg-avap-table td:nth-child(2){color:#0a2d6e!important;font-weight:700;text-align:center}
+.mg-avap-table td:last-child{color:#16a34a!important;font-weight:600}
 
 .mg-ps{padding:48px 0}
-.mg-h2{font-size:26px;font-weight:900;text-align:center;margin:0 0 24px;color:#0a1f3d!important;line-height:1.25;letter-spacing:-.5px}
-.mg-h2 .mg-acc{color:#1e5dc4!important}
-.mg-card{background:#fff;border:1px solid #d6def0;border-radius:14px;padding:22px;margin-bottom:14px;box-shadow:0 4px 12px rgba(13,59,143,.05)}
-.mg-card-h{font-size:18px;font-weight:800;color:#0d3b8f!important;margin:0 0 10px}
+.mg-card{background:#fff;border:1px solid #d6def0;border-radius:14px;padding:22px;margin-bottom:14px;box-shadow:0 4px 12px rgba(21,101,192,.05)}
+.mg-card-h{font-size:18px;font-weight:800;color:#0a2d6e!important;margin:0 0 10px}
 .mg-card-p{color:#3c4a66!important;font-size:14px;line-height:1.6;margin:0}
-.mg-card.mg-card-win{border:2px solid #1e5dc4;background:linear-gradient(135deg,#fafbfc 0%,#eaf0fb 100%)}
+.mg-card.mg-card-win{border:2px solid #1565C0;background:linear-gradient(135deg,#fafbfc 0%,#eaf0fb 100%)}
 
 .mg-ben{padding:48px 0;background:#f5f7fb}
 .mg-ben-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.mg-ben-it{background:#fff;border:1px solid #d6def0;border-radius:12px;padding:18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(13,59,143,.04)}
-.mg-ben-ic{flex-shrink:0;width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff!important;font-weight:900}
+.mg-ben-it{background:#fff;border:1px solid #d6def0;border-radius:12px;padding:18px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(21,101,192,.04)}
+.mg-ben-ic{flex-shrink:0;width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#0a2d6e,#1565C0);display:flex;align-items:center;justify-content:center;font-size:22px}
 .mg-ben-tx h3{font-size:15px;color:#0a1f3d!important;margin:0 0 4px;font-weight:800}
 .mg-ben-tx p{font-size:13px;color:#5a6b85!important;margin:0;line-height:1.5}
 
@@ -121,38 +131,37 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
 .mg-cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mg-cmp-col{border-radius:12px;padding:18px;font-size:13px}
 .mg-cmp-bad{background:#fef2f3;border:1px solid #f9c6c9}
-.mg-cmp-good{background:linear-gradient(135deg,#eaf0fb,#fafbfc);border:2px solid #1e5dc4}
+.mg-cmp-good{background:linear-gradient(135deg,#eaf0fb,#fafbfc);border:2px solid #1565C0}
 .mg-cmp-col h4{margin:0 0 12px;font-size:14px;font-weight:800}
 .mg-cmp-bad h4{color:#c1272d!important}
-.mg-cmp-good h4{color:#0d3b8f!important}
+.mg-cmp-good h4{color:#0a2d6e!important}
 .mg-cmp-col ul{margin:0;padding:0;list-style:none}
 .mg-cmp-col li{padding:5px 0;color:#0a1f3d!important;font-size:12.5px;line-height:1.4}
 
-.mg-stats{padding:40px 0;background:#0a0a0a;color:#fff}
+.mg-stats{padding:40px 0;background:#0a0a0a}
 .mg-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
 .mg-stat{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:12px;padding:18px 8px}
 .mg-stat-n{font-size:24px;font-weight:900;color:#d4a347!important;display:block;line-height:1;letter-spacing:-.5px}
 .mg-stat-t{font-size:11px;color:#bdbdbd!important;text-transform:uppercase;letter-spacing:.5px;margin-top:8px;font-weight:600}
 
-/* Certifications strip */
 .mg-cert{padding:32px 0;background:#fff}
 .mg-cert-w{background:linear-gradient(135deg,#fafbfc,#eaf0fb);border:1px solid #d6def0;border-radius:14px;padding:22px;display:flex;justify-content:space-around;align-items:center;gap:10px;flex-wrap:wrap}
 .mg-cert-it{text-align:center;flex:1;min-width:70px}
 .mg-cert-ic{font-size:28px;margin-bottom:6px}
-.mg-cert-tx{font-size:10.5px;color:#0d3b8f!important;font-weight:800;text-transform:uppercase;letter-spacing:.5px;line-height:1.2}
+.mg-cert-tx{font-size:10.5px;color:#0a2d6e!important;font-weight:800;text-transform:uppercase;letter-spacing:.5px;line-height:1.2}
 
 .mg-tst{padding:48px 0;background:#f5f7fb}
 .mg-tst-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.mg-tst-c{background:#fff;border:1px solid #d6def0;border-radius:14px;padding:20px;box-shadow:0 4px 12px rgba(13,59,143,.05)}
+.mg-tst-c{background:#fff;border:1px solid #d6def0;border-radius:14px;padding:20px;box-shadow:0 4px 12px rgba(21,101,192,.05)}
 .mg-tst-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.mg-tst-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);display:flex;align-items:center;justify-content:center;color:#fff!important;font-weight:900;font-size:15px;flex-shrink:0}
+.mg-tst-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#0a2d6e,#1565C0);display:flex;align-items:center;justify-content:center;color:#fff!important;font-weight:900;font-size:15px;flex-shrink:0}
 .mg-tst-nm{font-size:14px;font-weight:800;color:#0a1f3d!important;margin:0}
 .mg-tst-lo{font-size:12px;color:#5a6b85!important;margin:2px 0 0}
 .mg-tst-st{color:#d4a347!important;font-size:12px;margin-bottom:8px}
 .mg-tst-q{font-size:14px;color:#3c4a66!important;line-height:1.55;margin:0;font-style:italic}
 
 .mg-grt{padding:40px 0}
-.mg-grt-c{background:linear-gradient(135deg,#0d3b8f 0%,#1e5dc4 100%);border-radius:18px;padding:28px;text-align:center;color:#fff;box-shadow:0 12px 32px rgba(13,59,143,.25)}
+.mg-grt-c{background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%);border-radius:18px;padding:28px;text-align:center;color:#fff;box-shadow:0 12px 32px rgba(21,101,192,.25)}
 .mg-grt-bd{display:inline-block;background:#d4a347;color:#0a0a0a!important;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
 .mg-grt-h{font-size:22px;font-weight:900;color:#fff!important;margin:0 0 10px}
 .mg-grt-p{font-size:14px;color:#dde5f5!important;margin:0;line-height:1.5}
@@ -160,34 +169,73 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
 .mg-how{padding:48px 0;background:#fff}
 .mg-how-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .mg-how-st{background:#fafbfc;border:1px solid #d6def0;border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start}
-.mg-how-n{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center}
-.mg-how-tx h4{margin:0 0 4px;color:#0d3b8f!important;font-size:15px;font-weight:800}
+.mg-how-n{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center}
+.mg-how-tx h4{margin:0 0 4px;color:#0a2d6e!important;font-size:15px;font-weight:800}
 .mg-how-tx p{margin:0;color:#5a6b85!important;font-size:13px;line-height:1.5}
 
+.mg-pricing{padding:48px 0;background:#f5f7fb}
+.mg-pricing-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:860px;margin:0 auto}
+.mg-pricing-card{background:#fff;border:2px solid #d6def0;border-radius:16px;padding:24px;position:relative;transition:border-color .2s,box-shadow .2s}
+.mg-pricing-card.popular{border-color:#1565C0;box-shadow:0 8px 24px rgba(21,101,192,.15)}
+.mg-pricing-card.best{border-color:#d4a347;box-shadow:0 8px 24px rgba(212,163,71,.15)}
+.mg-pricing-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:900;padding:5px 18px;border-radius:999px;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;border:2px solid #fff}
+.mg-pricing-badge.blue{background:#1565C0;color:#fff!important}
+.mg-pricing-badge.gold{background:linear-gradient(135deg,#d4a347,#f0d77a);color:#0a0a0a!important}
+.mg-pricing-qty{font-size:16px;font-weight:900;color:#0a1f3d!important;margin:0 0 10px}
+.mg-pricing-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px}
+.mg-pricing-new{font-size:28px;font-weight:900;color:#0a2d6e!important}
+.mg-pricing-old{font-size:15px;color:#9ba8bf!important;text-decoration:line-through}
+.mg-pricing-save{background:#e63946;color:#fff!important;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px}
+.mg-pricing-bonus{font-size:12px;color:#1565C0!important;font-weight:700;margin:6px 0 0}
+.mg-pricing-btn{display:block;width:100%;background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%);color:#fff!important;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;margin-top:16px;box-shadow:0 6px 18px rgba(21,101,192,.3);transition:transform .15s}
+.mg-pricing-btn:hover{transform:translateY(-2px)}
+
+.mg-cod-section{padding:48px 0;background:#fff}
+.mg-cod-box{background:#fff;border:2px solid #1565C0;border-radius:16px;padding:28px;max-width:560px;margin:0 auto;box-shadow:0 10px 30px rgba(21,101,192,.08)}
+.mg-cod-title{text-align:center;color:#0a2d6e!important;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 20px}
+.mg-cod-field{margin-bottom:14px}
+.mg-cod-field label{display:block;font-size:12px;font-weight:700;color:#0a1f3d!important;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.mg-cod-field input,.mg-cod-field select{width:100%;padding:13px 14px;border:1.5px solid #d6def0;border-radius:8px;font-size:14px;color:#0a1f3d!important;background:#fff;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.mg-cod-field input:focus,.mg-cod-field select:focus{border-color:#1565C0}
+.mg-cod-btn{display:block;width:100%;background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 10px 28px rgba(21,101,192,.35);transition:transform .15s;margin-top:18px}
+.mg-cod-btn:hover{transform:translateY(-2px)}
+.mg-cod-note{text-align:center;font-size:13px;color:#5a6b85!important;margin-top:12px;line-height:1.5}
+.mg-cod-pay{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:12px;color:#5a6b85!important;font-size:12px;flex-wrap:wrap;font-weight:600}
+
 .mg-faq{padding:48px 0;background:#f5f7fb}
-.mg-faq-it{background:#fff;border:1px solid #d6def0;border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 3px rgba(13,59,143,.04)}
+.mg-faq-it{background:#fff;border:1px solid #d6def0;border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 3px rgba(21,101,192,.04)}
 .mg-faq-q{padding:14px 16px;cursor:pointer;font-size:14px;font-weight:700;color:#0a1f3d!important;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.mg-faq-q::after{content:"+";font-size:22px;color:#1e5dc4!important;font-weight:300;transition:transform .2s}
+.mg-faq-q::after{content:"+";font-size:22px;color:#1565C0!important;font-weight:300;transition:transform .2s}
 .mg-faq-it.open .mg-faq-q::after{transform:rotate(45deg)}
 .mg-faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 16px}
 .mg-faq-it.open .mg-faq-a{max-height:400px;padding:0 16px 14px}
 .mg-faq-a p{margin:0;color:#5a6b85!important;font-size:13px;line-height:1.55}
 
-.mg-cta-fin{padding:48px 0;text-align:center;background:linear-gradient(180deg,#fafbfc 0%,#ffffff 100%)}
-.mg-cta-fin .mg-h2{margin-bottom:18px}
-.mg-cta-fin .mg-cta{max-width:380px;margin:0 auto}
+.mg-cta-fin{padding:48px 0;text-align:center;background:linear-gradient(180deg,#fafbfc 0%,#fff 100%)}
 .mg-urg{display:inline-block;background:#fef2f3;border:1px solid #f9c6c9;color:#c1272d!important;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:14px}
+.mg-cta-btn{display:block;max-width:400px;margin:0 auto;background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 10px 28px rgba(21,101,192,.35);transition:transform .15s}
+.mg-cta-btn:hover{transform:translateY(-2px)}
 
-.mg-ft{background:#0a0a0a;padding:28px 0;text-align:center;color:#888!important;font-size:12px}
-.mg-ft a{color:#1e5dc4!important;text-decoration:none;font-weight:600}
-.mg-ft small{display:block;margin-top:10px;color:#666!important;font-size:10px;line-height:1.5}
+.mg-footer{background:#0a0a0a;padding:28px 0;text-align:center;color:#888!important;font-size:12px}
+.mg-footer a{color:#1565C0!important;text-decoration:none;font-weight:600}
+.mg-footer small{display:block;margin-top:10px;color:#666!important;font-size:10px;line-height:1.5}
 
-.mg-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-top:3px solid #1e5dc4;padding:10px 16px;display:none;justify-content:space-between;align-items:center;z-index:100;gap:12px;box-shadow:0 -8px 24px rgba(13,59,143,.12)}
+.mg-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-top:3px solid #1565C0;padding:10px 16px;display:none;justify-content:space-between;align-items:center;z-index:100;gap:12px;box-shadow:0 -8px 24px rgba(21,101,192,.12)}
 .mg-sticky.show{display:flex}
-.mg-sticky-px{flex:1;min-width:0}
-.mg-sticky-px b{color:#0d3b8f!important;font-size:18px;font-weight:900;display:block;line-height:1}
-.mg-sticky-px small{color:#9ba8bf!important;font-size:11px;text-decoration:line-through}
-.mg-sticky-btn{background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;border:none;padding:13px 20px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 12px rgba(13,59,143,.3)}
+.mg-sticky-left{flex:1;min-width:0}
+.mg-sticky-left b{color:#0a2d6e!important;font-size:14px;font-weight:900;display:block;line-height:1.2}
+.mg-sticky-left small{color:#9ba8bf!important;font-size:11px;text-decoration:line-through}
+.mg-sticky-btn{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:13px 16px;border-radius:8px;font-weight:900;font-size:12px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 12px rgba(21,101,192,.3);cursor:pointer;line-height:1.2}
+
+.mg-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.mg-popup-overlay.show{display:flex}
+.mg-popup-box{background:#fff;border-radius:20px;padding:32px 24px;max-width:420px;width:100%;position:relative;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mg-popup-close{position:absolute;top:12px;right:16px;font-size:24px;cursor:pointer;color:#9ba8bf!important;background:none;border:none;line-height:1}
+.mg-popup-badge{background:#e63946;color:#fff!important;font-size:12px;font-weight:900;padding:5px 14px;border-radius:999px;display:inline-block;margin-bottom:14px;text-transform:uppercase}
+.mg-popup-h{font-size:20px;font-weight:900;color:#0a1f3d!important;margin:0 0 8px;line-height:1.25}
+.mg-popup-p{font-size:14px;color:#5a6b85!important;margin:0 0 20px;line-height:1.5}
+.mg-popup-btn{display:block;width:100%;background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:16px;border-radius:10px;font-size:15px;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 18px rgba(21,101,192,.3)}
+.mg-popup-dismiss{display:block;margin-top:12px;font-size:12px;color:#9ba8bf!important;cursor:pointer;background:none;border:none;text-decoration:underline}
 
 @media(min-width:768px){
   .mg-hero-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -195,35 +243,33 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
   .mg-badge-2000{width:96px;height:96px;top:10px;right:15%}
   .mg-badge-2000 b{font-size:24px}
   .mg-badge-2000 small{font-size:10px}
-  .mg-h1{font-size:38px;text-align:left}
+  .mg-h1{font-size:36px;text-align:left}
   .mg-sub{text-align:left}
   .mg-spec{justify-content:flex-start}
   .mg-rating{justify-content:flex-start}
-  .mg-price{text-align:left}
+  .mg-stock{text-align:left}
   .mg-trust-grid{grid-template-columns:repeat(4,1fr)}
   .mg-forms-grid{grid-template-columns:repeat(4,1fr)}
   .mg-ben-grid{grid-template-columns:repeat(2,1fr)}
   .mg-tst-grid{grid-template-columns:repeat(3,1fr)}
   .mg-how-grid{grid-template-columns:repeat(3,1fr)}
+  .mg-pricing-grid{grid-template-columns:repeat(3,1fr)}
   .mg-h2{font-size:32px}
-  .mg-form-wrap{margin:20px 0 0}
   .mg-sticky{display:none!important}
+  .mg-video-h{font-size:26px}
 }
 @media(max-width:400px){
-  .mg-h1{font-size:23px}
-  .mg-price-new{font-size:30px}
+  .mg-h1{font-size:22px}
   .mg-img{max-width:240px}
 }
 </style>
 
 <div class="mg" id="vitalux-mg">
 
-  <!-- ANNONCE -->
   <div class="mg-ann">
-    <span>🇺🇸 MADE IN USA</span> · <span>💰 PAIEMENT À LA LIVRAISON</span> · <span>⏰ -40%</span>
+    <span>🇺🇸 MADE IN USA</span> · <span>💰 PAIEMENT À LA LIVRAISON</span> · <span>⏰ -40% AUJOURD'HUI</span>
   </div>
 
-  <!-- HEADER -->
   <header class="mg-hd">
     <div class="mg-hd-w">
       <span class="mg-logo">VITALUX<b>NUTRITION</b></span>
@@ -231,14 +277,16 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     </div>
   </header>
 
-  <!-- HERO -->
+  <div class="mg-cdown">
+    ⏰ Offre expire dans : <strong id="mg-timer">--:--:--</strong>
+  </div>
+
   <section class="mg-hero">
     <div class="mg-w">
       <div class="mg-hero-grid">
 
         <div class="mg-img-wrap">
           <div class="mg-badge-2000"><b>2000</b><small>MG / PORTION</small></div>
-
           <div class="mg-slider" id="mg-slider">
             {%- if product.images.size > 0 -%}
               {%- for img in product.images limit: 3 -%}
@@ -252,7 +300,6 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
               </div>
             {%- endif -%}
           </div>
-
           {%- if product.images.size > 1 -%}
             <div class="mg-dots" id="mg-dots">
               {%- for img in product.images limit: 3 -%}
@@ -271,8 +318,8 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
 
         <div>
           <div class="mg-rating">★★★★★ <b>4.9/5</b> · 2 847 avis vérifiés</div>
-          <h1 class="mg-h1">Complexe de Magnésium — <span class="mg-acc">8 Formes</span> en 1 gélule</h1>
-          <p class="mg-sub">Formulation professionnelle Vitalux Nutrition. <strong>2000 mg de magnésium élémentaire</strong> par portion, dans 8 formes complémentaires pour une absorption optimale. Os, muscles, sommeil, bien-être global.</p>
+          <h1 class="mg-h1">À 45 ans, J'ai Retrouvé Ma <span class="mg-acc">Virilité Naturelle</span> en 30 Jours</h1>
+          <p class="mg-sub"><strong>8 Formes de Magnésium dans 1 Seule Bouteille</strong> — Formulation professionnelle Vitalux Nutrition. 2000 mg de magnésium élémentaire par portion pour une absorption optimale.</p>
 
           <div class="mg-spec">
             <span>2000 mg / portion</span>
@@ -281,33 +328,20 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
             <span>Sans OGM</span>
           </div>
 
-          <div class="mg-price">
-            {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
-              <span class="mg-price-old">{{ compare_price }}</span>
-            {%- endif -%}
-            <span class="mg-price-new">{{ product_price }}</span>
-            <span class="mg-price-badge">-40%</span>
-          </div>
-
           <ul class="mg-checks">
-            <li>Favorise la santé des os et des muscles</li>
-            <li>Contribue au bien-être général et à la vitalité</li>
-            <li>Soutient les fonctions biologiques saines du corps</li>
-            <li>8 formes pour une absorption maximale · Sans OGM</li>
+            <li>Énergie & vitalité masculine retrouvée dès J7</li>
+            <li>Sommeil profond, récupération optimale</li>
+            <li>Soutien hormonal naturel (testostérone, stress)</li>
+            <li>8 formes pour une absorption maximale · Non-GMO</li>
           </ul>
 
-          <div class="mg-form-wrap" id="mg-form">
-            <div class="mg-form-title">💰 Commande à la livraison · Paiement en espèces</div>
-            {% form 'product', product %}
-              <input type="hidden" name="id" value="{{ current_variant.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" name="add" class="mg-cta">Je commande maintenant ›</button>
-            {% endform %}
-            <div class="mg-pay">
-              <span>💵 Espèces</span>
-              <span>📱 Mobile Money</span>
-              <span>🔒 Sans engagement</span>
-            </div>
+          <div class="mg-stock">⚠️ Plus que 47 bouteilles en stock</div>
+
+          <button class="mg-cta-btn" style="max-width:100%;margin:0" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+          <div class="mg-cod-pay" style="margin-top:14px">
+            <span>💵 Espèces</span>
+            <span>📱 Mobile Money</span>
+            <span>🔒 Sans engagement</span>
           </div>
         </div>
 
@@ -315,7 +349,6 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     </div>
   </section>
 
-  <!-- TRUST BAR -->
   <section class="mg-trust">
     <div class="mg-w">
       <div class="mg-trust-grid">
@@ -327,55 +360,91 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     </div>
   </section>
 
-  <!-- LES 8 FORMES -->
-  <section class="mg-forms">
+  <section class="mg-video">
     <div class="mg-w">
-      <h2 class="mg-h2">Pourquoi <span class="mg-acc">8 formes</span> et pas 1 ?</h2>
-      <p class="mg-forms-intro">La majorité des magnésiums du marché ne contiennent qu'une seule forme — mal absorbée. Vitalux combine <strong>8 formes complémentaires</strong>, chacune ciblant un système précis du corps. Résultat : 2000 mg de magnésium élémentaire qui agit à 360°.</p>
-      <div class="mg-forms-grid">
-        <div class="mg-form-card"><span class="mg-fn">1</span><div class="mg-card-body"><h4>Oxyde</h4><p>Recharge rapide</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">2</span><div class="mg-card-body"><h4>Glycinate</h4><p>Sommeil, anti-stress</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">3</span><div class="mg-card-body"><h4>Malate</h4><p>Énergie, muscles</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">4</span><div class="mg-card-body"><h4>Taurate</h4><p>Cœur, tension</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">5</span><div class="mg-card-body"><h4>Citrate</h4><p>Digestion</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">6</span><div class="mg-card-body"><h4>Carbonate</h4><p>Acidité gastrique</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">7</span><div class="mg-card-body"><h4>Aspartate</h4><p>Récupération</p></div></div>
-        <div class="mg-form-card"><span class="mg-fn">8</span><div class="mg-card-body"><h4>Orotate</h4><p>Cellules, ADN</p></div></div>
+      <div class="mg-video-inner">
+        <div class="mg-video-play">▶</div>
+        <h2 class="mg-video-h"><span class="mg-acc">80% des Hommes Africains</span><br>sont en Carence de Magnésium</h2>
+        <p class="mg-video-p">Et la grande majorité ne le sait pas. Fatigue chronique, libido en baisse, sommeil agité… ce n'est pas l'âge. C'est une carence.</p>
+        <div class="mg-video-stats">
+          <div><span class="mg-video-stat-n">80%</span><span class="mg-video-stat-t">Hommes carencés</span></div>
+          <div><span class="mg-video-stat-n">+300</span><span class="mg-video-stat-t">Réactions enzymatiques</span></div>
+          <div><span class="mg-video-stat-n">J7</span><span class="mg-video-stat-t">Premiers effets</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLÈME / SOLUTION -->
+  <section class="mg-forms">
+    <div class="mg-w">
+      <h2 class="mg-h2">Pourquoi <span class="mg-acc">8 Formes</span> et pas 1 ?</h2>
+      <p class="mg-forms-intro">La majorité des magnésiums du marché ne contiennent qu'une seule forme — mal absorbée. Vitalux combine <strong>8 formes complémentaires</strong>, chacune ciblant un système précis du corps masculin.</p>
+      <div class="mg-forms-grid">
+        <div class="mg-form-card"><span class="mg-fn">1</span><div class="mg-card-body"><h4>Bisglycinate</h4><p>Sommeil profond · Système nerveux · Anti-stress</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">2</span><div class="mg-card-body"><h4>Citrate</h4><p>Biodisponibilité maximale · Digestion · Énergie</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">3</span><div class="mg-card-body"><h4>Malate</h4><p>Muscles · Endurance · Récupération sportive</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">4</span><div class="mg-card-body"><h4>Taurate</h4><p>Cœur · Tension artérielle · Soutien hormonal</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">5</span><div class="mg-card-body"><h4>Oxyde</h4><p>Recharge rapide · Stock cellulaire · Os</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">6</span><div class="mg-card-body"><h4>Carbonate</h4><p>Acidité gastrique · Confort digestif</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">7</span><div class="mg-card-body"><h4>Aspartate</h4><p>Récupération · Vitalité · Soutien testiculaire</p></div></div>
+        <div class="mg-form-card"><span class="mg-fn">8</span><div class="mg-card-body"><h4>Orotate</h4><p>Cellules · ADN · Fonctions reproductives</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mg-avap">
+    <div class="mg-w">
+      <h2 class="mg-h2">Avant / <span class="mg-acc">Après</span> Vitalux</h2>
+      <div class="mg-avap-wrap">
+        <table class="mg-avap-table">
+          <thead>
+            <tr>
+              <th>❌ Avant</th>
+              <th>Symptôme</th>
+              <th>✅ Après 30 jours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Fatigué dès le réveil</td><td>Énergie</td><td>Vitalité retrouvée dès J7</td></tr>
+            <tr><td>Libido en chute libre</td><td>Virilité</td><td>Désir & performance normalisés</td></tr>
+            <tr><td>Sommeil agité, réveils nocturnes</td><td>Sommeil</td><td>Nuits profondes, réveil frais</td></tr>
+            <tr><td>Crampes & muscles douloureux</td><td>Muscles</td><td>Récupération rapide, 0 crampe</td></tr>
+            <tr><td>Stress, irritabilité chronique</td><td>Humeur</td><td>Calme, sérénité, concentration</td></tr>
+            <tr><td>Tension trop haute</td><td>Cœur</td><td>Tension régulée naturellement</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="mg-ps">
     <div class="mg-w">
       <h2 class="mg-h2">Tu te réveilles déjà <span class="mg-acc">fatigué(e)</span> ?</h2>
       <div class="mg-card">
         <h3 class="mg-card-h">❌ Le vrai problème : carence + mauvaise absorption</h3>
-        <p class="mg-card-p">75% des adultes sont carencés en magnésium sans le savoir. Stress chronique, sommeil agité, crampes, fatigue dès le réveil, irritabilité… Et les compléments classiques à une seule forme (souvent oxyde seul) sont mal absorbés — moins de 10% arrive réellement dans ton corps.</p>
+        <p class="mg-card-p">75% des adultes sont carencés en magnésium sans le savoir. Stress chronique, sommeil agité, crampes, fatigue dès le réveil, libido en baisse… Et les compléments classiques à une seule forme sont mal absorbés — moins de 10% arrive réellement dans ton corps.</p>
       </div>
       <div class="mg-card mg-card-win">
         <h3 class="mg-card-h">✅ La solution : Vitalux Complexe 8 formes</h3>
-        <p class="mg-card-p">Une formulation professionnelle qui combine les 8 formes les plus reconnues pour leur biodisponibilité et leurs bénéfices ciblés. 2000 mg de magnésium élémentaire (238% des valeurs quotidiennes recommandées) par portion. Tu ressens la différence en quelques jours : sommeil plus profond, esprit calme, muscles détendus, vitalité retrouvée.</p>
+        <p class="mg-card-p">Une formulation professionnelle qui combine les 8 formes les plus reconnues. 2000 mg de magnésium élémentaire (238% des VQ) par portion. Tu ressens la différence en quelques jours : sommeil plus profond, esprit calme, muscles détendus, vitalité masculine retrouvée.</p>
       </div>
     </div>
   </section>
 
-  <!-- BÉNÉFICES -->
   <section class="mg-ben">
     <div class="mg-w">
       <h2 class="mg-h2">Pourquoi <span class="mg-acc">Vitalux</span> ?</h2>
       <div class="mg-ben-grid">
-        <div class="mg-ben-it"><div class="mg-ben-ic">😴</div><div class="mg-ben-tx"><h3>Sommeil profond</h3><p>Le glycinate apaise le système nerveux. Endors-toi plus vite, dors d'une traite.</p></div></div>
-        <div class="mg-ben-it"><div class="mg-ben-ic">💪</div><div class="mg-ben-tx"><h3>Os &amp; muscles</h3><p>Malate et aspartate soutiennent muscles, densité osseuse, anti-crampes.</p></div></div>
-        <div class="mg-ben-it"><div class="mg-ben-ic">🧘</div><div class="mg-ben-tx"><h3>Stress &amp; humeur</h3><p>Réduit l'irritabilité, soutient l'équilibre émotionnel et la clarté mentale.</p></div></div>
-        <div class="mg-ben-it"><div class="mg-ben-ic">❤️</div><div class="mg-ben-tx"><h3>Cœur &amp; tension</h3><p>Taurate régule rythme cardiaque et tension artérielle naturellement.</p></div></div>
-        <div class="mg-ben-it"><div class="mg-ben-ic">⚡</div><div class="mg-ben-tx"><h3>Énergie</h3><p>+300 réactions enzymatiques dépendent du magnésium. Vitalité globale.</p></div></div>
-        <div class="mg-ben-it"><div class="mg-ben-ic">🦴</div><div class="mg-ben-tx"><h3>Vieillissement sain</h3><p>Soutient les fonctions biologiques saines à tout âge.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">⚡</div><div class="mg-ben-tx"><h3>Énergie & Virilité</h3><p>Soutien hormonal naturel. Énergie et performance masculine retrouvées dès J7.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">😴</div><div class="mg-ben-tx"><h3>Sommeil profond</h3><p>Le bisglycinate apaise le système nerveux. Endors-toi plus vite, dors d'une traite.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">💪</div><div class="mg-ben-tx"><h3>Os & muscles</h3><p>Malate et aspartate soutiennent muscles, densité osseuse, anti-crampes.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">🧘</div><div class="mg-ben-tx"><h3>Stress & humeur</h3><p>Réduit l'irritabilité, soutient l'équilibre émotionnel et la clarté mentale.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">❤️</div><div class="mg-ben-tx"><h3>Cœur & tension</h3><p>Taurate régule rythme cardiaque et tension artérielle naturellement.</p></div></div>
+        <div class="mg-ben-it"><div class="mg-ben-ic">🔬</div><div class="mg-ben-tx"><h3>Cellules & ADN</h3><p>L'orotate soutient les fonctions biologiques profondes à tout âge.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- COMPARATIF -->
   <section class="mg-cmp">
     <div class="mg-w">
       <h2 class="mg-h2">Vitalux vs <span class="mg-acc">Magnésium classique</span></h2>
@@ -406,55 +475,51 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     </div>
   </section>
 
-  <!-- STATS -->
   <section class="mg-stats">
     <div class="mg-w">
       <div class="mg-stats-grid">
         <div class="mg-stat"><span class="mg-stat-n">2000 mg</span><div class="mg-stat-t">Par portion</div></div>
         <div class="mg-stat"><span class="mg-stat-n">238% VQ</span><div class="mg-stat-t">Valeurs quotidiennes</div></div>
-        <div class="mg-stat"><span class="mg-stat-n">90 gélules</span><div class="mg-stat-t">45 jours de cure</div></div>
+        <div class="mg-stat"><span class="mg-stat-n">+12 000</span><div class="mg-stat-t">Hommes satisfaits</div></div>
       </div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
   <section class="mg-cert">
     <div class="mg-w">
       <div class="mg-cert-w">
-        <div class="mg-cert-it"><div class="mg-cert-ic">🇺🇸</div><div class="mg-cert-tx">Made in<br>the USA</div></div>
-        <div class="mg-cert-it"><div class="mg-cert-ic">🔬</div><div class="mg-cert-tx">Lab<br>Tested</div></div>
-        <div class="mg-cert-it"><div class="mg-cert-ic">🏭</div><div class="mg-cert-tx">GMP<br>Quality</div></div>
-        <div class="mg-cert-it"><div class="mg-cert-ic">🌱</div><div class="mg-cert-tx">Non<br>GMO</div></div>
-        <div class="mg-cert-it"><div class="mg-cert-ic">🧪</div><div class="mg-cert-tx">Formulation<br>Pro</div></div>
+        <div class="mg-cert-it"><div class="mg-cert-ic">🔬</div><div class="mg-cert-tx">LAB<br>TESTED</div></div>
+        <div class="mg-cert-it"><div class="mg-cert-ic">🇺🇸</div><div class="mg-cert-tx">MADE IN<br>USA</div></div>
+        <div class="mg-cert-it"><div class="mg-cert-ic">🏭</div><div class="mg-cert-tx">GMP<br>QUALITY</div></div>
+        <div class="mg-cert-it"><div class="mg-cert-ic">🌱</div><div class="mg-cert-tx">NON<br>GMO</div></div>
+        <div class="mg-cert-it"><div class="mg-cert-ic">🧪</div><div class="mg-cert-tx">FORMULATION<br>PRO</div></div>
       </div>
     </div>
   </section>
 
-  <!-- TÉMOIGNAGES -->
   <section class="mg-tst">
     <div class="mg-w">
       <h2 class="mg-h2">Ce qu'en disent <span class="mg-acc">nos clients</span></h2>
       <div class="mg-tst-grid">
         <div class="mg-tst-c">
-          <div class="mg-tst-hd"><div class="mg-tst-av">SK</div><div><p class="mg-tst-nm">Samira K.</p><p class="mg-tst-lo">Cotonou · Vérifié ✓</p></div></div>
+          <div class="mg-tst-hd"><div class="mg-tst-av">PD</div><div><p class="mg-tst-nm">Paul D., 50 ans</p><p class="mg-tst-lo">Douala · Vérifié ✓</p></div></div>
           <div class="mg-tst-st">★★★★★</div>
-          <p class="mg-tst-q">"Après 10 jours, je dors enfin d'une traite. Plus de crampes la nuit, je me réveille reposée. Le fait qu'il y ait 8 formes change tout — j'avais déjà essayé du magnésium simple sans résultat."</p>
+          <p class="mg-tst-q">"Ma femme pensait que c'était l'âge. En 3 semaines sur le Complexe Vitalux, elle a redécouvert un mari qu'elle croyait avoir perdu. Le magnésium a changé notre vie conjugale. Je ne m'attendais vraiment pas à ça."</p>
         </div>
         <div class="mg-tst-c">
-          <div class="mg-tst-hd"><div class="mg-tst-av">YB</div><div><p class="mg-tst-nm">Youssef B.</p><p class="mg-tst-lo">Douala · Vérifié ✓</p></div></div>
+          <div class="mg-tst-hd"><div class="mg-tst-av">DM</div><div><p class="mg-tst-nm">Daniel M., 38 ans</p><p class="mg-tst-lo">Yaoundé · Vérifié ✓</p></div></div>
           <div class="mg-tst-st">★★★★★</div>
-          <p class="mg-tst-q">"Sportif amateur, je sentais des crampes et de la fatigue post-séance. En 2 semaines, récupération bien meilleure, sommeil profond. Je vois pourquoi c'est dosé à 2000 mg."</p>
+          <p class="mg-tst-q">"Je me réveillais 3-4 fois par nuit depuis des années. Dès la 2ème semaine, je dors d'une traite 7-8h. Le matin je me lève reposé, l'esprit clair. Ça fait 2 mois maintenant et c'est constant. Le bisglycinate, c'est magique."</p>
         </div>
         <div class="mg-tst-c">
-          <div class="mg-tst-hd"><div class="mg-tst-av">FM</div><div><p class="mg-tst-nm">Farida M.</p><p class="mg-tst-lo">Porto-Novo · Vérifié ✓</p></div></div>
+          <div class="mg-tst-hd"><div class="mg-tst-av">MK</div><div><p class="mg-tst-nm">Marc K., 42 ans</p><p class="mg-tst-lo">Abidjan · Vérifié ✓</p></div></div>
           <div class="mg-tst-st">★★★★★</div>
-          <p class="mg-tst-q">"À 54 ans, je me sentais épuisée en permanence. Depuis 1 mois sur le Complexe, j'ai retrouvé énergie et bonne humeur. Pas de troubles digestifs, contrairement aux autres magnésiums."</p>
+          <p class="mg-tst-q">"J'ai l'énergie d'un homme de 20 ans. Sérieusement. Le bureau, la salle de sport, la famille — avant je rentrais vidé. Maintenant j'ai encore de l'énergie le soir. C'est le meilleur investissement que j'ai fait pour ma santé."</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GARANTIE -->
   <section class="mg-grt">
     <div class="mg-w">
       <div class="mg-grt-c">
@@ -465,69 +530,182 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     </div>
   </section>
 
-  <!-- MODE D'EMPLOI -->
   <section class="mg-how">
     <div class="mg-w">
       <h2 class="mg-h2">Comment <span class="mg-acc">l'utiliser</span> ?</h2>
       <div class="mg-how-grid">
-        <div class="mg-how-st"><div class="mg-how-n">1</div><div class="mg-how-tx"><h4>2 gélules par jour</h4><p>20 à 30 min avant un repas, avec un verre d'eau (24 cl).</p></div></div>
+        <div class="mg-how-st"><div class="mg-how-n">1</div><div class="mg-how-tx"><h4>2 gélules par jour</h4><p>20 à 30 min avant un repas, avec un grand verre d'eau (24 cl).</p></div></div>
         <div class="mg-how-st"><div class="mg-how-n">2</div><div class="mg-how-tx"><h4>Cure de 45 jours</h4><p>1 flacon = 90 gélules = 45 portions. Renouveler 2-3 mois.</p></div></div>
-        <div class="mg-how-st"><div class="mg-how-n">3</div><div class="mg-how-tx"><h4>Sens la différence</h4><p>Sommeil dès J7. Muscles, énergie, humeur dès J14-J21.</p></div></div>
+        <div class="mg-how-st"><div class="mg-how-n">3</div><div class="mg-how-tx"><h4>Sens la différence</h4><p>Sommeil dès J7. Énergie, virilité, humeur dès J14-J21.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <section class="mg-pricing">
+    <div class="mg-w">
+      <h2 class="mg-h2">Choisis ton <span class="mg-acc">offre</span></h2>
+      <div class="mg-pricing-grid">
+        <div class="mg-pricing-card">
+          <div class="mg-pricing-qty">× 1 bouteille — 45 jours</div>
+          <div class="mg-pricing-row">
+            <span class="mg-pricing-new">17 500 FCFA</span>
+            <span class="mg-pricing-old">25 000 FCFA</span>
+            <span class="mg-pricing-save">-30%</span>
+          </div>
+          <button class="mg-pricing-btn" onclick="mgSelectOffer(1)">Commander × 1</button>
+        </div>
+        <div class="mg-pricing-card popular">
+          <div class="mg-pricing-badge blue">⭐ Choix populaire</div>
+          <div class="mg-pricing-qty">× 2 bouteilles — 90 jours</div>
+          <div class="mg-pricing-row">
+            <span class="mg-pricing-new">29 990 FCFA</span>
+            <span class="mg-pricing-old">50 000 FCFA</span>
+            <span class="mg-pricing-save">-40%</span>
+          </div>
+          <button class="mg-pricing-btn" onclick="mgSelectOffer(2)">Commander × 2</button>
+        </div>
+        <div class="mg-pricing-card best">
+          <div class="mg-pricing-badge gold">🏆 Meilleure valeur</div>
+          <div class="mg-pricing-qty">× 3 bouteilles — 135 jours</div>
+          <div class="mg-pricing-row">
+            <span class="mg-pricing-new">39 990 FCFA</span>
+            <span class="mg-pricing-old">75 000 FCFA</span>
+            <span class="mg-pricing-save">-47%</span>
+          </div>
+          <p class="mg-pricing-bonus">🎁 Guide Virilité Naturelle offert</p>
+          <button class="mg-pricing-btn" onclick="mgSelectOffer(3)">Commander × 3</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mg-cod-section" id="mg-form">
+    <div class="mg-w">
+      <h2 class="mg-h2">Passe ta <span class="mg-acc">commande</span></h2>
+      <div class="mg-cod-box">
+        <div class="mg-cod-title">💰 Commande à la livraison · Paiement en espèces</div>
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <div class="mg-cod-field">
+            <label>Nom complet</label>
+            <input type="text" name="properties[Nom]" placeholder="Votre nom complet" required>
+          </div>
+          <div class="mg-cod-field">
+            <label>Numéro WhatsApp</label>
+            <input type="tel" name="properties[WhatsApp]" placeholder="+229 XX XX XX XX" required>
+          </div>
+          <div class="mg-cod-field">
+            <label>Ville</label>
+            <input type="text" name="properties[Ville]" placeholder="Cotonou, Douala, Abidjan..." required>
+          </div>
+          <div class="mg-cod-field">
+            <label>Quartier</label>
+            <input type="text" name="properties[Quartier]" placeholder="Votre quartier / zone" required>
+          </div>
+          <div class="mg-cod-field">
+            <label>Quantité / Offre</label>
+            <select name="quantity" id="mg-qty-select">
+              <option value="1">× 1 bouteille — 17 500 FCFA (économie 30%)</option>
+              <option value="2">× 2 bouteilles — 29 990 FCFA (Choix populaire · -40%)</option>
+              <option value="3">× 3 bouteilles — 39 990 FCFA + Guide offert (Meilleure valeur · -47%)</option>
+            </select>
+          </div>
+          <button type="submit" name="add" class="mg-cod-btn">JE COMMANDE MAINTENANT ›</button>
+        {% endform %}
+        <p class="mg-cod-note">📞 Nous t'appellerons dans les 24h pour confirmer ta commande</p>
+        <div class="mg-cod-pay">
+          <span>💵 Espèces à la livraison</span>
+          <span>📱 Mobile Money</span>
+          <span>🔒 Sans risque</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="mg-faq">
     <div class="mg-w">
       <h2 class="mg-h2">Questions <span class="mg-acc">fréquentes</span></h2>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Pourquoi 8 formes de magnésium au lieu d'une seule ?</div><div class="mg-faq-a"><p>Chaque forme de magnésium a une affinité différente : le glycinate apaise le système nerveux (sommeil), le malate booste l'énergie musculaire, le taurate soutient le cœur, le citrate la digestion, etc. Combiner 8 formes garantit une absorption optimale et un effet 360° sur le corps. La majorité des marques utilisent une seule forme (souvent l'oxyde), mal absorbée.</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">En combien de temps je vais ressentir les effets ?</div><div class="mg-faq-a"><p>La majorité de nos clients ressentent un sommeil plus profond et moins de stress dès la 1ère semaine. L'énergie, le calme et les bienfaits sur les muscles s'installent entre J14 et J21. Pour un effet durable, on recommande une cure de 2 à 3 mois (4-6 flacons).</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Y a-t-il des effets secondaires ?</div><div class="mg-faq-a"><p>Aux doses recommandées, non. Grâce à l'équilibre entre les 8 formes, le Complexe Vitalux ne provoque pas l'effet laxatif typique du magnésium oxyde seul. Aucun additif douteux : sans OGM, gélule végétale.</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Combien de gélules par jour ?</div><div class="mg-faq-a"><p>2 gélules végétales par jour (1 portion), à prendre 20 à 30 minutes avant un repas avec un verre de 24 cl d'eau. Apport : 2000 mg de magnésium élémentaire, soit 238% des valeurs quotidiennes recommandées. 1 flacon = 90 gélules = 45 jours.</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">D'où vient le produit ? Est-il certifié ?</div><div class="mg-faq-a"><p>Fabriqué aux États-Unis (Made in USA) dans une usine certifiée GMP (Good Manufacturing Practices), Lab Tested et Non-GMO. Formulation professionnelle. Adresse fabricant : Vitalux Nutrition, 1146 Central Ave, Glendale, CA 91202.</p></div></div>
+      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Pourquoi 8 formes de magnésium au lieu d'une seule ?</div><div class="mg-faq-a"><p>Chaque forme a une affinité différente : le bisglycinate apaise le système nerveux (sommeil, stress), le malate booste l'énergie musculaire, le taurate soutient le cœur, l'aspartate soutient les fonctions reproductives… Combiner 8 formes garantit une absorption optimale et un effet 360° sur le corps.</p></div></div>
+      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">En combien de temps je vais ressentir les effets ?</div><div class="mg-faq-a"><p>La majorité de nos clients ressentent un sommeil plus profond et moins de stress dès la 1ère semaine. L'énergie, la virilité et les bienfaits sur les muscles s'installent entre J14 et J21. Pour un effet durable, on recommande une cure de 2 à 3 mois.</p></div></div>
+      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Y a-t-il des effets secondaires ?</div><div class="mg-faq-a"><p>Aux doses recommandées, non. Grâce à l'équilibre entre les 8 formes, le Complexe Vitalux ne provoque pas l'effet laxatif typique du magnésium oxyde seul. Sans OGM, gélule végétale, aucun additif douteux.</p></div></div>
       <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Comment je paie ?</div><div class="mg-faq-a"><p>Tu paies UNIQUEMENT à la livraison, en espèces, directement au livreur quand tu reçois le colis. Aucun paiement à l'avance, aucune carte demandée.</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Combien de temps pour la livraison ?</div><div class="mg-faq-a"><p>24 à 48h dans les grandes villes (Cotonou, Porto-Novo, Douala, Yaoundé…) et 48 à 72h pour les autres régions. Tu es prévenu par téléphone avant le passage du livreur.</p></div></div>
-      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Et si je suis sous traitement médical ?</div><div class="mg-faq-a"><p>Le magnésium est très bien toléré. Cependant, en cas de traitement médical (notamment diurétiques, antibiotiques) ou de grossesse / allaitement, demande l'avis de ton médecin avant de commencer.</p></div></div>
+      <div class="mg-faq-it" onclick="this.classList.toggle('open')"><div class="mg-faq-q">Combien de temps pour la livraison ?</div><div class="mg-faq-a"><p>24 à 48h dans les grandes villes (Cotonou, Porto-Novo, Douala, Yaoundé, Abidjan…) et 48 à 72h pour les autres régions. Tu es prévenu par téléphone avant le passage du livreur.</p></div></div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
   <section class="mg-cta-fin">
     <div class="mg-w">
-      <div class="mg-urg">⏰ Offre limitée — Stock réduit cette semaine</div>
-      <h2 class="mg-h2">Reprends ton sommeil. <span class="mg-acc">Reprends ton énergie.</span></h2>
-      <p style="color:#5a6b85;font-size:14px;max-width:520px;margin:0 auto 20px;line-height:1.5">Rejoins les milliers de personnes qui ont retrouvé leur sérénité avec le Complexe de Magnésium Vitalux. Made in USA · Lab Tested · Paiement à la livraison · Garantie 30 jours.</p>
-      <button class="mg-cta" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+      <div class="mg-urg">⏰ Offre expire dans : <strong id="mg-timer2">--:--:--</strong></div>
+      <h2 class="mg-h2">Reprends ta Vitalité. <span class="mg-acc">Naturellement.</span></h2>
+      <p style="color:#5a6b85;font-size:14px;max-width:520px;margin:0 auto 20px;line-height:1.5">Rejoins les 12 000+ hommes qui ont retrouvé leur énergie et leur virilité avec le Complexe de Magnésium Vitalux. Made in USA · Lab Tested · Paiement à la livraison · Garantie 30 jours.</p>
+      <button class="mg-cta-btn" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+      <div class="mg-stock" style="max-width:340px;margin:16px auto 0">⚠️ Plus que 47 bouteilles en stock</div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="mg-ft">
+  <footer class="mg-footer">
     <div class="mg-w">
       © {{ 'now' | date: '%Y' }} VITALUX NUTRITION — Tous droits réservés ·
-      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a>
+      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+229 00 00 00 00' }}</a>
       <small>Fabriqué pour VITALUX®, 1146 Central Ave, Glendale, CA 91202 · www.vitaluxnutrition.com<br>
       Ce produit n'est pas destiné à diagnostiquer, traiter, guérir ni prévenir aucune maladie.</small>
     </div>
   </footer>
 
-  <!-- STICKY BOTTOM -->
   <div class="mg-sticky" id="mg-sticky">
-    <div class="mg-sticky-px">
-      <b>{{ product_price }}</b>
-      {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
-        <small>{{ compare_price }}</small>
-      {%- endif -%}
+    <div class="mg-sticky-left">
+      <b>COMMANDER — 17 500 FCFA</b>
+      <small>Prix normal : 25 000 FCFA</small>
     </div>
-    <button class="mg-sticky-btn" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Commander ›</button>
+    <button class="mg-sticky-btn" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Commander<br>maintenant ›</button>
   </div>
 
 </div>
 
+<!-- POPUP EXIT INTENT -->
+<div class="mg-popup-overlay" id="mg-popup">
+  <div class="mg-popup-box">
+    <button class="mg-popup-close" onclick="mgClosePopup()">×</button>
+    <div class="mg-popup-badge">⚠️ Attends !</div>
+    <h3 class="mg-popup-h">Tu pars sans ta Virilité Naturelle ?</h3>
+    <p class="mg-popup-p">Plus que 47 bouteilles en stock. L'offre à <strong>17 500 FCFA</strong> expire ce soir à minuit. Ne laisse pas passer cette chance.</p>
+    <button class="mg-popup-btn" onclick="mgClosePopup();document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je profite de l'offre maintenant ›</button>
+    <button class="mg-popup-dismiss" onclick="mgClosePopup()">Non merci, je préfère rester fatigué</button>
+  </div>
+</div>
+
 <script>
 (function(){
-  // Sticky bar
+  // ─── Countdown 24h reset ───────────────────────────────────────
+  function mgStartTimer(){
+    var key = 'mg_deadline';
+    var now = Date.now();
+    var saved = localStorage.getItem(key);
+    var deadline;
+    if(saved && parseInt(saved,10) > now){
+      deadline = parseInt(saved,10);
+    } else {
+      deadline = now + 24*60*60*1000;
+      localStorage.setItem(key, deadline);
+    }
+    function tick(){
+      var left = deadline - Date.now();
+      if(left < 0){ left = 0; localStorage.removeItem(key); mgStartTimer(); return; }
+      var h = Math.floor(left/3600000);
+      var m = Math.floor((left%3600000)/60000);
+      var s = Math.floor((left%60000)/1000);
+      var str = (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+      var t1 = document.getElementById('mg-timer');
+      var t2 = document.getElementById('mg-timer2');
+      if(t1) t1.textContent = str;
+      if(t2) t2.textContent = str;
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+  mgStartTimer();
+
+  // ─── Sticky bar ────────────────────────────────────────────────
   var sticky = document.getElementById('mg-sticky');
   var form = document.getElementById('mg-form');
   if(sticky && form){
@@ -541,58 +719,60 @@ body{padding-top:0!important;margin-top:0!important;background:#ffffff!important
     }, {passive:true});
   }
 
-  // Carousel auto-rotatif
+  // ─── Carousel ──────────────────────────────────────────────────
   var slider = document.getElementById('mg-slider');
   var slides = slider ? slider.querySelectorAll('.mg-slide') : [];
   var dots = document.querySelectorAll('.mg-dot');
   var thumbs = document.querySelectorAll('.mg-thumb');
-  var current = 0;
-  var autoTimer = null;
-  var AUTO_DELAY = 4000;
-
+  var current = 0, autoTimer = null;
   function show(i){
     if(!slides.length) return;
-    i = ((i % slides.length) + slides.length) % slides.length;
+    i = ((i%slides.length)+slides.length)%slides.length;
     current = i;
-    slides.forEach(function(s,idx){ s.classList.toggle('active', idx === i); });
-    dots.forEach(function(d,idx){ d.classList.toggle('active', idx === i); });
-    thumbs.forEach(function(t,idx){ t.classList.toggle('active', idx === i); });
+    slides.forEach(function(s,idx){s.classList.toggle('active',idx===i)});
+    dots.forEach(function(d,idx){d.classList.toggle('active',idx===i)});
+    thumbs.forEach(function(t,idx){t.classList.toggle('active',idx===i)});
   }
-  function next(){ show(current + 1); }
-  function start(){ stop(); if(slides.length > 1) autoTimer = setInterval(next, AUTO_DELAY); }
-  function stop(){ if(autoTimer){ clearInterval(autoTimer); autoTimer = null; } }
-
-  window.mgGo = function(i){ show(i); start(); };
-
-  dots.forEach(function(d){
-    d.addEventListener('click', function(){ show(parseInt(d.dataset.idx,10)); start(); });
-  });
-
-  // Swipe tactile
-  if(slider && slides.length > 1){
-    var startX = 0, startY = 0, moved = false;
-    slider.addEventListener('touchstart', function(e){
-      startX = e.touches[0].clientX; startY = e.touches[0].clientY; moved = false; stop();
-    }, {passive:true});
-    slider.addEventListener('touchmove', function(e){
-      if(Math.abs(e.touches[0].clientX - startX) > 10) moved = true;
-    }, {passive:true});
-    slider.addEventListener('touchend', function(e){
-      var dx = e.changedTouches[0].clientX - startX;
-      var dy = e.changedTouches[0].clientY - startY;
-      if(moved && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
-        show(current + (dx < 0 ? 1 : -1));
-      }
+  function start(){ stop(); if(slides.length>1) autoTimer=setInterval(function(){show(current+1)},4000); }
+  function stop(){ if(autoTimer){clearInterval(autoTimer);autoTimer=null;} }
+  window.mgGo = function(i){show(i);start()};
+  dots.forEach(function(d){d.addEventListener('click',function(){show(parseInt(d.dataset.idx,10));start()})});
+  if(slider && slides.length>1){
+    var sx=0,sy=0,mv=false;
+    slider.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;mv=false;stop()},{passive:true});
+    slider.addEventListener('touchmove',function(e){if(Math.abs(e.touches[0].clientX-sx)>10)mv=true},{passive:true});
+    slider.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(mv&&Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){show(current+(dx<0?1:-1));}
       start();
-    }, {passive:true});
-
-    // Pause auto-rotation when tab is hidden
-    document.addEventListener('visibilitychange', function(){
-      if(document.hidden) stop(); else start();
-    });
-
+    },{passive:true});
+    document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else start();});
     start();
   }
+
+  // ─── Pricing buttons → scroll to form + select qty ─────────────
+  window.mgSelectOffer = function(qty){
+    var sel = document.getElementById('mg-qty-select');
+    if(sel) sel.value = qty;
+    document.getElementById('mg-form').scrollIntoView({behavior:'smooth'});
+  };
+
+  // ─── Exit intent popup ─────────────────────────────────────────
+  var popupShown = sessionStorage.getItem('mg_popup_shown');
+  if(!popupShown){
+    document.addEventListener('mouseleave', function(e){
+      if(e.clientY < 10){
+        document.getElementById('mg-popup').classList.add('show');
+        sessionStorage.setItem('mg_popup_shown','1');
+      }
+    });
+  }
+  window.mgClosePopup = function(){
+    document.getElementById('mg-popup').classList.remove('show');
+  };
+  document.getElementById('mg-popup').addEventListener('click', function(e){
+    if(e.target === this) mgClosePopup();
+  });
 })();
 </script>
 
