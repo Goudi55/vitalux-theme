@@ -1,187 +1,624 @@
-<style>
-.site-header,#shopify-section-header,.site-footer,#shopify-section-footer,
-[class*="header-wrapper"],[class*="footer-wrapper"],[class*="footer__"]{display:none!important}
-body{background:#ffffff!important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif!important;color:#0a1f3d!important;margin:0!important}
-
-.vh{min-height:100vh;display:flex;flex-direction:column}
-
-/* Annonce */
-.vh-ann{background:linear-gradient(90deg,#0d3b8f,#1e5dc4,#0d3b8f);color:#fff!important;text-align:center;padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:.3px}
-
-/* Header noir */
-.vh-bar{background:#0a0a0a;border-bottom:3px solid #1e5dc4;padding:14px 0;text-align:center}
-.vh-bar .vh-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#fff!important;display:inline-flex;align-items:center;gap:6px}
-.vh-bar .vh-logo::before{content:"▼";color:#1e5dc4!important;font-size:14px}
-.vh-bar .vh-logo b{color:#1e5dc4!important;font-weight:400;font-size:11px;margin-left:6px;text-transform:uppercase;letter-spacing:1px}
-
-/* HERO BANNER */
-.vh-hero{background:linear-gradient(180deg,#fafbfc 0%,#eaf0fb 100%);padding:40px 20px 50px;text-align:center;position:relative;overflow:hidden}
-.vh-hero::before{content:"";position:absolute;top:-30%;left:-10%;width:120%;height:80%;background:radial-gradient(ellipse at center,rgba(30,93,196,.08) 0%,transparent 60%);z-index:0;pointer-events:none}
-.vh-hero-w{position:relative;z-index:1;max-width:1100px;margin:0 auto}
-.vh-hero-tag{display:inline-block;background:#fff;border:1px solid #cdd9f0;color:#0d3b8f!important;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:14px;box-shadow:0 2px 8px rgba(13,59,143,.06)}
-.vh-hero-h{font-size:30px;font-weight:900;color:#0a1f3d!important;line-height:1.15;letter-spacing:-1px;margin:0 0 12px;max-width:680px;margin-left:auto;margin-right:auto}
-.vh-hero-h span{color:#1e5dc4!important;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.vh-hero-sub{color:#5a6b85!important;font-size:15px;max-width:560px;margin:0 auto 28px;line-height:1.5}
-
-/* Image hero personnalisée OU trio auto */
-.vh-hero-img{display:block;width:100%;max-width:900px;margin:0 auto;height:auto;filter:drop-shadow(0 20px 40px rgba(13,59,143,.15));border-radius:16px}
-.vh-trio{display:flex;justify-content:center;align-items:flex-end;gap:8px;max-width:780px;margin:0 auto;padding:0 10px}
-.vh-trio-it{flex:1;min-width:0;text-align:center;position:relative;transition:transform .25s}
-.vh-trio-it:hover{transform:translateY(-8px)}
-.vh-trio-it img{width:100%;max-width:220px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 18px 32px rgba(13,59,143,.18))}
-.vh-trio-it .vh-trio-bn{display:block;font-size:11px;font-weight:800;color:#0d3b8f!important;text-transform:uppercase;letter-spacing:.8px;margin-top:10px}
-.vh-trio-mid{transform:scale(1.08);z-index:2}
-.vh-trio-mid:hover{transform:scale(1.08) translateY(-8px)}
-.vh-trio-placeholder{background:#fff;border:2px dashed #cdd9f0;border-radius:14px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:#9ba8bf!important;font-size:11px;padding:14px;font-weight:600}
-
-.vh-hero-cta{display:inline-block;margin-top:28px;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;padding:14px 28px;border-radius:10px;font-weight:900;text-decoration:none;font-size:14px;text-transform:uppercase;letter-spacing:.8px;box-shadow:0 10px 28px rgba(13,59,143,.3)}
-
-/* TRUST BAR */
-.vh-trust-strip{background:#0a0a0a;padding:14px 20px}
-.vh-trust-strip-w{max-width:1100px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center}
-.vh-trust-strip span{font-size:11px;color:#fff!important;font-weight:700;letter-spacing:.5px;display:inline-flex;align-items:center;gap:6px}
-.vh-trust-strip span b{color:#1e5dc4!important;font-size:14px}
-
-/* PRODUCTS GRID */
-.vh-products{padding:50px 20px;background:#fff}
-.vh-products-w{max-width:1100px;margin:0 auto}
-.vh-products-h{font-size:26px;font-weight:900;color:#0a1f3d!important;text-align:center;margin:0 0 8px;letter-spacing:-.5px}
-.vh-products-h span{color:#1e5dc4!important}
-.vh-products-sub{text-align:center;color:#5a6b85!important;font-size:14px;margin:0 0 32px;max-width:520px;margin-left:auto;margin-right:auto}
-.vh-grid{display:grid;grid-template-columns:1fr;gap:16px}
-.vh-card{background:#fff;border:1px solid #d6def0;border-radius:14px;padding:24px;text-decoration:none;color:#0a1f3d!important;display:block;transition:border-color .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 12px rgba(13,59,143,.05);text-align:center}
-.vh-card:hover{border-color:#1e5dc4;transform:translateY(-4px);box-shadow:0 14px 32px rgba(13,59,143,.14)}
-.vh-card-img{width:100%;max-width:160px;height:160px;object-fit:contain;margin:0 auto 14px;display:block;filter:drop-shadow(0 12px 22px rgba(13,59,143,.12))}
-.vh-card-h{font-size:18px;font-weight:900;color:#0a1f3d!important;margin:0 0 4px;letter-spacing:-.3px}
-.vh-card-spec{color:#1e5dc4!important;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin:0 0 10px}
-.vh-card-p{font-size:13px;color:#5a6b85!important;margin:0 0 16px;line-height:1.5}
-.vh-card-cta{display:inline-block;background:linear-gradient(135deg,#0d3b8f,#1e5dc4);color:#fff!important;padding:10px 20px;border-radius:8px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.5px;box-shadow:0 4px 12px rgba(13,59,143,.25)}
-
-/* FOOTER */
-.vh-ft{background:#0a0a0a;padding:24px 20px;text-align:center;color:#888!important;font-size:11px}
-.vh-ft a{color:#1e5dc4!important;font-weight:600;text-decoration:none}
-
-@media(min-width:768px){
-  .vh-hero{padding:60px 20px 70px}
-  .vh-hero-h{font-size:46px}
-  .vh-hero-sub{font-size:17px}
-  .vh-grid{grid-template-columns:repeat(3,1fr)}
-  .vh-products-h{font-size:34px}
-  .vh-trio-it img{max-width:260px}
-}
-@media(max-width:480px){
-  .vh-trio{gap:4px}
-  .vh-trio-it .vh-trio-bn{font-size:9px;letter-spacing:.3px}
-}
-</style>
-
-{%- comment -%} Récupère les 3 produits pour le trio auto {%- endcomment -%}
+{% comment %} Récupère les 3 produits {% endcomment %}
 {%- assign mg_product = all_products['magnesium'] -%}
 {%- assign mo_product = all_products['moringa'] -%}
-{%- assign bt_product = all_products['betterave'] -%}
+{%- assign bt_product = all_products['beetroot'] | default: all_products['betterave'] -%}
 
-<div class="vh">
+<style>
+/* ── RESET HEADER/FOOTER ── */
+.site-header,#shopify-section-header,header.header,.header-wrapper,
+.announcement-bar,#shopify-section-announcement-bar,
+[class*="header-wrapper"],[class*="site-header"],[id*="shopify-section-header"],
+.site-footer,#shopify-section-footer,footer.footer,.footer-wrapper,
+[class*="footer-wrapper"],[class*="site-footer"],[id*="shopify-section-footer"],
+#shopify-section-sections--header,#shopify-section-sections--footer,
+.shopify-section-group-header-group,.shopify-section-group-footer-group,
+[class*="footer__"],[class*="footer-block"],[class*="footer-menu"],
+.shopify-section:not(#shopify-section-template--index):not([id*="shopify-section-index"]){
+  display:none!important;height:0!important;overflow:hidden!important;
+  visibility:hidden!important;max-height:0!important;padding:0!important;
+  margin:0!important;border:none!important}
+body{padding-top:0!important;margin-top:0!important;background:#FAFAF7!important}
 
-  <div class="vh-ann">🇺🇸 MADE IN USA · 💰 PAIEMENT À LA LIVRAISON · 🛡️ GARANTIE 30 JOURS</div>
+/* ── BASE ── */
+.vx{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#FAFAF7;color:#1A1A1A;min-height:100vh}
+.vx *{box-sizing:border-box;margin:0;padding:0}
+.vx-w{max-width:1140px;margin:0 auto;padding:0 20px}
+.vx-h2{font-size:26px;font-weight:900;color:#0F2B5C!important;text-align:center;line-height:1.2;letter-spacing:-.5px;margin-bottom:10px}
+.vx-h2 em{font-style:normal;color:#D4A845!important}
+.vx-sub{text-align:center;color:#6B7280!important;font-size:14px;line-height:1.55;margin-bottom:32px}
+@media(min-width:768px){.vx-h2{font-size:36px}.vx-sub{font-size:15px}}
 
-  <div class="vh-bar">
-    <span class="vh-logo">VITALUX<b>NUTRITION</b></span>
+/* ── ANNONCE ── */
+.vx-ann{background:#0F2B5C;color:#fff!important;text-align:center;padding:9px 12px;font-size:12px;font-weight:700;letter-spacing:.4px}
+.vx-ann span{margin:0 8px;display:inline-block}
+.vx-ann b{color:#D4A845!important}
+
+/* ── HEADER ── */
+.vx-hd{background:#0F2B5C;padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(15,43,92,.3)}
+.vx-hd-w{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.vx-logo{font-size:19px;font-weight:900;letter-spacing:2px;color:#fff!important;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.vx-logo span{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:#D4A845;border-radius:6px;color:#0F2B5C!important;font-size:13px;font-weight:900;flex-shrink:0}
+.vx-logo small{color:#D4A845!important;font-size:10px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;margin-left:6px}
+.vx-hd-cta{background:linear-gradient(135deg,#D4A845,#e8c060);color:#0F2B5C!important;border:none;padding:9px 16px;border-radius:8px;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;text-decoration:none;white-space:nowrap}
+
+/* ── HERO ── */
+.vx-hero{background:linear-gradient(160deg,#0F2B5C 0%,#1565C0 55%,#0F2B5C 100%);padding:56px 20px 64px;text-align:center;position:relative;overflow:hidden}
+.vx-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(212,168,69,.15) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(255,255,255,.04) 0%,transparent 50%);pointer-events:none}
+.vx-hero-w{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.vx-hero-pre{display:inline-block;background:rgba(212,168,69,.18);border:1px solid rgba(212,168,69,.4);color:#D4A845!important;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:999px;margin-bottom:18px}
+.vx-hero-h{font-size:32px;font-weight:900;color:#fff!important;line-height:1.15;letter-spacing:-1px;margin-bottom:14px}
+.vx-hero-h em{font-style:normal;color:#D4A845!important}
+.vx-hero-p{color:rgba(255,255,255,.8)!important;font-size:15px;max-width:540px;margin:0 auto 32px;line-height:1.55}
+.vx-hero-img{display:block;width:100%;max-width:720px;margin:0 auto 32px;height:auto;filter:drop-shadow(0 28px 48px rgba(0,0,0,.35));border-radius:20px}
+.vx-hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.vx-btn-prim{display:inline-block;background:linear-gradient(135deg,#D4A845,#e8c060);color:#0F2B5C!important;padding:14px 28px;border-radius:10px;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.7px;text-decoration:none;box-shadow:0 8px 24px rgba(212,168,69,.4);transition:transform .15s,box-shadow .15s;border:none;cursor:pointer}
+.vx-btn-prim:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(212,168,69,.5)}
+.vx-btn-sec{display:inline-block;background:transparent;color:#fff!important;padding:13px 28px;border-radius:10px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.7px;text-decoration:none;border:2px solid rgba(212,168,69,.6);transition:border-color .15s,background .15s}
+.vx-btn-sec:hover{border-color:#D4A845;background:rgba(212,168,69,.1)}
+.vx-hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.vx-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff!important;font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px}
+@media(min-width:768px){.vx-hero-h{font-size:52px}.vx-hero-p{font-size:17px}}
+
+/* ── STATS BAR ── */
+.vx-stats{background:#0F2B5C;padding:22px 20px}
+.vx-stats-w{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vx-stat{text-align:center}
+.vx-stat-n{display:block;font-size:26px;font-weight:900;color:#D4A845!important;line-height:1;letter-spacing:-.5px}
+.vx-stat-t{display:block;font-size:11px;color:rgba(255,255,255,.75)!important;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+@media(min-width:768px){.vx-stats-w{grid-template-columns:repeat(4,1fr)}.vx-stat-n{font-size:32px}}
+
+/* ── SECTION 3 FORMULES ── */
+.vx-formules{padding:64px 20px;background:#FAFAF7}
+.vx-cards{display:grid;grid-template-columns:1fr;gap:24px}
+.vx-card{border-radius:20px;padding:28px 22px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.vx-card:hover{transform:translateY(-6px)}
+.vx-card-mg{background:linear-gradient(160deg,#E8F0FE 0%,#fff 60%);border-top:4px solid #0F2B5C;box-shadow:0 4px 16px rgba(15,43,92,.08)}
+.vx-card-mg:hover{box-shadow:0 16px 40px rgba(15,43,92,.18)}
+.vx-card-mo{background:linear-gradient(160deg,#E8F5E9 0%,#fff 60%);border-top:4px solid #2D7A22;box-shadow:0 4px 16px rgba(45,122,34,.08)}
+.vx-card-mo:hover{box-shadow:0 16px 40px rgba(45,122,34,.18)}
+.vx-card-bt{background:linear-gradient(160deg,#FCE4EC 0%,#fff 60%);border-top:4px solid #C2185B;box-shadow:0 4px 16px rgba(194,24,91,.08)}
+.vx-card-bt:hover{box-shadow:0 16px 40px rgba(194,24,91,.18)}
+.vx-card-badge{display:inline-block;font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:16px}
+.vx-card-badge-mg{background:#0F2B5C;color:#D4A845!important}
+.vx-card-badge-mo{background:#2D7A22;color:#fff!important}
+.vx-card-badge-bt{background:#C2185B;color:#fff!important}
+.vx-card-img{display:block;width:100%;max-width:180px;height:180px;object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 12px 24px rgba(0,0,0,.14))}
+.vx-card-h{font-size:19px;font-weight:900;color:#1A1A1A!important;margin-bottom:4px;letter-spacing:-.3px}
+.vx-card-spec{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px}
+.vx-card-spec-mg{color:#0F2B5C!important}
+.vx-card-spec-mo{color:#2D7A22!important}
+.vx-card-spec-bt{color:#C2185B!important}
+.vx-card-perks{list-style:none;margin-bottom:18px}
+.vx-card-perks li{font-size:13px;color:#6B7280!important;padding:4px 0;display:flex;align-items:flex-start;gap:8px}
+.vx-card-perks li::before{content:"✓";flex-shrink:0;font-weight:900;font-size:12px;margin-top:2px}
+.vx-perk-mg li::before{color:#0F2B5C!important}
+.vx-perk-mo li::before{color:#2D7A22!important}
+.vx-perk-bt li::before{color:#C2185B!important}
+.vx-card-price{margin-bottom:18px}
+.vx-card-new{font-size:24px;font-weight:900;color:#1A1A1A!important;letter-spacing:-.5px}
+.vx-card-old{font-size:14px;color:#9CA3AF!important;text-decoration:line-through;margin-left:8px}
+.vx-card-cta{display:block;width:100%;padding:13px;border-radius:10px;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.5px;text-align:center;border:none;cursor:pointer}
+.vx-cta-mg{background:#0F2B5C;color:#fff!important;box-shadow:0 6px 18px rgba(15,43,92,.3)}
+.vx-cta-mo{background:#2D7A22;color:#fff!important;box-shadow:0 6px 18px rgba(45,122,34,.3)}
+.vx-cta-bt{background:#C2185B;color:#fff!important;box-shadow:0 6px 18px rgba(194,24,91,.3)}
+@media(min-width:768px){.vx-cards{grid-template-columns:repeat(3,1fr)}.vx-card-img{max-width:200px;height:200px}}
+
+/* ── POURQUOI VITALUX ── */
+.vx-why{padding:64px 20px;background:#F5EFE6}
+.vx-why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.vx-why-it{background:#fff;border-radius:16px;padding:22px 18px;box-shadow:0 2px 10px rgba(15,43,92,.05)}
+.vx-why-ic{font-size:32px;margin-bottom:10px;display:block}
+.vx-why-h{font-size:15px;font-weight:900;color:#0F2B5C!important;margin-bottom:6px}
+.vx-why-p{font-size:13px;color:#6B7280!important;line-height:1.5}
+@media(min-width:768px){.vx-why-grid{grid-template-columns:repeat(4,1fr)}.vx-why-it{padding:26px 22px}}
+
+/* ── TÉMOIGNAGES ── */
+.vx-tst{padding:64px 0;background:#FAFAF7}
+.vx-tst .vx-w{padding:0 20px}
+.vx-tst-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 20px 16px;scrollbar-width:none}
+.vx-tst-track::-webkit-scrollbar{display:none}
+.vx-tst-c{background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:22px;min-width:280px;max-width:300px;flex-shrink:0;scroll-snap-align:start;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.vx-tst-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.vx-tst-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff!important;flex-shrink:0}
+.vx-tst-av-mg{background:linear-gradient(135deg,#0F2B5C,#1565C0)}
+.vx-tst-av-mo{background:linear-gradient(135deg,#2D7A22,#4CAF50)}
+.vx-tst-av-bt{background:linear-gradient(135deg,#C2185B,#E91E63)}
+.vx-tst-name{font-size:13px;font-weight:800;color:#1A1A1A!important}
+.vx-tst-loc{font-size:11px;color:#6B7280!important;margin-top:2px}
+.vx-tst-badge{display:inline-block;font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-top:4px}
+.vx-tst-badge-mg{background:#E8F0FE;color:#0F2B5C!important}
+.vx-tst-badge-mo{background:#E8F5E9;color:#2D7A22!important}
+.vx-tst-badge-bt{background:#FCE4EC;color:#C2185B!important}
+.vx-tst-stars{color:#D4A845!important;font-size:12px;margin-bottom:8px}
+.vx-tst-q{font-size:13px;color:#374151!important;line-height:1.55;font-style:italic}
+.vx-tst-dots{display:flex;gap:6px;justify-content:center;margin-top:16px}
+.vx-tst-dot{width:8px;height:8px;border-radius:50%;background:#D1D5DB;border:none;cursor:pointer;padding:0;transition:background .2s}
+.vx-tst-dot.active{background:#0F2B5C}
+
+/* ── COMMENT ÇA MARCHE ── */
+.vx-how{padding:64px 20px;background:#fff}
+.vx-how-steps{display:grid;grid-template-columns:1fr;gap:24px;margin-top:36px;max-width:800px;margin-left:auto;margin-right:auto}
+.vx-how-step{display:flex;gap:18px;align-items:flex-start}
+.vx-how-n{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#D4A845,#e8c060);color:#0F2B5C!important;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(212,168,69,.35)}
+.vx-how-tx h3{font-size:16px;font-weight:900;color:#0F2B5C!important;margin-bottom:6px}
+.vx-how-tx p{font-size:13px;color:#6B7280!important;line-height:1.55}
+@media(min-width:768px){.vx-how-steps{grid-template-columns:repeat(3,1fr)}.vx-how-step{flex-direction:column;align-items:center;text-align:center}}
+
+/* ── FAQ ── */
+.vx-faq{padding:64px 20px;background:#F5EFE6}
+.vx-faq-list{max-width:720px;margin:32px auto 0}
+.vx-faq-it{background:#fff;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:8px;overflow:hidden}
+.vx-faq-q{padding:16px 18px;cursor:pointer;font-size:14px;font-weight:700;color:#1A1A1A!important;display:flex;justify-content:space-between;align-items:center;user-select:none;gap:12px;min-height:44px}
+.vx-faq-q::after{content:"+";font-size:22px;color:#D4A845!important;font-weight:300;flex-shrink:0;transition:transform .2s}
+.vx-faq-it.open .vx-faq-q::after{transform:rotate(45deg)}
+.vx-faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;padding:0 18px}
+.vx-faq-it.open .vx-faq-a{max-height:300px;padding:0 18px 16px}
+.vx-faq-a p{font-size:13px;color:#6B7280!important;line-height:1.6}
+
+/* ── NEWSLETTER ── */
+.vx-nl{padding:60px 20px;background:#0F2B5C;text-align:center}
+.vx-nl-h{font-size:24px;font-weight:900;color:#fff!important;margin-bottom:8px}
+.vx-nl-h em{font-style:normal;color:#D4A845!important}
+.vx-nl-p{color:rgba(255,255,255,.7)!important;font-size:14px;margin-bottom:24px;line-height:1.5}
+.vx-nl-form{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.vx-nl-input{flex:1;min-width:220px;padding:13px 16px;border-radius:8px;border:none;font-size:14px;color:#1A1A1A!important;outline:none;background:#fff}
+.vx-nl-btn{background:linear-gradient(135deg,#D4A845,#e8c060);color:#0F2B5C!important;border:none;padding:13px 22px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+
+/* ── FOOTER ── */
+.vx-ft{background:#1A1A1A;padding:48px 20px 24px;color:#9CA3AF!important}
+.vx-ft-grid{display:grid;grid-template-columns:1fr;gap:32px;max-width:1140px;margin:0 auto}
+.vx-ft-col h4{font-size:13px;font-weight:900;color:#fff!important;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.vx-ft-col p,.vx-ft-col a{font-size:12px;color:#9CA3AF!important;text-decoration:none;display:block;line-height:2}
+.vx-ft-col a:hover{color:#D4A845!important}
+.vx-ft-logo{font-size:22px;font-weight:900;letter-spacing:2px;color:#fff!important;margin-bottom:10px;display:block}
+.vx-ft-logo span{color:#D4A845!important}
+.vx-ft-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff!important;padding:12px 20px;border-radius:10px;font-weight:900;font-size:13px;text-decoration:none;margin-top:14px;box-shadow:0 6px 16px rgba(37,211,102,.35)}
+.vx-ft-pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.vx-ft-pay span{background:#2A2A2A;color:#D4A845!important;font-size:10px;font-weight:800;padding:5px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
+.vx-ft-bottom{border-top:1px solid #2A2A2A;margin-top:36px;padding-top:20px;text-align:center;font-size:11px;color:#6B7280!important;max-width:1140px;margin-left:auto;margin-right:auto}
+@media(min-width:768px){.vx-ft-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+
+/* ── ANIMATIONS ── */
+@keyframes vx-fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.vx-hero-w>*{animation:vx-fade-up .6s ease both}
+.vx-hero-pre{animation-delay:.05s}
+.vx-hero-h{animation-delay:.1s}
+.vx-hero-p{animation-delay:.18s}
+.vx-hero-img,.vx-hero-btns{animation-delay:.25s}
+.vx-hero-badges{animation-delay:.32s}
+</style>
+
+<div class="vx" id="vitalux-home">
+
+  <!-- ANNONCE -->
+  <div class="vx-ann">
+    <span>🇺🇸 MADE IN USA</span>
+    <span><b>·</b></span>
+    <span>💰 PAIEMENT À LA LIVRAISON</span>
+    <span><b>·</b></span>
+    <span>🛡️ GARANTIE 30 JOURS</span>
   </div>
 
-  <!-- HERO BANNER -->
-  <section class="vh-hero">
-    <div class="vh-hero-w">
-      <span class="vh-hero-tag">Formulation Professionnelle</span>
-      <h1 class="vh-hero-h">{{ settings.home_hero_title | default: 'La gamme Vitalux' }} <span>premium</span></h1>
-      <p class="vh-hero-sub">{{ settings.home_hero_subtitle | default: '3 compléments naturels · Made in USA · Lab Tested · Non-GMO. Paiement à la livraison, garantie 30 jours.' }}</p>
-
-      {%- if settings.home_hero_image != blank -%}
-        {%- comment -%} Image hero personnalisée uploadée par l'admin {%- endcomment -%}
-        <img class="vh-hero-img" src="{{ settings.home_hero_image | image_url: width: 1600 }}" alt="La gamme Vitalux Nutrition" width="1600" height="900" loading="eager" fetchpriority="high">
-      {%- else -%}
-        {%- comment -%} Trio auto : les 3 produits côte à côte {%- endcomment -%}
-        <div class="vh-trio">
-          <a class="vh-trio-it" href="/products/magnesium">
-            {%- if mg_product.featured_image -%}
-              <img src="{{ mg_product.featured_image | image_url: width: 500 }}" alt="Magnésium Vitalux" width="500" height="500" loading="eager">
-            {%- else -%}
-              <div class="vh-trio-placeholder">Ajouter image<br>Magnésium</div>
-            {%- endif -%}
-            <span class="vh-trio-bn">Magnésium</span>
-          </a>
-          <a class="vh-trio-it vh-trio-mid" href="/products/moringa">
-            {%- if mo_product.featured_image -%}
-              <img src="{{ mo_product.featured_image | image_url: width: 500 }}" alt="Moringa Vitalux" width="500" height="500" loading="eager">
-            {%- else -%}
-              <div class="vh-trio-placeholder">Ajouter image<br>Moringa</div>
-            {%- endif -%}
-            <span class="vh-trio-bn">Moringa</span>
-          </a>
-          <a class="vh-trio-it" href="/products/betterave">
-            {%- if bt_product.featured_image -%}
-              <img src="{{ bt_product.featured_image | image_url: width: 500 }}" alt="Betterave Vitalux" width="500" height="500" loading="eager">
-            {%- else -%}
-              <div class="vh-trio-placeholder">Ajouter image<br>Betterave</div>
-            {%- endif -%}
-            <span class="vh-trio-bn">Betterave</span>
-          </a>
-        </div>
-      {%- endif -%}
-
-      <a class="vh-hero-cta" href="#products">Découvrir la gamme ›</a>
+  <!-- HEADER -->
+  <header class="vx-hd">
+    <div class="vx-hd-w">
+      <a href="/" class="vx-logo">
+        <span>V</span>ITALUX<small>NUTRITION</small>
+      </a>
+      <a href="#formules" class="vx-hd-cta">Nos produits</a>
     </div>
-  </section>
+  </header>
 
-  <!-- TRUST STRIP -->
-  <div class="vh-trust-strip">
-    <div class="vh-trust-strip-w">
-      <span><b>🇺🇸</b> Made in USA</span>
-      <span><b>🔬</b> Lab Tested</span>
-      <span><b>🏭</b> GMP Quality</span>
-      <span><b>🌱</b> Non-GMO</span>
-      <span><b>💰</b> Paiement à la livraison</span>
-    </div>
-  </div>
+  <!-- HERO -->
+  <section class="vx-hero">
+    <div class="vx-hero-w">
+      <span class="vx-hero-pre">✨ NUTRITION PREMIUM</span>
+      <h1 class="vx-hero-h">Votre Santé,<br><em>Notre Mission</em></h1>
+      <p class="vx-hero-p">3 formules naturelles pour transformer votre vitalité au quotidien. Made in USA · Lab Tested · Paiement à la livraison.</p>
 
-  <!-- PRODUCTS -->
-  <section class="vh-products" id="products">
-    <div class="vh-products-w">
-      <h2 class="vh-products-h">Nos <span>3 compléments</span></h2>
-      <p class="vh-products-sub">Chaque formule cible un besoin précis. Choisis celui qui te correspond.</p>
+      {%- assign hero_img = 'vitalux-trio-hero.png' | asset_url -%}
+      <img
+        class="vx-hero-img"
+        src="{{ hero_img }}"
+        alt="Gamme Vitalux Nutrition — Magnésium, Moringa, Beetroot"
+        width="720"
+        height="480"
+        loading="eager"
+        fetchpriority="high"
+        onerror="this.style.display='none'">
 
-      <div class="vh-grid">
-        <a class="vh-card" href="/products/magnesium">
-          {%- if mg_product.featured_image -%}
-            <img class="vh-card-img" src="{{ mg_product.featured_image | image_url: width: 400 }}" alt="Complexe de Magnésium" width="400" height="400" loading="lazy">
-          {%- endif -%}
-          <div class="vh-card-h">Complexe de Magnésium</div>
-          <div class="vh-card-spec">8 formes · 2000 mg · 90 gélules</div>
-          <p class="vh-card-p">Sommeil profond · Anti-stress · Muscles &amp; os · Bien-être général.</p>
-          <span class="vh-card-cta">Découvrir ›</span>
-        </a>
-        <a class="vh-card" href="/products/moringa">
-          {%- if mo_product.featured_image -%}
-            <img class="vh-card-img" src="{{ mo_product.featured_image | image_url: width: 400 }}" alt="Moringa" width="400" height="400" loading="lazy">
-          {%- endif -%}
-          <div class="vh-card-h">Moringa Bio</div>
-          <div class="vh-card-spec">92 nutriments · L'arbre de vie</div>
-          <p class="vh-card-p">Énergie naturelle · Immunité · Peau &amp; cheveux · Vitalité globale.</p>
-          <span class="vh-card-cta">Découvrir ›</span>
-        </a>
-        <a class="vh-card" href="/products/betterave">
-          {%- if bt_product.featured_image -%}
-            <img class="vh-card-img" src="{{ bt_product.featured_image | image_url: width: 400 }}" alt="Betterave" width="400" height="400" loading="lazy">
-          {%- endif -%}
-          <div class="vh-card-h">Betterave Concentrée</div>
-          <div class="vh-card-spec">Extrait x10 · Sans sucre</div>
-          <p class="vh-card-p">Tension régulée · Endurance +20% · Performance · Circulation.</p>
-          <span class="vh-card-cta">Découvrir ›</span>
-        </a>
+      <div class="vx-hero-btns">
+        <a class="vx-btn-prim" href="#formules">Découvrir nos produits</a>
+        <a class="vx-btn-sec" href="#comment">Notre histoire</a>
+      </div>
+
+      <div class="vx-hero-badges">
+        <span class="vx-hero-badge">🇺🇸 Made in USA</span>
+        <span class="vx-hero-badge">🔬 Lab Tested</span>
+        <span class="vx-hero-badge">🏭 GMP Certified</span>
+        <span class="vx-hero-badge">🌱 Sans OGM</span>
       </div>
     </div>
   </section>
 
-  <div class="vh-ft">
-    © {{ 'now' | date: '%Y' }} VITALUX NUTRITION · Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a> · www.vitaluxnutrition.com
+  <!-- STATS BAR -->
+  <div class="vx-stats">
+    <div class="vx-stats-w">
+      <div class="vx-stat"><span class="vx-stat-n">12 000+</span><span class="vx-stat-t">Clients satisfaits</span></div>
+      <div class="vx-stat"><span class="vx-stat-n">4.9/5</span><span class="vx-stat-t">Note moyenne</span></div>
+      <div class="vx-stat"><span class="vx-stat-n">9</span><span class="vx-stat-t">Pays en Afrique</span></div>
+      <div class="vx-stat"><span class="vx-stat-n">30J</span><span class="vx-stat-t">Garantie remboursement</span></div>
+    </div>
   </div>
+
+  <!-- NOS 3 FORMULES -->
+  <section class="vx-formules" id="formules">
+    <div class="vx-w">
+      <h2 class="vx-h2">Nos <em>3 Formules</em> Premium</h2>
+      <p class="vx-sub">Chaque produit cible un besoin précis. Choisis celui qui te correspond.</p>
+
+      <div class="vx-cards">
+
+        <!-- MAGNÉSIUM -->
+        <a class="vx-card vx-card-mg" href="/products/magnesium">
+          <span class="vx-card-badge vx-card-badge-mg">⭐ BEST-SELLER</span>
+          {%- assign mg_img_url = 'vitalux-magnesium.png' | asset_url -%}
+          {%- if mg_product.featured_image -%}
+            <img class="vx-card-img" src="{{ mg_product.featured_image | image_url: width: 400 }}" alt="Complexe de Magnésium Vitalux 2000mg — 90 gélules" width="400" height="400" loading="lazy"
+              onerror="this.src='{{ mg_img_url }}'">
+          {%- else -%}
+            <img class="vx-card-img" src="{{ mg_img_url }}" alt="Complexe de Magnésium Vitalux 2000mg — 90 gélules" width="400" height="400" loading="lazy" onerror="this.style.display='none'">
+          {%- endif -%}
+          <div class="vx-card-h">Complexe de Magnésium 2000mg</div>
+          <div class="vx-card-spec vx-card-spec-mg">8 formes de magnésium élémentaire</div>
+          <ul class="vx-card-perks vx-perk-mg">
+            <li>Sommeil profond et réparateur</li>
+            <li>Anti-stress, énergie durable</li>
+            <li>Muscles, os &amp; bien-être général</li>
+          </ul>
+          <div class="vx-card-price">
+            <span class="vx-card-new">17 500 FCFA</span>
+            <span class="vx-card-old">25 000 FCFA</span>
+          </div>
+          <span class="vx-card-cta vx-cta-mg">Découvrir ›</span>
+        </a>
+
+        <!-- MORINGA -->
+        <a class="vx-card vx-card-mo" href="/products/moringa">
+          <span class="vx-card-badge vx-card-badge-mo">🌿 100% NATUREL</span>
+          {%- assign mo_img_url = 'vitalux-moringa.png' | asset_url -%}
+          {%- if mo_product.featured_image -%}
+            <img class="vx-card-img" src="{{ mo_product.featured_image | image_url: width: 400 }}" alt="Moringa Premium Vitalux — Super-aliment africain" width="400" height="400" loading="lazy"
+              onerror="this.src='{{ mo_img_url }}'">
+          {%- else -%}
+            <img class="vx-card-img" src="{{ mo_img_url }}" alt="Moringa Premium Vitalux — Super-aliment africain" width="400" height="400" loading="lazy" onerror="this.style.display='none'">
+          {%- endif -%}
+          <div class="vx-card-h">Moringa Premium</div>
+          <div class="vx-card-spec vx-card-spec-mo">Super-aliment africain pur</div>
+          <ul class="vx-card-perks vx-perk-mo">
+            <li>Immunité renforcée naturellement</li>
+            <li>Vitalité &amp; énergie au quotidien</li>
+            <li>Détox naturelle, peau &amp; cheveux</li>
+          </ul>
+          <div class="vx-card-price">
+            <span class="vx-card-new">15 900 FCFA</span>
+            <span class="vx-card-old">22 000 FCFA</span>
+          </div>
+          <span class="vx-card-cta vx-cta-mo">Découvrir ›</span>
+        </a>
+
+        <!-- BEETROOT -->
+        <a class="vx-card vx-card-bt" href="/products/beetroot">
+          <span class="vx-card-badge vx-card-badge-bt">🏃 PERFORMANCE</span>
+          {%- assign bt_img_url = 'vitalux-beetroot.png' | asset_url -%}
+          {%- if bt_product.featured_image -%}
+            <img class="vx-card-img" src="{{ bt_product.featured_image | image_url: width: 400 }}" alt="Beetroot Premium Vitalux — Booster circulation sanguine" width="400" height="400" loading="lazy"
+              onerror="this.src='{{ bt_img_url }}'">
+          {%- else -%}
+            <img class="vx-card-img" src="{{ bt_img_url }}" alt="Beetroot Premium Vitalux — Booster circulation sanguine" width="400" height="400" loading="lazy" onerror="this.style.display='none'">
+          {%- endif -%}
+          <div class="vx-card-h">Beetroot Premium</div>
+          <div class="vx-card-spec vx-card-spec-bt">Booster naturel de circulation</div>
+          <ul class="vx-card-perks vx-perk-bt">
+            <li>Performance sportive maximisée</li>
+            <li>Endurance &amp; récupération rapide</li>
+            <li>Circulation sanguine optimale</li>
+          </ul>
+          <div class="vx-card-price">
+            <span class="vx-card-new">16 500 FCFA</span>
+            <span class="vx-card-old">23 000 FCFA</span>
+          </div>
+          <span class="vx-card-cta vx-cta-bt">Découvrir ›</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI VITALUX -->
+  <section class="vx-why">
+    <div class="vx-w">
+      <h2 class="vx-h2">Pourquoi <em>12 000+ Africains</em><br>nous font confiance</h2>
+      <p class="vx-sub">Nous mettons la qualité américaine au service de la santé africaine.</p>
+      <div class="vx-why-grid">
+        <div class="vx-why-it">
+          <span class="vx-why-ic">🇺🇸</span>
+          <div class="vx-why-h">Qualité USA</div>
+          <p class="vx-why-p">Fabriqué aux États-Unis dans des usines certifiées GMP. Formulations professionnelles.</p>
+        </div>
+        <div class="vx-why-it">
+          <span class="vx-why-ic">🔬</span>
+          <div class="vx-why-h">Testé en Laboratoire</div>
+          <p class="vx-why-p">Chaque lot est analysé en laboratoire indépendant. Pureté et dosage garantis.</p>
+        </div>
+        <div class="vx-why-it">
+          <span class="vx-why-ic">💰</span>
+          <div class="vx-why-h">Paiement à la Livraison</div>
+          <p class="vx-why-p">Tu paies en espèces à la réception de ton colis. Zéro risque, zéro carte.</p>
+        </div>
+        <div class="vx-why-it">
+          <span class="vx-why-ic">🛡️</span>
+          <div class="vx-why-h">Garantie 30 Jours</div>
+          <p class="vx-why-p">Pas satisfait en 30 jours ? On te rembourse intégralement, sans question.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="vx-tst">
+    <div class="vx-w">
+      <h2 class="vx-h2">Ils ont <em>transformé</em> leur vitalité</h2>
+      <p class="vx-sub">Des milliers de clients satisfaits à travers l'Afrique.</p>
+    </div>
+    <div class="vx-tst-track" id="vx-tst-track">
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-mg">PD</div>
+          <div>
+            <div class="vx-tst-name">Paul D., 50 ans</div>
+            <div class="vx-tst-loc">📍 Douala, Cameroun</div>
+            <span class="vx-tst-badge vx-tst-badge-mg">Magnésium</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"En 3 semaines, j'ai retrouvé une énergie que je n'avais plus depuis 10 ans. Ma femme ne reconnaît plus son mari. Merci Vitalux !"</p>
+      </div>
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-mo">AK</div>
+          <div>
+            <div class="vx-tst-name">Aminata K.</div>
+            <div class="vx-tst-loc">📍 Dakar, Sénégal</div>
+            <span class="vx-tst-badge vx-tst-badge-mo">Moringa</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"Mes cheveux ont arrêté de tomber, ma peau est lumineuse. Le Moringa Vitalux est un miracle naturel. Je recommande à toutes mes amies."</p>
+      </div>
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-bt">KO</div>
+          <div>
+            <div class="vx-tst-name">Kofi O.</div>
+            <div class="vx-tst-loc">📍 Abidjan, Côte d'Ivoire</div>
+            <span class="vx-tst-badge vx-tst-badge-bt">Beetroot</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"Sportif amateur, mon endurance a explosé en 2 semaines. Je bats mes records à chaque séance. Le Beetroot est indispensable dans ma routine."</p>
+      </div>
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-mg">FM</div>
+          <div>
+            <div class="vx-tst-name">Fatima M.</div>
+            <div class="vx-tst-loc">📍 Ouagadougou, Burkina</div>
+            <span class="vx-tst-badge vx-tst-badge-mg">Magnésium</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"Je ne dormais plus depuis des mois. Dès la 1ère semaine de Magnésium Vitalux, des nuits complètes et profondes. Incroyable."</p>
+      </div>
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-mo">YA</div>
+          <div>
+            <div class="vx-tst-name">Yves A.</div>
+            <div class="vx-tst-loc">📍 Lomé, Togo</div>
+            <span class="vx-tst-badge vx-tst-badge-mo">Moringa</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"Le Moringa m'a redonné une vitalité incroyable. Plus d'énergie au bureau, meilleure concentration. Je prends maintenant le Magnésium aussi."</p>
+      </div>
+
+      <div class="vx-tst-c">
+        <div class="vx-tst-top">
+          <div class="vx-tst-av vx-tst-av-bt">SN</div>
+          <div>
+            <div class="vx-tst-name">Sandrine N.</div>
+            <div class="vx-tst-loc">📍 Libreville, Gabon</div>
+            <span class="vx-tst-badge vx-tst-badge-bt">Beetroot</span>
+          </div>
+        </div>
+        <div class="vx-tst-stars">★★★★★</div>
+        <p class="vx-tst-q">"Ma tension était trop haute depuis des années. Après 1 mois de Beetroot Vitalux, mon médecin est étonné. Résultats naturels et durables."</p>
+      </div>
+
+    </div>
+    <div class="vx-tst-dots" id="vx-tst-dots">
+      <button class="vx-tst-dot active" data-i="0"></button>
+      <button class="vx-tst-dot" data-i="1"></button>
+      <button class="vx-tst-dot" data-i="2"></button>
+      <button class="vx-tst-dot" data-i="3"></button>
+      <button class="vx-tst-dot" data-i="4"></button>
+      <button class="vx-tst-dot" data-i="5"></button>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="vx-how" id="comment">
+    <div class="vx-w">
+      <h2 class="vx-h2">Comment <em>ça marche</em> ?</h2>
+      <p class="vx-sub">Commander chez Vitalux est simple et sans risque.</p>
+      <div class="vx-how-steps">
+        <div class="vx-how-step">
+          <div class="vx-how-n">1</div>
+          <div class="vx-how-tx">
+            <h3>Vous commandez</h3>
+            <p>Choisissez votre produit et remplissez le formulaire en ligne. Aucun paiement à l'avance, aucune carte requise.</p>
+          </div>
+        </div>
+        <div class="vx-how-step">
+          <div class="vx-how-n">2</div>
+          <div class="vx-how-tx">
+            <h3>On vous appelle</h3>
+            <p>Notre équipe vous contacte sous 24h pour confirmer votre commande et votre adresse de livraison.</p>
+          </div>
+        </div>
+        <div class="vx-how-step">
+          <div class="vx-how-n">3</div>
+          <div class="vx-how-tx">
+            <h3>Livraison + paiement</h3>
+            <p>Vous recevez votre colis en 24-72h et payez en espèces au livreur. Simple, rapide, sans risque.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="vx-faq">
+    <div class="vx-w">
+      <h2 class="vx-h2">Questions <em>fréquentes</em></h2>
+      <p class="vx-sub">Tout ce que vous devez savoir avant de commander.</p>
+      <div class="vx-faq-list">
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Comment fonctionne le paiement à la livraison ?</div>
+          <div class="vx-faq-a"><p>Vous commandez en ligne sans aucun paiement. Notre équipe vous appelle pour confirmer. Le livreur passe chez vous et vous payez en espèces à la réception du colis. Aucun risque de fraude.</p></div>
+        </div>
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Combien de temps pour la livraison ?</div>
+          <div class="vx-faq-a"><p>24 à 48h dans les grandes villes (Cotonou, Douala, Dakar, Abidjan…) et 48 à 72h pour les autres régions. Vous êtes prévenu par téléphone avant le passage du livreur.</p></div>
+        </div>
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Vos produits sont-ils vraiment naturels ?</div>
+          <div class="vx-faq-a"><p>Oui. Tous nos produits sont fabriqués aux États-Unis (Made in USA), testés en laboratoire (Lab Tested), certifiés GMP et sans OGM. Nous n'utilisons aucun additif douteux ni colorant.</p></div>
+        </div>
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Puis-je combiner plusieurs produits ?</div>
+          <div class="vx-faq-a"><p>Oui, nos 3 formules sont complémentaires. Beaucoup de clients prennent le Magnésium + Moringa ensemble. Contactez-nous sur WhatsApp pour un conseil personnalisé.</p></div>
+        </div>
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Que faire si je ne suis pas satisfait ?</div>
+          <div class="vx-faq-a"><p>Notre garantie 30 jours est sans condition. Si vous n'êtes pas satisfait dans les 30 jours suivant la réception, nous vous remboursons intégralement. Aucune question posée.</p></div>
+        </div>
+        <div class="vx-faq-it" onclick="this.classList.toggle('open')">
+          <div class="vx-faq-q">Livrez-vous dans mon pays ?</div>
+          <div class="vx-faq-a"><p>Nous livrons dans 9 pays africains : Bénin, Cameroun, Sénégal, Côte d'Ivoire, Burkina Faso, Togo, Gabon, Mali et Guinea. Contactez-nous sur WhatsApp si votre pays n'est pas listé.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="vx-nl">
+    <div class="vx-w">
+      <h2 class="vx-nl-h">-10% sur votre <em>première commande</em></h2>
+      <p class="vx-nl-p">Inscrivez-vous pour recevoir votre code promo et nos conseils santé exclusifs.</p>
+      {% form 'customer' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="vx-nl-form">
+          <input class="vx-nl-input" type="email" name="contact[email]" placeholder="votre@email.com" required>
+          <button class="vx-nl-btn" type="submit">Je m'inscris</button>
+        </div>
+      {% endform %}
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="vx-ft">
+    <div class="vx-ft-grid">
+      <div class="vx-ft-col">
+        <span class="vx-ft-logo">VITA<span>LUX</span></span>
+        <p>Compléments nutritionnels premium,<br>Made in USA pour l'Afrique.</p>
+        <a href="https://wa.me/22900000000" class="vx-ft-wa" target="_blank" rel="noopener">
+          💬 WhatsApp — Commander
+        </a>
+        <div class="vx-ft-pay" style="margin-top:16px">
+          <span>Orange Money</span>
+          <span>MTN MoMo</span>
+          <span>Wave</span>
+          <span>Moov</span>
+          <span>Espèces</span>
+        </div>
+      </div>
+      <div class="vx-ft-col">
+        <h4>Produits</h4>
+        <a href="/products/magnesium">Complexe de Magnésium</a>
+        <a href="/products/moringa">Moringa Premium</a>
+        <a href="/products/beetroot">Beetroot Premium</a>
+      </div>
+      <div class="vx-ft-col">
+        <h4>Informations</h4>
+        <a href="/pages/about">À propos</a>
+        <a href="/pages/livraison">Livraison &amp; Retours</a>
+        <a href="/pages/garantie">Garantie 30 jours</a>
+        <a href="/pages/contact">Contact</a>
+      </div>
+      <div class="vx-ft-col">
+        <h4>Contact</h4>
+        <a href="tel:{{ settings.phone | replace: ' ', '' }}">📞 {{ settings.phone | default: '+229 00 00 00 00' }}</a>
+        <a href="https://wa.me/22900000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <p style="margin-top:10px">Service client 7j/7<br>9h – 20h</p>
+      </div>
+    </div>
+    <div class="vx-ft-bottom">
+      © {{ 'now' | date: '%Y' }} VITALUX NUTRITION · Tous droits réservés ·
+      <a href="/policies/privacy-policy">Confidentialité</a> ·
+      <a href="/policies/terms-of-service">CGV</a>
+    </div>
+  </footer>
+
 </div>
+
+<script>
+(function(){
+  // Témoignages — dots sync
+  var track = document.getElementById('vx-tst-track');
+  var dots = document.querySelectorAll('.vx-tst-dot');
+  if(track && dots.length){
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){
+        var i = parseInt(d.dataset.i, 10);
+        var cards = track.querySelectorAll('.vx-tst-c');
+        if(cards[i]) track.scrollTo({left: cards[i].offsetLeft - 20, behavior:'smooth'});
+      });
+    });
+    track.addEventListener('scroll', function(){
+      var cards = track.querySelectorAll('.vx-tst-c');
+      var cx = track.scrollLeft + track.offsetWidth / 2;
+      var closest = 0, minD = Infinity;
+      cards.forEach(function(c,i){
+        var d = Math.abs(c.offsetLeft + c.offsetWidth/2 - cx);
+        if(d < minD){ minD = d; closest = i; }
+      });
+      dots.forEach(function(d,i){ d.classList.toggle('active', i === closest); });
+    }, {passive:true});
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Homepage Vitalux",
+  "settings": [],
+  "presets": [{ "name": "Homepage Vitalux" }]
+}
+{% endschema %}
