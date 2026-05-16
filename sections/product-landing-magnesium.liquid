@@ -223,6 +223,27 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 .mg-sticky-left small{color:#9ba8bf!important;font-size:11px;text-decoration:line-through}
 .mg-sticky-btn{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:13px 16px;border-radius:8px;font-weight:900;font-size:12px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 12px rgba(21,101,192,.3);cursor:pointer;line-height:1.2}
 
+.mg-trust-inline{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 14px}
+.mg-trust-inline span{background:#eaf0fb;border:1px solid #cdd9f0;color:#0a2d6e!important;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px}
+.mg-hero-cdown{background:#0a2d6e;border-radius:8px;padding:8px 14px;text-align:center;font-size:13px;font-weight:600;color:#fff!important;margin:12px 0}
+.mg-hero-cdown strong{color:#ffd700!important;font-size:18px;letter-spacing:2px;font-weight:900}
+.mg-hero-offers{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0 10px}
+.mg-ho-card{background:#fff;border:2px solid #d6def0;border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .15s,background .15s;position:relative}
+.mg-ho-card.popular,.mg-ho-card.active{border-color:#1565C0;box-shadow:0 4px 12px rgba(21,101,192,.15);background:#eaf0fb}
+.mg-ho-card.best{border-color:#d4a347}
+.mg-ho-card.best.active{background:#fffbeb}
+.mg-ho-card:hover{border-color:#1565C0}
+.mg-ho-badge{font-size:9px;font-weight:900;background:#1565C0;color:#fff!important;padding:2px 5px;border-radius:4px;display:inline-block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
+.mg-ho-card.best .mg-ho-badge{background:#d4a347;color:#0a0a0a!important}
+.mg-ho-qty{font-size:10.5px;color:#5a6b85!important;margin-bottom:3px;line-height:1.3}
+.mg-ho-price{font-size:14px;font-weight:900;color:#0a2d6e!important;line-height:1.1}
+.mg-ho-price span{font-size:9px;font-weight:700}
+.mg-ho-old{font-size:9.5px;color:#9ba8bf!important;margin-top:2px;line-height:1.2}
+.mg-hero-price-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 4px}
+.cta-cod-btn{width:100%;padding:20px 24px;background:linear-gradient(135deg,#0F2B5C,#1565C0);color:#fff!important;border:none;border-radius:14px;font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 25px rgba(15,43,92,.35);transition:all .2s ease;margin-top:16px;margin-bottom:12px;display:block;animation:pulse-cta 2s ease-in-out infinite}
+.cta-cod-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,43,92,.45)}
+@keyframes pulse-cta{0%,100%{box-shadow:0 8px 25px rgba(15,43,92,.35)}50%{box-shadow:0 8px 35px rgba(15,43,92,.55)}}
+.mg-hero-note{text-align:center;font-size:12px;color:#5a6b85!important;margin:2px 0 0;line-height:1.4}
 
 @media(min-width:768px){
   .mg-hero-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -260,7 +281,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
   <header class="mg-hd">
     <div class="mg-hd-w">
       <span class="mg-logo">VITALUX<b>NUTRITION</b></span>
-      <button class="mg-hd-cta" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Commander</button>
+      <button class="mg-hd-cta" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
 
@@ -304,15 +325,15 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
         </div>
 
         <div>
-          <div class="mg-rating">★★★★★ <b>4.9/5</b> · 2 847 avis vérifiés</div>
           <h1 class="mg-h1">À 45 ans, J'ai Retrouvé Ma <span class="mg-acc">Virilité Naturelle</span> en 30 Jours</h1>
           <p class="mg-sub"><strong>8 Formes de Magnésium dans 1 Seule Bouteille</strong> — Formulation professionnelle Vitalux Nutrition. 2000 mg de magnésium élémentaire par portion pour une absorption optimale.</p>
+          <div class="mg-rating">★★★★★ <b>4.9/5</b> · 2 847 avis vérifiés</div>
 
-          <div class="mg-spec">
-            <span>2000 mg / portion</span>
-            <span>90 gélules</span>
-            <span>45 jours</span>
-            <span>Sans OGM</span>
+          <div class="mg-trust-inline">
+            <span>🇺🇸 Made in USA</span>
+            <span>🔬 Lab Tested</span>
+            <span>🏭 GMP</span>
+            <span>🌱 Non-GMO</span>
           </div>
 
           <ul class="mg-checks">
@@ -322,27 +343,51 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
             <li>8 formes pour une absorption maximale · Non-GMO</li>
           </ul>
 
+          <div class="mg-hero-cdown">⏰ Offre expire dans : <strong id="mg-timer-hero">--:--:--</strong></div>
+
+          <div class="mg-hero-offers">
+            <div class="mg-ho-card" onclick="mgSelectOffer(1)" id="mg-ho-1">
+              <div class="mg-ho-qty">× 1 · 45 jours</div>
+              <div class="mg-ho-price">17 500 <span>FCFA</span></div>
+              <div class="mg-ho-old">25 000 · <b>-30%</b></div>
+            </div>
+            <div class="mg-ho-card popular active" onclick="mgSelectOffer(2)" id="mg-ho-2">
+              <div class="mg-ho-badge">⭐ Populaire</div>
+              <div class="mg-ho-qty">× 2 · 90 jours</div>
+              <div class="mg-ho-price">29 990 <span>FCFA</span></div>
+              <div class="mg-ho-old">50 000 · <b>-40%</b></div>
+            </div>
+            <div class="mg-ho-card best" onclick="mgSelectOffer(3)" id="mg-ho-3">
+              <div class="mg-ho-badge">🏆 Top valeur</div>
+              <div class="mg-ho-qty">× 3 · 135 jours</div>
+              <div class="mg-ho-price">39 990 <span>FCFA</span></div>
+              <div class="mg-ho-old">75 000 · <b>-47%</b></div>
+            </div>
+          </div>
+
+          <div class="mg-hero-price-row">
+            <span class="mg-pricing-new">17 500 FCFA</span>
+            <span class="mg-pricing-old">25 000 FCFA</span>
+            <span class="mg-pricing-save">-30%</span>
+          </div>
+
           <div class="mg-stock">⚠️ Plus que 47 bouteilles en stock</div>
 
-          <button class="mg-cta-btn" style="max-width:100%;margin:0" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
-          <div class="mg-cod-pay" style="margin-top:14px">
-            <span>💵 Espèces</span>
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <input type="hidden" name="quantity" value="1" id="cod-qty">
+            <button type="submit" name="add" class="cta-cod-btn">📦 COMMANDER MAINTENANT</button>
+          {% endform %}
+
+          <div class="mg-cod-pay">
+            <span>💵 Cash</span>
             <span>📱 Mobile Money</span>
-            <span>🔒 Sans engagement</span>
+            <span>🟡 Orange Money</span>
+            <span>🌊 Wave</span>
           </div>
+          <p class="mg-hero-note">📞 Nous vous appelons sous 24h pour confirmer votre commande</p>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section class="mg-trust">
-    <div class="mg-w">
-      <div class="mg-trust-grid">
-        <div class="mg-trust-it"><div class="mg-trust-ic">🇺🇸</div><div class="mg-trust-tx">Made in USA</div></div>
-        <div class="mg-trust-it"><div class="mg-trust-ic">🔬</div><div class="mg-trust-tx">Lab Tested</div></div>
-        <div class="mg-trust-it"><div class="mg-trust-ic">🏭</div><div class="mg-trust-tx">GMP Quality</div></div>
-        <div class="mg-trust-it"><div class="mg-trust-ic">🌱</div><div class="mg-trust-tx">Non-GMO</div></div>
       </div>
     </div>
   </section>
@@ -528,64 +573,6 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
     </div>
   </section>
 
-  <section class="mg-pricing">
-    <div class="mg-w">
-      <h2 class="mg-h2">Choisis ton <span class="mg-acc">offre</span></h2>
-      <div class="mg-pricing-grid">
-        <div class="mg-pricing-card">
-          <div class="mg-pricing-qty">× 1 bouteille — 45 jours</div>
-          <div class="mg-pricing-row">
-            <span class="mg-pricing-new">17 500 FCFA</span>
-            <span class="mg-pricing-old">25 000 FCFA</span>
-            <span class="mg-pricing-save">-30%</span>
-          </div>
-          <button class="mg-pricing-btn" onclick="mgSelectOffer(1)">Commander × 1</button>
-        </div>
-        <div class="mg-pricing-card popular">
-          <div class="mg-pricing-badge blue">⭐ Choix populaire</div>
-          <div class="mg-pricing-qty">× 2 bouteilles — 90 jours</div>
-          <div class="mg-pricing-row">
-            <span class="mg-pricing-new">29 990 FCFA</span>
-            <span class="mg-pricing-old">50 000 FCFA</span>
-            <span class="mg-pricing-save">-40%</span>
-          </div>
-          <button class="mg-pricing-btn" onclick="mgSelectOffer(2)">Commander × 2</button>
-        </div>
-        <div class="mg-pricing-card best">
-          <div class="mg-pricing-badge gold">🏆 Meilleure valeur</div>
-          <div class="mg-pricing-qty">× 3 bouteilles — 135 jours</div>
-          <div class="mg-pricing-row">
-            <span class="mg-pricing-new">39 990 FCFA</span>
-            <span class="mg-pricing-old">75 000 FCFA</span>
-            <span class="mg-pricing-save">-47%</span>
-          </div>
-          <p class="mg-pricing-bonus">🎁 Guide Virilité Naturelle offert</p>
-          <button class="mg-pricing-btn" onclick="mgSelectOffer(3)">Commander × 3</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="mg-cod-section" id="mg-form">
-    <div class="mg-w">
-      <h2 class="mg-h2">Passe ta <span class="mg-acc">commande</span></h2>
-      <div class="mg-cod-box">
-        <div class="mg-cod-title">💰 Commande à la livraison · Paiement en espèces</div>
-        {% form 'product', product %}
-          <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <input type="hidden" name="quantity" value="1" id="cod-qty">
-          <button type="submit" name="add" class="mg-cod-btn">📦 COMMANDER MAINTENANT ›</button>
-        {% endform %}
-        <p class="mg-cod-note">📞 Nous t'appellerons dans les 24h pour confirmer ta commande</p>
-        <div class="mg-cod-pay">
-          <span>💵 Espèces à la livraison</span>
-          <span>📱 Mobile Money</span>
-          <span>🔒 Sans risque</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="mg-faq">
     <div class="mg-w">
       <h2 class="mg-h2">Questions <span class="mg-acc">fréquentes</span></h2>
@@ -601,9 +588,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
     <div class="mg-w">
       <div class="mg-urg">⏰ Offre expire dans : <strong id="mg-timer2">--:--:--</strong></div>
       <h2 class="mg-h2">Reprends ta Vitalité. <span class="mg-acc">Naturellement.</span></h2>
-      <p style="color:#5a6b85;font-size:14px;max-width:520px;margin:0 auto 20px;line-height:1.5">Rejoins les 12 000+ hommes qui ont retrouvé leur énergie et leur virilité avec le Complexe de Magnésium Vitalux. Made in USA · Lab Tested · Paiement à la livraison · Garantie 30 jours.</p>
-      <button class="mg-cta-btn" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
-      <div class="mg-stock" style="max-width:340px;margin:16px auto 0">⚠️ Plus que 47 bouteilles en stock</div>
+      <p style="color:#5a6b85;font-size:14px;max-width:520px;margin:0 auto 0;line-height:1.5">Rejoins les 12 000+ hommes qui ont retrouvé leur énergie et leur virilité avec le Complexe de Magnésium Vitalux. Made in USA · Lab Tested · Paiement à la livraison · Garantie 30 jours.</p>
     </div>
   </section>
 
@@ -621,7 +606,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
       <b>COMMANDER — 17 500 FCFA</b>
       <small>Prix normal : 25 000 FCFA</small>
     </div>
-    <button class="mg-sticky-btn" onclick="document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Commander<br>maintenant ›</button>
+    <button class="mg-sticky-btn" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander<br>maintenant ›</button>
   </div>
 
 </div>
@@ -650,8 +635,10 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
       var str = (h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
       var t1 = document.getElementById('mg-timer');
       var t2 = document.getElementById('mg-timer2');
+      var t3 = document.getElementById('mg-timer-hero');
       if(t1) t1.textContent = str;
       if(t2) t2.textContent = str;
+      if(t3) t3.textContent = str;
     }
     tick();
     setInterval(tick, 1000);
@@ -660,11 +647,10 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 
   // ─── Sticky bar ────────────────────────────────────────────────
   var sticky = document.getElementById('mg-sticky');
-  var form = document.getElementById('mg-form');
-  if(sticky && form){
+  if(sticky){
     window.addEventListener('scroll', function(){
-      var rect = form.getBoundingClientRect();
-      if(window.innerWidth < 768 && rect.bottom < 0){
+      var hero = document.querySelector('.mg-hero');
+      if(hero && window.innerWidth < 768 && hero.getBoundingClientRect().bottom < 0){
         sticky.classList.add('show');
       } else {
         sticky.classList.remove('show');
@@ -703,11 +689,14 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
     start();
   }
 
-  // ─── Pricing buttons → met à jour la quantité + scroll vers le form ─────
+  // ─── Cartes offres → met à jour la quantité sélectionnée ─────────────
   window.mgSelectOffer = function(qty){
     var el = document.getElementById('cod-qty');
     if(el) el.value = qty;
-    document.getElementById('mg-form').scrollIntoView({behavior:'smooth'});
+    [1,2,3].forEach(function(i){
+      var c = document.getElementById('mg-ho-'+i);
+      if(c) c.classList.toggle('active', i===qty);
+    });
   };
 })();
 </script>

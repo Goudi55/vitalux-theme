@@ -161,6 +161,9 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
 .mo-sticky-px b{color:#d4af37!important;font-size:18px;font-weight:900;display:block;line-height:1}
 .mo-sticky-px small{color:#8aa394!important;font-size:11px;text-decoration:line-through}
 .mo-sticky-btn{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff!important;border:none;padding:12px 18px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap}
+.cta-cod-btn{width:100%;padding:20px 24px;background:linear-gradient(135deg,#1A4A10,#2D7A22);color:#fff!important;border:none;border-radius:14px;font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 25px rgba(45,122,34,.35);transition:all .2s ease;margin-top:16px;margin-bottom:12px;display:block;animation:pulse-cta 2s ease-in-out infinite}
+.cta-cod-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(45,122,34,.45)}
+@keyframes pulse-cta{0%,100%{box-shadow:0 8px 25px rgba(45,122,34,.35)}50%{box-shadow:0 8px 35px rgba(45,122,34,.55)}}
 
 @media(min-width:768px){
   .mo-hero-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -193,7 +196,7 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
   <header class="mo-hd">
     <div class="mo-hd-w">
       <span class="mo-logo">VITA<b>LUX</b></span>
-      <button class="mo-hd-cta" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Commander</button>
+      <button class="mo-hd-cta" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
 
@@ -242,8 +245,8 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
             <div class="mo-form-title">🌿 Commande à la livraison · Espèces</div>
             {% form 'product', product %}
               <input type="hidden" name="id" value="{{ current_variant.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" name="add" class="mo-cta">Je commande maintenant ›</button>
+              <input type="hidden" name="quantity" value="1" id="cod-qty">
+              <button type="submit" name="add" class="cta-cod-btn">📦 COMMANDER MAINTENANT</button>
             {% endform %}
             <div class="mo-pay">
               <span>💵 Espèces</span>
@@ -413,8 +416,7 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
     <div class="mo-w">
       <div class="mo-urg">⏰ Offre limitée — Stock réduit</div>
       <h2 class="mo-h2">Recharge ton énergie. <span class="mo-acc">Naturellement.</span></h2>
-      <p style="color:#b8d6c1;font-size:14px;max-width:520px;margin:0 auto 18px;line-height:1.5">Rejoins les 15 000+ personnes qui ont retrouvé leur vitalité avec Vitalux Moringa. Paiement à la livraison · Garantie 30 jours.</p>
-      <button class="mo-cta" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+      <p style="color:#b8d6c1;font-size:14px;max-width:520px;margin:0 auto 0;line-height:1.5">Rejoins les 15 000+ personnes qui ont retrouvé leur vitalité avec Vitalux Moringa. Paiement à la livraison · Garantie 30 jours.</p>
     </div>
   </section>
 
@@ -432,7 +434,7 @@ body{padding-top:0!important;margin-top:0!important;background:#0d1f15!important
         <small>{{ compare_price }}</small>
       {%- endif -%}
     </div>
-    <button class="mo-sticky-btn" onclick="document.getElementById('mo-form').scrollIntoView({behavior:'smooth'})">Commander ›</button>
+    <button class="mo-sticky-btn" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander ›</button>
   </div>
 
 </div>

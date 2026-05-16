@@ -149,6 +149,9 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
 .bt-sticky-px b{color:#e8b34a!important;font-size:18px;font-weight:900;display:block;line-height:1}
 .bt-sticky-px small{color:#a38a93!important;font-size:11px;text-decoration:line-through}
 .bt-sticky-btn{background:linear-gradient(135deg,#dc2655,#a51d44);color:#fff!important;border:none;padding:12px 18px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap}
+.cta-cod-btn{width:100%;padding:20px 24px;background:linear-gradient(135deg,#8B0A3B,#C2185B);color:#fff!important;border:none;border-radius:14px;font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 25px rgba(194,24,91,.35);transition:all .2s ease;margin-top:16px;margin-bottom:12px;display:block;animation:pulse-cta 2s ease-in-out infinite}
+.cta-cod-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(194,24,91,.45)}
+@keyframes pulse-cta{0%,100%{box-shadow:0 8px 25px rgba(194,24,91,.35)}50%{box-shadow:0 8px 35px rgba(194,24,91,.55)}}
 
 @media(min-width:768px){
   .bt-hero-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -181,7 +184,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
   <header class="bt-hd">
     <div class="bt-hd-w">
       <span class="bt-logo">VITA<b>LUX</b></span>
-      <button class="bt-hd-cta" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Commander</button>
+      <button class="bt-hd-cta" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
 
@@ -230,8 +233,8 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
             <div class="bt-form-title">🔥 Commande à la livraison · Espèces</div>
             {% form 'product', product %}
               <input type="hidden" name="id" value="{{ current_variant.id }}">
-              <input type="hidden" name="quantity" value="1">
-              <button type="submit" name="add" class="bt-cta">Je commande maintenant ›</button>
+              <input type="hidden" name="quantity" value="1" id="cod-qty">
+              <button type="submit" name="add" class="cta-cod-btn">📦 COMMANDER MAINTENANT</button>
             {% endform %}
             <div class="bt-pay">
               <span>💵 Espèces</span>
@@ -384,8 +387,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
     <div class="bt-w">
       <div class="bt-urg">⏰ Offre limitée — Stock réduit</div>
       <h2 class="bt-h2">Reprends ta tension. <span class="bt-acc">Reprends ton souffle.</span></h2>
-      <p style="color:#d6b8c1;font-size:14px;max-width:520px;margin:0 auto 18px;line-height:1.5">Rejoins les milliers de personnes qui ont retrouvé endurance et tension saine avec Vitalux. Paiement à la livraison · Garantie 30 jours.</p>
-      <button class="bt-cta" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Je commande maintenant ›</button>
+      <p style="color:#d6b8c1;font-size:14px;max-width:520px;margin:0 auto 0;line-height:1.5">Rejoins les milliers de personnes qui ont retrouvé endurance et tension saine avec Vitalux. Paiement à la livraison · Garantie 30 jours.</p>
     </div>
   </section>
 
@@ -403,7 +405,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
         <small>{{ compare_price }}</small>
       {%- endif -%}
     </div>
-    <button class="bt-sticky-btn" onclick="document.getElementById('bt-form').scrollIntoView({behavior:'smooth'})">Commander ›</button>
+    <button class="bt-sticky-btn" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander ›</button>
   </div>
 
 </div>
