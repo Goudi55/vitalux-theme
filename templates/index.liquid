@@ -305,9 +305,12 @@ body{padding-top:0!important;margin-top:0!important;background:#FAFAF7!important
             <li>Anti-stress · Énergie durable</li>
             <li>Muscles, os &amp; bien-être général</li>
           </ul>
+          {%- assign mg_cv = mg_product.selected_or_first_available_variant -%}
           <div class="vx-pc-price">
-            <span class="vx-pc-new">17 500 FCFA</span>
-            <span class="vx-pc-old">25 000 FCFA</span>
+            <span class="vx-pc-new">{{ mg_cv.price | money }}</span>
+            {%- if mg_cv.compare_at_price > mg_cv.price -%}
+              <span class="vx-pc-old">{{ mg_cv.compare_at_price | money }}</span>
+            {%- endif -%}
           </div>
           <span class="vx-pc-btn vx-btn-mg">Découvrir ›</span>
         </a>
@@ -336,9 +339,12 @@ body{padding-top:0!important;margin-top:0!important;background:#FAFAF7!important
             <li>Vitalité &amp; énergie au quotidien</li>
             <li>Détox naturelle, peau &amp; cheveux</li>
           </ul>
+          {%- assign mo_cv = mo_product.selected_or_first_available_variant -%}
           <div class="vx-pc-price">
-            <span class="vx-pc-new">15 900 FCFA</span>
-            <span class="vx-pc-old">22 000 FCFA</span>
+            <span class="vx-pc-new">{{ mo_cv.price | money }}</span>
+            {%- if mo_cv.compare_at_price > mo_cv.price -%}
+              <span class="vx-pc-old">{{ mo_cv.compare_at_price | money }}</span>
+            {%- endif -%}
           </div>
           <span class="vx-pc-btn vx-btn-mo">Découvrir ›</span>
         </a>
@@ -367,9 +373,12 @@ body{padding-top:0!important;margin-top:0!important;background:#FAFAF7!important
             <li>Endurance &amp; récupération rapide</li>
             <li>Circulation sanguine optimale</li>
           </ul>
+          {%- assign bt_cv = bt_product.selected_or_first_available_variant -%}
           <div class="vx-pc-price">
-            <span class="vx-pc-new">16 500 FCFA</span>
-            <span class="vx-pc-old">23 000 FCFA</span>
+            <span class="vx-pc-new">{{ bt_cv.price | money }}</span>
+            {%- if bt_cv.compare_at_price > bt_cv.price -%}
+              <span class="vx-pc-old">{{ bt_cv.compare_at_price | money }}</span>
+            {%- endif -%}
           </div>
           <span class="vx-pc-btn vx-btn-bt">Découvrir ›</span>
         </a>
