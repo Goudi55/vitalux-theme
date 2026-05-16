@@ -227,23 +227,11 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 .mg-trust-inline span{background:#eaf0fb;border:1px solid #cdd9f0;color:#0a2d6e!important;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px}
 .mg-hero-cdown{background:#0a2d6e;border-radius:8px;padding:8px 14px;text-align:center;font-size:13px;font-weight:600;color:#fff!important;margin:12px 0}
 .mg-hero-cdown strong{color:#ffd700!important;font-size:18px;letter-spacing:2px;font-weight:900}
-.mg-hero-offers{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0 10px}
-.mg-ho-card{background:#fff;border:2px solid #d6def0;border-radius:10px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color .2s,box-shadow .15s,background .15s;position:relative}
-.mg-ho-card.popular,.mg-ho-card.active{border-color:#1565C0;box-shadow:0 4px 12px rgba(21,101,192,.15);background:#eaf0fb}
-.mg-ho-card.best{border-color:#d4a347}
-.mg-ho-card.best.active{background:#fffbeb}
-.mg-ho-card:hover{border-color:#1565C0}
-.mg-ho-badge{font-size:9px;font-weight:900;background:#1565C0;color:#fff!important;padding:2px 5px;border-radius:4px;display:inline-block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
-.mg-ho-card.best .mg-ho-badge{background:#d4a347;color:#0a0a0a!important}
-.mg-ho-qty{font-size:10.5px;color:#5a6b85!important;margin-bottom:3px;line-height:1.3}
-.mg-ho-price{font-size:14px;font-weight:900;color:#0a2d6e!important;line-height:1.1}
-.mg-ho-price span{font-size:9px;font-weight:700}
-.mg-ho-old{font-size:9.5px;color:#9ba8bf!important;margin-top:2px;line-height:1.2}
-.mg-hero-price-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 4px}
-.cta-cod-btn{width:100%;padding:20px 24px;background:linear-gradient(135deg,#0F2B5C,#1565C0);color:#fff!important;border:none;border-radius:14px;font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 25px rgba(15,43,92,.35);transition:all .2s ease;margin-top:16px;margin-bottom:12px;display:block;animation:pulse-cta 2s ease-in-out infinite}
-.cta-cod-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(15,43,92,.45)}
-@keyframes pulse-cta{0%,100%{box-shadow:0 8px 25px rgba(15,43,92,.35)}50%{box-shadow:0 8px 35px rgba(15,43,92,.55)}}
-.mg-hero-note{text-align:center;font-size:12px;color:#5a6b85!important;margin:2px 0 0;line-height:1.4}
+.mg-price-block{margin:12px 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.price-old{font-size:15px;color:#9ba8bf!important;text-decoration:line-through}
+.price-current{font-size:28px;font-weight:900;color:#0a2d6e!important;letter-spacing:-.5px}
+.discount-badge{display:inline-block;background:#e63946;color:#fff!important;font-size:12px;font-weight:800;padding:3px 9px;border-radius:6px}
+.mg-trust-note{font-size:13px;color:#5a6b85!important;text-align:center;margin-top:10px;font-weight:600}
 
 @media(min-width:768px){
   .mg-hero-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -281,7 +269,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
   <header class="mg-hd">
     <div class="mg-hd-w">
       <span class="mg-logo">VITALUX<b>NUTRITION</b></span>
-      <button class="mg-hd-cta" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
+      <button class="mg-hd-cta" onclick="document.querySelector('.mg-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
 
@@ -345,47 +333,26 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 
           <div class="mg-hero-cdown">⏰ Offre expire dans : <strong id="mg-timer-hero">--:--:--</strong></div>
 
-          <div class="mg-hero-offers">
-            <div class="mg-ho-card" onclick="mgSelectOffer(1)" id="mg-ho-1">
-              <div class="mg-ho-qty">× 1 · 45 jours</div>
-              <div class="mg-ho-price">17 500 <span>FCFA</span></div>
-              <div class="mg-ho-old">25 000 · <b>-30%</b></div>
-            </div>
-            <div class="mg-ho-card popular active" onclick="mgSelectOffer(2)" id="mg-ho-2">
-              <div class="mg-ho-badge">⭐ Populaire</div>
-              <div class="mg-ho-qty">× 2 · 90 jours</div>
-              <div class="mg-ho-price">29 990 <span>FCFA</span></div>
-              <div class="mg-ho-old">50 000 · <b>-40%</b></div>
-            </div>
-            <div class="mg-ho-card best" onclick="mgSelectOffer(3)" id="mg-ho-3">
-              <div class="mg-ho-badge">🏆 Top valeur</div>
-              <div class="mg-ho-qty">× 3 · 135 jours</div>
-              <div class="mg-ho-price">39 990 <span>FCFA</span></div>
-              <div class="mg-ho-old">75 000 · <b>-47%</b></div>
-            </div>
-          </div>
-
-          <div class="mg-hero-price-row">
-            <span class="mg-pricing-new">17 500 FCFA</span>
-            <span class="mg-pricing-old">25 000 FCFA</span>
-            <span class="mg-pricing-save">-30%</span>
-          </div>
-
           <div class="mg-stock">⚠️ Plus que 47 bouteilles en stock</div>
 
-          {% form 'product', product %}
-            <input type="hidden" name="id" value="{{ current_variant.id }}">
-            <input type="hidden" name="quantity" value="1" id="cod-qty">
-            <button type="submit" name="add" class="cta-cod-btn">📦 COMMANDER MAINTENANT</button>
-          {% endform %}
-
-          <div class="mg-cod-pay">
-            <span>💵 Cash</span>
-            <span>📱 Mobile Money</span>
-            <span>🟡 Orange Money</span>
-            <span>🌊 Wave</span>
+          {%- assign cv = product.selected_or_first_available_variant -%}
+          <div class="mg-price-block">
+            {%- if cv.compare_at_price > cv.price -%}
+              <span class="price-old">{{ cv.compare_at_price | money }}</span>
+            {%- endif -%}
+            <span class="price-current">{{ cv.price | money }}</span>
+            {%- if cv.compare_at_price > cv.price -%}
+              {%- assign mg_discount = cv.compare_at_price | minus: cv.price | times: 100 | divided_by: cv.compare_at_price -%}
+              {%- if mg_discount > 0 -%}<span class="discount-badge">-{{ mg_discount }}%</span>{%- endif -%}
+            {%- endif -%}
           </div>
-          <p class="mg-hero-note">📞 Nous vous appelons sous 24h pour confirmer votre commande</p>
+
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ cv.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" name="add" class="mg-cod-btn">🛒 AJOUTER AU PANIER</button>
+          {% endform %}
+          <p class="mg-trust-note">✅ Paiement à la livraison · 🚚 Livraison rapide</p>
         </div>
 
       </div>
@@ -603,10 +570,12 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 
   <div class="mg-sticky" id="mg-sticky">
     <div class="mg-sticky-left">
-      <b>COMMANDER — 17 500 FCFA</b>
-      <small>Prix normal : 25 000 FCFA</small>
+      <b>{{ product.selected_or_first_available_variant.price | money }}</b>
+      {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+        <small>{{ product.selected_or_first_available_variant.compare_at_price | money }}</small>
+      {%- endif -%}
     </div>
-    <button class="mg-sticky-btn" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander<br>maintenant ›</button>
+    <button class="mg-sticky-btn" onclick="document.querySelector('.mg-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander ›</button>
   </div>
 
 </div>
@@ -689,15 +658,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
     start();
   }
 
-  // ─── Cartes offres → met à jour la quantité sélectionnée ─────────────
-  window.mgSelectOffer = function(qty){
-    var el = document.getElementById('cod-qty');
-    if(el) el.value = qty;
-    [1,2,3].forEach(function(i){
-      var c = document.getElementById('mg-ho-'+i);
-      if(c) c.classList.toggle('active', i===qty);
-    });
-  };
+
 })();
 </script>
 

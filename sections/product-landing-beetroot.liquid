@@ -149,9 +149,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
 .bt-sticky-px b{color:#e8b34a!important;font-size:18px;font-weight:900;display:block;line-height:1}
 .bt-sticky-px small{color:#a38a93!important;font-size:11px;text-decoration:line-through}
 .bt-sticky-btn{background:linear-gradient(135deg,#dc2655,#a51d44);color:#fff!important;border:none;padding:12px 18px;border-radius:8px;font-weight:900;font-size:13px;text-transform:uppercase;white-space:nowrap}
-.cta-cod-btn{width:100%;padding:20px 24px;background:linear-gradient(135deg,#8B0A3B,#C2185B);color:#fff!important;border:none;border-radius:14px;font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 25px rgba(194,24,91,.35);transition:all .2s ease;margin-top:16px;margin-bottom:12px;display:block;animation:pulse-cta 2s ease-in-out infinite}
-.cta-cod-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(194,24,91,.45)}
-@keyframes pulse-cta{0%,100%{box-shadow:0 8px 25px rgba(194,24,91,.35)}50%{box-shadow:0 8px 35px rgba(194,24,91,.55)}}
+.bt-trust-note{font-size:13px;color:#d6b8c1!important;text-align:center;margin-top:10px;font-weight:600}
 
 @media(min-width:768px){
   .bt-hero-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -184,7 +182,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
   <header class="bt-hd">
     <div class="bt-hd-w">
       <span class="bt-logo">VITA<b>LUX</b></span>
-      <button class="bt-hd-cta" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
+      <button class="bt-hd-cta" onclick="document.querySelector('.bt-cta').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
 
@@ -215,11 +213,15 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
           <p class="bt-sub">L'extrait de betterave riche en nitrates naturels : booste l'oxygénation, fait chuter la tension, augmente l'endurance et la performance physique.</p>
 
           <div class="bt-price">
-            {%- if compare_price != blank and current_variant.compare_at_price > current_variant.price -%}
-              <span class="bt-price-old">{{ compare_price }}</span>
+            {%- assign cv = product.selected_or_first_available_variant -%}
+            {%- if cv.compare_at_price > cv.price -%}
+              <span class="bt-price-old">{{ cv.compare_at_price | money }}</span>
             {%- endif -%}
-            <span class="bt-price-new">{{ product_price }}</span>
-            <span class="bt-price-badge">-40%</span>
+            <span class="bt-price-new">{{ cv.price | money }}</span>
+            {%- if cv.compare_at_price > cv.price -%}
+              {%- assign bt_discount = cv.compare_at_price | minus: cv.price | times: 100 | divided_by: cv.compare_at_price -%}
+              {%- if bt_discount > 0 -%}<span class="bt-price-badge">-{{ bt_discount }}%</span>{%- endif -%}
+            {%- endif -%}
           </div>
 
           <ul class="bt-checks">
@@ -230,17 +232,12 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
           </ul>
 
           <div class="bt-form-wrap" id="bt-form">
-            <div class="bt-form-title">🔥 Commande à la livraison · Espèces</div>
             {% form 'product', product %}
               <input type="hidden" name="id" value="{{ current_variant.id }}">
-              <input type="hidden" name="quantity" value="1" id="cod-qty">
-              <button type="submit" name="add" class="cta-cod-btn">📦 COMMANDER MAINTENANT</button>
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" name="add" class="bt-cta">🛒 AJOUTER AU PANIER</button>
             {% endform %}
-            <div class="bt-pay">
-              <span>💵 Espèces</span>
-              <span>📱 Mobile Money</span>
-              <span>🔒 Sans engagement</span>
-            </div>
+            <p class="bt-trust-note">✅ Paiement à la livraison · 🚚 Livraison rapide</p>
           </div>
         </div>
 
@@ -405,7 +402,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
         <small>{{ compare_price }}</small>
       {%- endif -%}
     </div>
-    <button class="bt-sticky-btn" onclick="document.querySelector('.cta-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander ›</button>
+    <button class="bt-sticky-btn" onclick="document.querySelector('.bt-cta').scrollIntoView({behavior:'smooth',block:'center'})">Commander ›</button>
   </div>
 
 </div>
