@@ -193,10 +193,6 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 .mg-cod-section{padding:48px 0;background:#fff}
 .mg-cod-box{background:#fff;border:2px solid #1565C0;border-radius:16px;padding:28px;max-width:560px;margin:0 auto;box-shadow:0 10px 30px rgba(21,101,192,.08)}
 .mg-cod-title{text-align:center;color:#0a2d6e!important;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:0 0 20px}
-.mg-cod-field{margin-bottom:14px}
-.mg-cod-field label{display:block;font-size:12px;font-weight:700;color:#0a1f3d!important;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
-.mg-cod-field input,.mg-cod-field select{width:100%;padding:13px 14px;border:1.5px solid #d6def0;border-radius:8px;font-size:14px;color:#0a1f3d!important;background:#fff;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
-.mg-cod-field input:focus,.mg-cod-field select:focus{border-color:#1565C0}
 .mg-cod-btn{display:block;width:100%;background:linear-gradient(135deg,#0a2d6e 0%,#1565C0 100%);color:#fff!important;border:none;padding:18px;border-radius:10px;font-size:17px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 10px 28px rgba(21,101,192,.35);transition:transform .15s;margin-top:18px}
 .mg-cod-btn:hover{transform:translateY(-2px)}
 .mg-cod-note{text-align:center;font-size:13px;color:#5a6b85!important;margin-top:12px;line-height:1.5}
@@ -227,15 +223,6 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 .mg-sticky-left small{color:#9ba8bf!important;font-size:11px;text-decoration:line-through}
 .mg-sticky-btn{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:13px 16px;border-radius:8px;font-weight:900;font-size:12px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 12px rgba(21,101,192,.3);cursor:pointer;line-height:1.2}
 
-.mg-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px}
-.mg-popup-overlay.show{display:flex}
-.mg-popup-box{background:#fff;border-radius:20px;padding:32px 24px;max-width:420px;width:100%;position:relative;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.mg-popup-close{position:absolute;top:12px;right:16px;font-size:24px;cursor:pointer;color:#9ba8bf!important;background:none;border:none;line-height:1}
-.mg-popup-badge{background:#e63946;color:#fff!important;font-size:12px;font-weight:900;padding:5px 14px;border-radius:999px;display:inline-block;margin-bottom:14px;text-transform:uppercase}
-.mg-popup-h{font-size:20px;font-weight:900;color:#0a1f3d!important;margin:0 0 8px;line-height:1.25}
-.mg-popup-p{font-size:14px;color:#5a6b85!important;margin:0 0 20px;line-height:1.5}
-.mg-popup-btn{display:block;width:100%;background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:16px;border-radius:10px;font-size:15px;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 18px rgba(21,101,192,.3)}
-.mg-popup-dismiss{display:block;margin-top:12px;font-size:12px;color:#9ba8bf!important;cursor:pointer;background:none;border:none;text-decoration:underline}
 
 @media(min-width:768px){
   .mg-hero-grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -586,31 +573,8 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
         <div class="mg-cod-title">💰 Commande à la livraison · Paiement en espèces</div>
         {% form 'product', product %}
           <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <div class="mg-cod-field">
-            <label>Nom complet</label>
-            <input type="text" name="properties[Nom]" placeholder="Votre nom complet" required>
-          </div>
-          <div class="mg-cod-field">
-            <label>Numéro WhatsApp</label>
-            <input type="tel" name="properties[WhatsApp]" placeholder="+229 XX XX XX XX" required>
-          </div>
-          <div class="mg-cod-field">
-            <label>Ville</label>
-            <input type="text" name="properties[Ville]" placeholder="Cotonou, Douala, Abidjan..." required>
-          </div>
-          <div class="mg-cod-field">
-            <label>Quartier</label>
-            <input type="text" name="properties[Quartier]" placeholder="Votre quartier / zone" required>
-          </div>
-          <div class="mg-cod-field">
-            <label>Quantité / Offre</label>
-            <select name="quantity" id="mg-qty-select">
-              <option value="1">× 1 bouteille — 17 500 FCFA (économie 30%)</option>
-              <option value="2">× 2 bouteilles — 29 990 FCFA (Choix populaire · -40%)</option>
-              <option value="3">× 3 bouteilles — 39 990 FCFA + Guide offert (Meilleure valeur · -47%)</option>
-            </select>
-          </div>
-          <button type="submit" name="add" class="mg-cod-btn">JE COMMANDE MAINTENANT ›</button>
+          <input type="hidden" name="quantity" value="1" id="cod-qty">
+          <button type="submit" name="add" class="mg-cod-btn">📦 COMMANDER MAINTENANT ›</button>
         {% endform %}
         <p class="mg-cod-note">📞 Nous t'appellerons dans les 24h pour confirmer ta commande</p>
         <div class="mg-cod-pay">
@@ -662,17 +626,6 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 
 </div>
 
-<!-- POPUP EXIT INTENT -->
-<div class="mg-popup-overlay" id="mg-popup">
-  <div class="mg-popup-box">
-    <button class="mg-popup-close" onclick="mgClosePopup()">×</button>
-    <div class="mg-popup-badge">⚠️ Attends !</div>
-    <h3 class="mg-popup-h">Tu pars sans ta Virilité Naturelle ?</h3>
-    <p class="mg-popup-p">Plus que 47 bouteilles en stock. L'offre à <strong>17 500 FCFA</strong> expire ce soir à minuit. Ne laisse pas passer cette chance.</p>
-    <button class="mg-popup-btn" onclick="mgClosePopup();document.getElementById('mg-form').scrollIntoView({behavior:'smooth'})">Je profite de l'offre maintenant ›</button>
-    <button class="mg-popup-dismiss" onclick="mgClosePopup()">Non merci, je préfère rester fatigué</button>
-  </div>
-</div>
 
 <script>
 (function(){
@@ -750,29 +703,12 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
     start();
   }
 
-  // ─── Pricing buttons → scroll to form + select qty ─────────────
+  // ─── Pricing buttons → met à jour la quantité + scroll vers le form ─────
   window.mgSelectOffer = function(qty){
-    var sel = document.getElementById('mg-qty-select');
-    if(sel) sel.value = qty;
+    var el = document.getElementById('cod-qty');
+    if(el) el.value = qty;
     document.getElementById('mg-form').scrollIntoView({behavior:'smooth'});
   };
-
-  // ─── Exit intent popup ─────────────────────────────────────────
-  var popupShown = sessionStorage.getItem('mg_popup_shown');
-  if(!popupShown){
-    document.addEventListener('mouseleave', function(e){
-      if(e.clientY < 10){
-        document.getElementById('mg-popup').classList.add('show');
-        sessionStorage.setItem('mg_popup_shown','1');
-      }
-    });
-  }
-  window.mgClosePopup = function(){
-    document.getElementById('mg-popup').classList.remove('show');
-  };
-  document.getElementById('mg-popup').addEventListener('click', function(e){
-    if(e.target === this) mgClosePopup();
-  });
 })();
 </script>
 
