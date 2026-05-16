@@ -76,5 +76,23 @@
         "default": "#c9a96e"
       }
     ]
+  },
+  {
+    "name": "Contact & Réseaux Sociaux",
+    "settings": [
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "Numéro WhatsApp (sans espaces, format international)",
+        "default": "22950104188",
+        "info": "Exemple : 22950104188 pour +229 50 10 41 88"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_display",
+        "label": "Numéro WhatsApp affiché",
+        "default": "+229 50 10 41 88"
+      }
+    ]
   }
 ]

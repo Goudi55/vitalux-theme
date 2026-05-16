@@ -34,6 +34,8 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
 .bt-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:#e8b34a!important;cursor:default}
 .bt-logo b{color:#fff!important}
 .bt-hd-cta{background:#dc2655;color:#fff!important;border:none;padding:9px 16px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase}
+.bt-hd-wa{display:none;color:#25D366!important;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}
+@media(min-width:768px){.bt-hd-wa{display:inline-flex;align-items:center;gap:5px}}
 
 .bt-hero{padding:24px 0 40px}
 .bt-hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
@@ -182,6 +184,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
   <header class="bt-hd">
     <div class="bt-hd-w">
       <span class="bt-logo">VITA<b>LUX</b></span>
+      <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}?text=Bonjour%20Vitalux%2C%20je%20m%27int%C3%A9resse%20au%20Beetroot" class="bt-hd-wa" target="_blank" rel="noopener">📱 {{ settings.whatsapp_display | default: '+229 50 10 41 88' }}</a>
       <button class="bt-hd-cta" onclick="document.querySelector('.bt-cta').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
@@ -238,6 +241,7 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
               <button type="submit" name="add" class="bt-cta">🛒 AJOUTER AU PANIER</button>
             {% endform %}
             <p class="bt-trust-note">✅ Paiement à la livraison · 🚚 Livraison rapide</p>
+            <p style="font-size:12px;text-align:center;margin-top:8px;font-weight:600">📱 Une question ? <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}?text=Bonjour%20Vitalux%2C%20je%20m%27int%C3%A9resse%20au%20Beetroot" target="_blank" rel="noopener" style="color:#25D366!important;font-weight:700;text-decoration:none">WhatsApp {{ settings.whatsapp_display | default: '+229 50 10 41 88' }}</a></p>
           </div>
         </div>
 
@@ -391,7 +395,8 @@ body{padding-top:0!important;margin-top:0!important;background:#1a0612!important
   <footer class="bt-ft">
     <div class="bt-w">
       © {{ 'now' | date: '%Y' }} VITALUX — Tous droits réservés ·
-      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a>
+      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+212 6 00 00 00 00' }}</a> ·
+      <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}" target="_blank" rel="noopener" style="color:#25D366!important;font-weight:700;text-decoration:none">💬 WhatsApp</a>
     </div>
   </footer>
 

@@ -32,6 +32,8 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
 .mg-logo::before{content:"▼";color:#1565C0!important;font-size:14px}
 .mg-logo b{color:#1565C0!important;letter-spacing:1px;font-weight:400;font-size:11px;margin-left:6px;text-transform:uppercase}
 .mg-hd-cta{background:linear-gradient(135deg,#0a2d6e,#1565C0);color:#fff!important;border:none;padding:9px 18px;border-radius:999px;font-weight:800;font-size:13px;text-transform:uppercase;box-shadow:0 4px 12px rgba(21,101,192,.4);cursor:pointer}
+.mg-hd-wa{display:none;color:#25D366!important;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}
+@media(min-width:768px){.mg-hd-wa{display:inline-flex;align-items:center;gap:5px}}
 
 .mg-cdown{background:#0a2d6e;color:#fff;text-align:center;padding:10px 20px;font-size:13px;font-weight:600}
 .mg-cdown strong{color:#ffd700;font-size:20px;letter-spacing:3px;font-weight:900}
@@ -269,6 +271,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
   <header class="mg-hd">
     <div class="mg-hd-w">
       <span class="mg-logo">VITALUX<b>NUTRITION</b></span>
+      <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}?text=Bonjour%20Vitalux%2C%20je%20m%27int%C3%A9resse%20au%20Complexe%20de%20Magn%C3%A9sium" class="mg-hd-wa" target="_blank" rel="noopener">📱 {{ settings.whatsapp_display | default: '+229 50 10 41 88' }}</a>
       <button class="mg-hd-cta" onclick="document.querySelector('.mg-cod-btn').scrollIntoView({behavior:'smooth',block:'center'})">Commander</button>
     </div>
   </header>
@@ -353,6 +356,7 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
             <button type="submit" name="add" class="mg-cod-btn">🛒 AJOUTER AU PANIER</button>
           {% endform %}
           <p class="mg-trust-note">✅ Paiement à la livraison · 🚚 Livraison rapide</p>
+          <p style="font-size:12px;text-align:center;margin-top:8px;font-weight:600">📱 Une question ? <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}?text=Bonjour%20Vitalux%2C%20je%20m%27int%C3%A9resse%20au%20Complexe%20de%20Magn%C3%A9sium" target="_blank" rel="noopener" style="color:#25D366!important;font-weight:700;text-decoration:none">WhatsApp {{ settings.whatsapp_display | default: '+229 50 10 41 88' }}</a></p>
         </div>
 
       </div>
@@ -562,7 +566,8 @@ body{padding-top:0!important;margin-top:0!important;background:#fff!important}
   <footer class="mg-footer">
     <div class="mg-w">
       © {{ 'now' | date: '%Y' }} VITALUX NUTRITION — Tous droits réservés ·
-      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+229 00 00 00 00' }}</a>
+      Service client : <a href="tel:{{ settings.phone | replace: ' ', '' }}">{{ settings.phone | default: '+229 00 00 00 00' }}</a> ·
+      <a href="https://wa.me/{{ settings.whatsapp_number | default: '22950104188' }}" target="_blank" rel="noopener" style="color:#25D366!important;font-weight:700;text-decoration:none">💬 WhatsApp</a>
       <small>Fabriqué pour VITALUX®, 1146 Central Ave, Glendale, CA 91202 · www.vitaluxnutrition.com<br>
       Ce produit n'est pas destiné à diagnostiquer, traiter, guérir ni prévenir aucune maladie.</small>
     </div>
